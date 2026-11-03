@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+    function signedIn() { return request.auth != null && request.auth.token.email_verified == true; }
+    function me() { return request.auth.token.email.lower(); }
+    function isAdmin() { return signedIn() && exists(/databases/$(db)/documents/admins/$(me())); }
+    function isTrainer(email) {
+      return signedIn() && me() == email
+        && get(/databases/$(db)/documents/trainers/$(email)).data.active == true;
+    }
+    function isClient(trainer, cid) {
+      return signedIn()
+        && exists(/databases/$(db)/documents/clientAccess/$(me()))
+        && get(/databases/$(db)/documents/clientAccess/$(me())).data.trainer == trainer
+        && get(/databases/$(db)/documents/clientAccess/$(me())).data.cid == cid;
+    }
+    match /admins/{email} {
+      allow read: if signedIn() && me() == email;
+      allow write: if false;
+    }
+    match /trainers/{email} {
+      allow read: if isAdmin() || (signedIn() && me() == email);
+      allow write: if isAdmin();
+      match /clients/{cid} {
+        allow read, write: if isAdmin() || isTrainer(email);
+        // A client can read their own record and change only their workout logs.
+        allow read: if isClient(email, cid);
+        allow update: if isClient(email, cid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body']);
+      }
+    }
+    // One small record per client login: which trainer they belong to and their level.
+    match /clientAccess/{email} {
+      allow read: if signedIn() && (me() == email || isAdmin()
+                     || (resource != null && resource.data.trainer == me()));
+      allow create: if signedIn() && (isAdmin()
+                     || (request.resource.data.trainer == me() && isTrainer(me())));
+      allow update: if signedIn() && (isAdmin()
+                     || (resource.data.trainer == me() && request.resource.data.trainer == me() && isTrainer(me())));
+      allow delete: if signedIn() && (isAdmin()
+                     || (resource.data.trainer == me() && isTrainer(me())));
+    }
+  }
+}
