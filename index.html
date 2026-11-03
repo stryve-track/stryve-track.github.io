@@ -85,12 +85,13 @@ svg.figL{width:120px;height:116px}
 .fig polyline{fill:none;stroke:var(--ac);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
 .fig .hd{fill:var(--ac)}.fig .wt{fill:var(--tx)}.fig .fl{stroke:var(--ln);stroke-width:2}.fig .dc{stroke:var(--mu);stroke-width:3;stroke-linecap:round}
 .ex{display:flex;align-items:center;gap:12px;min-width:0}
+.fig .cb{stroke:var(--mu);stroke-width:1.5;stroke-dasharray:3 2}.fig .br{stroke:var(--tx);stroke-width:3.5;stroke-linecap:round}
 .demo{display:flex;align-items:center;gap:14px;background:var(--bg);border-radius:16px;padding:10px;margin-bottom:12px}
 .demo svg.fig{background:transparent}.demo a{color:var(--ac);font-weight:700;text-decoration:none;font-size:14px}
 #gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
 #gate[hidden]{display:none}.gbody{max-width:360px;text-align:center}.gbody p{color:var(--mu)}.gt{font-size:24px;font-weight:800;margin:8px 0}
 body:not(.cm) .cm-only{display:none}
-.client #clientbar,.client #lv,.client #spl,.client #spll,.client #ovc,.client #bkc{display:none}
+.guest #clientbar,.guest #ovc,.client #clientbar,.client #lv,.client #spl,.client #spll,.client #ovc,.client #bkc{display:none}
 #acct{line-height:1.6}#acct a{color:var(--ac);font-weight:600}
 </style>
 </head>
@@ -104,7 +105,7 @@ body:not(.cm) .cm-only{display:none}
     <details><summary>Manage clients</summary>
       <div class="row r2" style="margin-top:10px"><input id="cn" placeholder="Client name" maxlength="30"><button id="cadd">Add client</button></div>
       <div class="row r2"><button class="sec" id="cren">Rename selected</button><button class="sec" id="cdel">Delete selected</button></div>
-    <div class="cm-only" style="margin-top:6px"><label>Client login (Google email)</label><input id="cem" type="email" inputmode="email" autocapitalize="off" autocomplete="off" placeholder="client@gmail.com"><label>Workout level (only you can change this)</label><select id="clv"><option value="0">Not set</option><option value="1">Beginner</option><option value="2">Intermediate</option><option value="3">Expert</option></select><button id="csave" style="margin-top:10px;width:100%">Save client access</button></div>
+    <div class="cm-only" style="margin-top:6px"><label>Client login (Google email)</label><input id="cem" type="email" inputmode="email" autocapitalize="off" autocomplete="off" placeholder="client@gmail.com"><label>Workout level (only you can change this)</label><select id="clv"><option value="0">Not set</option><option value="1">Beginner</option><option value="2">Intermediate</option><option value="3">Expert</option></select><label style="margin-top:10px">Workout focus (assigned by you)</label><select id="csp"><option value="">Recommended for level</option><option>Push / Pull / Legs</option><option>Upper / Lower</option><option>Single body part</option><option>Full body</option><option>Push only</option><option>Pull only</option><option>Legs only</option></select><button id="csave" style="margin-top:10px;width:100%">Save client access</button></div>
     </details></div>
 
   <section id="v-log">
@@ -183,7 +184,7 @@ body:not(.cm) .cm-only{display:none}
   function renderClients(){
     $("cl").innerHTML=root.clients.map(function(c){return'<option value="'+c.id+'"'+(c.id===root.active?" selected":"")+'>'+esc(c.name)+'</option>'}).join("");
     $("cdel").textContent="Delete selected";
-    var cc=cur();if($("cem")){$("cem").value=cc.email||"";$("clv").value=String(cc.level||0)}
+    var cc=cur();if($("cem")){$("cem").value=cc.email||"";$("clv").value=String(cc.level||0);$("csp").value=cc.split||""}
   }
   function renderOverview(){
     var t=new Date(),keys={};for(var i=0;i<30;i++)keys[dkey(new Date(t.getFullYear(),t.getMonth(),t.getDate()-i))]=1;
@@ -225,7 +226,10 @@ body:not(.cm) .cm-only{display:none}
     "Push / Pull / Legs":["Push","Pull","Legs","Push","Pull","Legs","Rest"],
     "Upper / Lower":["Upper Body","Lower Body","Rest","Upper Body","Lower Body","Core & Cardio","Rest"],
     "Single body part":["Chest","Back","Shoulders","Legs","Arms","Core & Cardio","Rest"],
-    "Full body":["Full Body","Rest","Full Body","Rest","Full Body","Rest","Rest"]
+    "Full body":["Full Body","Rest","Full Body","Rest","Full Body","Rest","Rest"],
+    "Push only":["Push","Rest","Push","Rest","Push","Rest","Rest"],
+    "Pull only":["Pull","Rest","Pull","Rest","Pull","Rest","Rest"],
+    "Legs only":["Legs","Rest","Legs","Rest","Legs","Rest","Rest"]
   };
   TPL["Chest"]=[["Chest",1]];TPL["Back"]=[["Back",1]];
   TPL["Shoulders"]=[["Shoulders",3],["Traps",1]];
@@ -267,7 +271,7 @@ body:not(.cm) .cm-only{display:none}
     var name=sch[PLAN.day-1],box=$("pday"),when=wd[PLAN.day-1]+", "+dt(PLAN.day-1).toLocaleDateString(undefined,o);
     if(name==="Rest"){box.innerHTML='<h2>Day '+PLAN.day+' \u00b7 Rest</h2><div class="sync" style="margin:-4px 0 6px;text-align:left">'+when+'</div><div class="empty">Rest day. A light walk, stretching or mobility work helps you recover.</div>';return}
     var k=sch.slice(0,PLAN.day-1).filter(function(x){return x===name}).length;
-    var tpl=TPL[name],items=mk(PLAN.lv,tpl,(v+2*k)%4),gs=tpl.map(function(s){return s[0]}).filter(function(g,i,a){return a.indexOf(g)===i}).join(" \u00b7 ");
+    var tpl=TPL[name],items=mk(PLAN.lv,tpl,(v+k*(sch.filter(function(x){return x===name}).length>2?1:2))%4),gs=tpl.map(function(s){return s[0]}).filter(function(g,i,a){return a.indexOf(g)===i}).join(" \u00b7 ");
     box.innerHTML='<h2>Day '+PLAN.day+' \u00b7 '+esc(name)+'</h2><div class="sync" style="margin:-4px 0 6px;text-align:left">'+when+' \u00b7 '+gs+' \u00b7 '+items.length+' exercises</div>'+items.map(function(it){
       return'<div class="item" data-pex="'+esc(it[0])+'" data-s="'+it[1]+'" data-r="'+it[2]+'" style="cursor:pointer"><div class="ex">'+figSvg(it[0])+'<div><b>'+esc(it[0])+'</b><span>'+it[1]+' sets \u00d7 '+it[2]+(it[3]?" sec":" reps")+'</span></div></div><div class="logcta" style="color:var(--ac);font-weight:700">Log \u203a</div></div>';
     }).join("");
@@ -307,8 +311,9 @@ body:not(.cm) .cm-only{display:none}
 
   if(!CM)try{var l=norm2(JSON.parse(localStorage.getItem(KEY)));if(l){root=l;pick(l.active)}}catch(e){}
 
+  var GUEST=false;
   var CLOUD={me:"",email:"",admin:false,cache:{},mail:{},cm:{},cd:{},cc:"",client:null,t:0};
-  var GL='<div class="hs" style="color:var(--ac)">Stryve Track</div>',SIGNBTN='<button id="gsign">Sign in with Google</button>';
+  var GL='<div class="hs" style="color:var(--ac)">Stryve Track</div>',SIGNBTN='<button id="gsign">Sign in with Google</button><button class="sec" id="gguest" style="margin-top:10px">Continue as guest</button>';
   function gate(h){var g=$("gate");g.hidden=!h;g.querySelector(".gbody").innerHTML=h||""}
   function cloudSave(){
     if(!CLOUD.email)return;
@@ -323,16 +328,16 @@ body:not(.cm) .cm-only{display:none}
         var ids={};
         for(var i=0;i<root.clients.length;i++){
           var c=root.clients[i],st=root.store[c.id]||{entries:[],body:[]};ids[c.id]=1;
-          var lv=c.level||0,em=c.email||"",md=JSON.stringify([c.name,lv,em]),dd=JSON.stringify([st.entries,st.body]),part={};
+          var lv=c.level||0,em=c.email||"",md=JSON.stringify([c.name,lv,em,c.split||""]),dd=JSON.stringify([st.entries,st.body]),part={};
           var metaNew=CLOUD.cm[c.id]!==md;
-          if(metaNew){part.name=c.name;part.level=lv;part.email=em}
+          if(metaNew){part.name=c.name;part.level=lv;part.email=em;part.split=c.split||""}
           if(CLOUD.cd[c.id]!==dd){part.entries=st.entries;part.body=st.body}
           if(!Object.keys(part).length)continue;
           await FB.saveClient(CLOUD.email,c.id,part);
           if(metaNew){
             var want=(em&&lv>=1)?em:"",old=CLOUD.mail[c.id]||"";
             if(old&&old!==want)await FB.deleteAccess(old);
-            if(want)await FB.setAccess(want,{trainer:CLOUD.email,cid:c.id,name:c.name,level:lv});
+            if(want)await FB.setAccess(want,{trainer:CLOUD.email,cid:c.id,name:c.name,level:lv,split:c.split||""});
             CLOUD.mail[c.id]=want;CLOUD.cm[c.id]=md;
           }
           CLOUD.cd[c.id]=dd;
@@ -347,9 +352,9 @@ body:not(.cm) .cm-only{display:none}
     CLOUD.cm={};CLOUD.cd={};CLOUD.mail={};
     list.sort(function(a,b){return(a.name||"").localeCompare(b.name||"")});
     list.forEach(function(c){
-      var lv=c.level||0,em=c.email||"",en=c.entries||[],bd=c.body||[],nm=c.name||"Client";
-      r.clients.push({id:c.id,name:nm,level:lv,email:em});r.store[c.id]={entries:en,body:bd};
-      CLOUD.cm[c.id]=JSON.stringify([nm,lv,em]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1)?em:"";
+      var lv=c.level||0,em=c.email||"",en=c.entries||[],bd=c.body||[],nm=c.name||"Client",sp=c.split||"";
+      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp});r.store[c.id]={entries:en,body:bd};
+      CLOUD.cm[c.id]=JSON.stringify([nm,lv,em,sp]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1)?em:"";
     });
     if(!r.clients.length){r.clients.push({id:"me",name:"Me"});r.store.me={entries:[],body:[]}}
     var a="";try{a=localStorage.getItem("wt-act")||""}catch(e){}
@@ -359,22 +364,29 @@ body:not(.cm) .cm-only{display:none}
   }
   function renderAcct(){
     var h="";
-    if(CLOUD.me){
+    if(GUEST){h='Guest mode \u00b7 saved on this device only \u00b7 <a href="#" id="gsignin">Sign in</a>'}else if(CLOUD.me){
       h=esc(CLOUD.me)+' \u00b7 <a href="#" id="gout2">Sign out</a>'+(CLOUD.admin?' \u00b7 <a href="admin.html">Admin</a>':"");
       if(CLOUD.email!==CLOUD.me&&!CLOUD.client)h='Viewing clients of '+esc(CLOUD.email)+' \u00b7 <a href="#" id="back">Back to mine</a><br>'+h;
     }
     $("acct").innerHTML=h;
+  }
+  function startGuest(){
+    GUEST=true;KEY="wt-guest-v1";document.body.classList.add("guest");
+    try{var l=norm2(JSON.parse(localStorage.getItem(KEY)));if(l){root=l;pick(l.active)}}catch(e){}
+    gate("");renderClients();renderAll();renderAcct();
   }
   function startAuth(){
     if(!CM)return;
     document.body.classList.add("cm");
     $("gate").addEventListener("click",function(e){
       var b=e.target.closest("button");if(!b)return;
+      if(b.id==="gguest"){startGuest();return}
       if(b.id==="gsign")FB.signIn().catch(function(x){gate(GL+'<p>Sign-in failed: '+esc(x.code||x.message)+'</p>'+SIGNBTN)});
       if(b.id==="gout")FB.signOut().then(function(){location.reload()});
     });
     $("acct").addEventListener("click",function(e){
       var a=e.target.closest("a");if(!a)return;
+      if(a.id==="gsignin"){e.preventDefault();location.reload()}
       if(a.id==="gout2"){e.preventDefault();FB.signOut().then(function(){location.reload()})}
       if(a.id==="back"){e.preventDefault();location.hash="";location.reload()}
     });
@@ -384,14 +396,14 @@ body:not(.cm) .cm-only{display:none}
       clearTimeout(tm);
       if(!FB.ok){gate(GL+'<p>Login setup is incomplete. Check firebase-config.js.</p>');return}
       FB.onUser(async function(u){
-        if(!u){gate(GL+'<div class="gt">Trainer login</div><p>Sign in with the Google account your admin approved.</p>'+SIGNBTN);return}
+        if(!u){gate(GL+'<div class="gt">LOGIN</div><p>Sign in with your Google account, or continue as a guest.</p>'+SIGNBTN);return}
         var email=(u.email||"").toLowerCase();gate("<p>Checking access\u2026</p>");
         var r;try{r=await FB.role(email)}catch(x){gate(GL+'<p>Could not check access. Check your connection.</p>');return}
         if(!r.trainer&&!r.admin){
           var ac=null;try{ac=await FB.access(email)}catch(x){}
           if(ac&&ac.level>=1&&ac.level<=3){
             CLOUD.me=email;CLOUD.email=ac.trainer;CLOUD.client={trainer:ac.trainer,cid:ac.cid};
-            document.body.classList.add("client");PLAN.lv=ac.level;PLAN.sp="Recommended";PLAN.off=0;
+            document.body.classList.add("client");PLAN.lv=ac.level;PLAN.sp=ac.split||"Recommended";PLAN.off=0;
             var cd=null;try{cd=await FB.getClient(ac.trainer,ac.cid)}catch(x){}
             if(!cd){gate(GL+'<p>Could not load your workouts. Ask your trainer to check your access.</p><button class="sec" id="gout">Sign out</button>');return}
             var dd={entries:cd.entries||[],body:cd.body||[]};CLOUD.cc=JSON.stringify([dd.entries,dd.body]);
@@ -399,7 +411,7 @@ body:not(.cm) .cm-only{display:none}
             pick(ac.cid);renderClients();renderAll();
             gate("");renderAcct();tab("plan");document.querySelector(".hs").textContent="Stryve Track \u00b7 "+(root.clients[0].name||"");return;
           }
-          gate(GL+'<div class="gt">No access yet</div><p>'+esc(email)+' has not been approved. Ask your trainer or the admin to add this Google email.</p><button class="sec" id="gout">Sign out</button>');return}
+          gate(GL+'<div class="gt">No access yet</div><p>'+esc(email)+' has not been approved. Ask your trainer or the admin to add this Google email, or use the app as a guest.</p><button id="gguest">Continue as guest</button><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
         CLOUD.me=email;CLOUD.admin=r.admin;
         var as=(location.hash.match(/as=([^&]+)/)||[])[1];
         CLOUD.email=(r.admin&&as)?decodeURIComponent(as).toLowerCase():email;
@@ -410,7 +422,7 @@ body:not(.cm) .cm-only{display:none}
     window.FB?init():window.addEventListener("fbready",init);
   }
   function persist(){cloudSave();
-    if(CM){try{localStorage.setItem("wt-act",root.active)}catch(e){}}else try{localStorage.setItem(KEY,JSON.stringify(root))}catch(e){}
+    if(CM&&!GUEST){try{localStorage.setItem("wt-act",root.active)}catch(e){}}else try{localStorage.setItem(KEY,JSON.stringify(root))}catch(e){}
     if(!ref)return;
     clearTimeout(timer);
     timer=setTimeout(function(){
@@ -495,69 +507,104 @@ body:not(.cm) .cm-only{display:none}
   var FIG={
     squat:[[50,16,50,28,48,55,56,38,54,28,50,72,50,88],[56,34,52,46,38,70,60,54,57,45,62,70,50,88]],
     hinge:[[50,16,50,28,48,55,52,42,52,54,50,72,50,88],[78,42,68,46,40,56,70,60,70,72,44,72,46,88]],
-    lunge:[[50,16,50,28,48,55,52,42,52,54,50,72,52,88],[50,28,50,40,50,66,52,54,52,66,64,68,64,88]],
+    swing:[[78,42,68,46,40,56,70,60,66,72,44,72,46,88],[50,16,50,28,48,55,64,30,78,30,50,72,50,88]],
+    lunge:[[50,16,50,28,48,55,52,42,52,54,50,72,52,88,50,72,48,88],[50,28,50,40,50,66,52,54,52,66,64,68,64,88,40,80,26,88]],
     pushup:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[88,66,80,70,45,76,88,76,80,82,28,79,12,82]],
     bench:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,38,62,31,54,76,56,84,88]],
-    ohp:[[50,18,50,30,48,56,58,38,54,28,50,72,50,88],[50,18,50,30,48,56,54,16,54,2,50,72,50,88]],
+    incline:[[24,42,32,50,56,76,36,38,42,26,74,62,80,88],[24,42,32,50,56,76,42,54,38,44,74,62,80,88]],
+    fly:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,24,54,14,46,76,56,84,88]],
+    ohp:[[50,16,50,28,50,55,38,34,38,22,47,72,45,88],[50,16,50,28,50,55,40,16,42,2,47,72,45,88]],
     raise:[[50,18,50,30,48,56,52,44,52,56,50,72,50,88],[50,18,50,30,48,56,62,32,76,32,50,72,50,88]],
-    curl:[[50,18,50,30,48,56,52,44,53,58,50,72,50,88],[50,18,50,30,48,56,52,44,63,34,50,72,50,88]],
+    lat:[[50,16,50,28,50,55,44,42,41,54,47,72,45,88],[50,16,50,28,50,55,38,30,26,28,47,72,45,88]],
+    curl:[[50,16,50,28,50,55,42,44,41,58,47,72,45,88],[50,16,50,28,50,55,42,44,44,30,47,72,45,88]],
     tri:[[50,18,50,30,48,56,52,44,62,34,50,72,50,88],[50,18,50,30,48,56,52,44,53,58,50,72,50,88]],
     row:[[78,42,68,46,40,56,70,60,70,72,44,72,46,88],[78,42,68,46,40,56,52,50,60,58,44,72,46,88]],
+    seatedrow:[[38,30,40,44,36,70,54,52,66,56,56,66,74,68],[38,30,40,44,36,70,32,58,42,60,56,66,74,68]],
     pull:[[50,18,50,28,50,54,53,16,54,6,52,70,50,84],[50,8,50,20,50,46,62,18,54,6,52,62,50,76]],
+    pulldown:[[46,26,46,40,44,68,52,26,56,10,62,68,62,88],[46,26,46,40,44,68,44,54,56,40,62,68,62,88]],
+    facepull:[[50,18,50,30,48,56,62,32,76,30,50,72,50,88],[50,18,50,30,48,56,64,34,56,20,50,72,50,88]],
+    crossover:[[50,16,50,28,50,55,34,30,20,28,47,72,45,88],[50,16,50,28,50,55,44,42,50,54,47,72,45,88]],
     crunch:[[14,74,24,78,56,78,22,72,16,72,72,64,82,84],[32,56,38,66,56,78,36,58,30,50,72,64,82,84]],
     plank:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[86,50,80,54,45,66,80,68,80,82,28,74,12,82]],
     legraise:[[14,74,24,78,56,78,36,78,46,78,72,78,90,78],[14,74,24,78,56,78,36,78,46,78,58,60,58,42]],
     calf:[[50,18,50,30,48,56,52,44,52,56,50,72,52,88],[50,12,50,24,48,50,52,38,52,50,50,66,56,86]],
-    shrug:[[50,18,50,30,48,56,52,44,52,56,50,72,52,88],[50,18,50,25,48,56,52,40,52,52,50,72,52,88]],
+    shrug:[[50,16,50,30,50,56,42,44,41,56,47,72,45,88],[50,16,50,25,50,56,42,40,41,52,47,72,45,88]],
     bridge:[[14,74,24,76,50,80,34,78,44,80,66,60,72,86],[14,74,24,76,52,58,34,78,44,80,66,56,72,86]],
     kick:[[50,18,50,30,48,56,52,44,52,56,50,72,50,88],[50,18,50,30,48,56,52,44,52,56,40,72,24,78]],
     legext:[[40,24,40,36,40,60,46,48,52,60,62,62,64,84],[40,24,40,36,40,60,46,48,52,60,62,62,86,62]],
-    run:[[52,18,50,30,48,56,40,44,34,52,62,62,58,78],[52,18,50,30,48,56,62,44,68,38,44,72,28,74]],
+    run:[[52,18,50,30,48,56,40,44,34,52,62,62,58,78,44,72,30,76],[52,18,50,30,48,56,62,44,68,38,44,72,28,74,62,62,58,78]],
     jump:[[50,18,50,30,48,56,52,44,52,56,50,72,52,88],[50,6,50,18,48,44,56,28,58,16,56,56,46,66]],
+    jacks:[[50,16,50,28,50,55,42,44,40,56,47,72,47,88],[50,14,50,28,50,55,40,20,34,6,38,72,30,88]],
     dip:[[50,16,50,28,50,54,50,39,50,50,56,68,52,82],[50,28,50,40,50,66,61,47,50,50,56,78,52,88]],
-    climber:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[86,48,80,52,45,64,80,68,80,82,58,66,44,76]]
+    climber:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82,58,66,44,76],[86,48,80,52,45,64,80,68,80,82,58,66,44,76,28,73,12,82]]
   };
-  var FR=[[/\bdips?\b/i,"dip"],[/mountain climber/i,"climber"],[/(tricep|skull|pushdown|jm press|tate|overhead extension)/i,"tri"],
+  var FR=[[/\bdips?\b/i,"dip"],[/mountain climber/i,"climber"],[/jumping jack/i,"jacks"],
+    [/(tricep|skull|pushdown|jm press|tate|overhead extension)/i,"tri"],
     [/(leg curl|leg extension|nordic|glute ham|slider)/i,"legext"],[/(calf|toe raise|tibialis)/i,"calf"],
     [/(leg raise|knee raise|toes-to-bar|dragon|flutter|reverse crunch|v-ups)/i,"legraise"],[/shrug/i,"shrug"],
     [/(kick|donkey|hydrant|abduction|clamshell|lateral walk)/i,"kick"],[/(hip thrust|bridge|frog pump)/i,"bridge"],
-    [/(deadlift|good morning|romanian|pull-through|swing|back extension|reverse hyper|rack pull|clean)/i,"hinge"],
+    [/swing/i,"swing"],[/(deadlift|good morning|romanian|pull-through|back extension|reverse hyper|rack pull|clean)/i,"hinge"],
     [/(overhead press|shoulder press|arnold|push press|z press|seated barbell press|pike|handstand|overhead cable press)/i,"ohp"],
-    [/(lateral raise|front raise|y raise|pull-apart|rear delt|reverse pec|face pull|upright)/i,"raise"],
+    [/face pull/i,"facepull"],[/(lateral raise|rear delt|reverse pec|pull-apart|y raise|upright)/i,"lat"],[/front raise/i,"raise"],
     [/(plank|l-sit|dead bug|bird dog|ab wheel|gripper|hold|pinch)/i,"plank"],[/push-up/i,"pushup"],
-    [/(dead hang|towel hang|pull-up|chin-up|pulldown|towel pull)/i,"pull"],
+    [/(dead hang|towel hang|pull-up|chin-up|towel pull)/i,"pull"],[/(pulldown|pull down)/i,"pulldown"],
     [/(\browing|\btreadmill|\bcycling|\belliptical|\bstair|\bsprint|\bsled|\bshadow|high knees|\bbike|\brun\b|\bwalk\b|carry)/i,"run"],
-    [/(jump|burpee|jacks|battle rope|skater)/i,"jump"],[/\brow\b/i,"row"],[/(crunch|twist|woodchop|pallof|heel taps)/i,"crunch"],
+    [/(jump|burpee|battle rope|skater)/i,"jump"],
+    [/(seated cable row|machine row|single-arm cable row)/i,"seatedrow"],[/\brow\b/i,"row"],
+    [/(crunch|twist|woodchop|pallof|heel taps)/i,"crunch"],
     [/(lunge|split squat|step-up|curtsy|pistol)/i,"lunge"],[/(squat|leg press|hack|wall sit)/i,"squat"],[/(curl|wrist)/i,"curl"],
-    [/(bench|chest press|floor press|svend|fly|crossover|pec deck|landmine press|board press|incline|decline)/i,"bench"]];
-  var WTA={squat:1,hinge:1,lunge:1,bench:1,ohp:1,raise:1,curl:1,tri:1,row:1,shrug:1,pull:1};
+    [/(pec deck|crossover|cable fly)/i,"crossover"],[/incline/i,"incline"],[/\bfly\b/i,"fly"],
+    [/(bench|chest press|floor press|svend|landmine press|board press|decline)/i,"bench"]];
+  var WTA={squat:1,hinge:1,swing:1,lunge:1,bench:1,incline:1,fly:1,ohp:1,raise:1,lat:1,curl:1,tri:1,row:1,shrug:1,pull:1};
+  var MIR={lat:1,curl:1,ohp:1,shrug:1,jacks:1,crossover:1};
+  var ANC={pulldown:[58,2],tri:[58,2],facepull:[92,28],seatedrow:[96,58],crossover:[10,4],curl:[28,92],raise:[62,92],kick:[62,92]};
+  var CAB=/(cable|pulldown|pushdown|face pull|crossover|pull-through|seated cable)/i;
   var RM=false;try{RM=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}
   function figType(n){for(var i=0;i<FR.length;i++)if(FR[i][0].test(n))return FR[i][1];return ""}
   function figDecor(a){
     var f='<line class="fl" x1="4" y1="92" x2="96" y2="92"/>';
-    if(a==="bench")return f+'<line class="dc" x1="10" y1="73" x2="68" y2="73"/>';
+    if(a==="bench"||a==="fly")return f+'<line class="dc" x1="10" y1="73" x2="68" y2="73"/>';
+    if(a==="incline")return f+'<line class="dc" x1="26" y1="58" x2="54" y2="84"/><line class="dc" x1="50" y1="84" x2="68" y2="84"/>';
     if(a==="pull")return f+'<line class="dc" x1="42" y1="5" x2="68" y2="5"/>';
     if(a==="dip")return f+'<line class="dc" x1="36" y1="50" x2="64" y2="50"/>';
     if(a==="legext")return f+'<line class="dc" x1="26" y1="66" x2="46" y2="66"/>';
+    if(a==="pulldown")return f+'<line class="dc" x1="34" y1="72" x2="52" y2="72"/>';
+    if(a==="seatedrow")return f+'<line class="dc" x1="26" y1="72" x2="46" y2="72"/><line class="dc" x1="80" y1="52" x2="80" y2="84"/>';
     return f;
   }
   function figSvg(n,big){
     var a=figType(n);if(!a)return"";
-    var w=WTA[a]&&!/(push-up|bodyweight|assisted|pull-up|chin-up|inverted|dips?\b|hang|wall sit|pistol|band)/i.test(n)?1:0;
-    return'<svg class="fig'+(big?' figL':'')+'" viewBox="0 0 100 96" data-a="'+a+'" data-w="'+w+'" aria-hidden="true">'+figDecor(a)+'<polyline/><polyline/><polyline/><circle class="hd" r="7"/><circle class="wt" r="5"/></svg>';
+    var bw=/(push-up|bodyweight|assisted|pull-up|chin-up|inverted|dips?\b|hang|wall sit|pistol|band)/i.test(n);
+    var an=ANC[a]&&CAB.test(n)?ANC[a]:null;
+    var w=WTA[a]&&!bw&&!an?1:0;
+    var bar=MIR[a]&&w&&/(barbell|ez-bar|\bbar\b|smith)/i.test(n)&&!/dumbbell/i.test(n)?1:0;
+    return'<svg class="fig'+(big?' figL':'')+'" viewBox="0 0 100 96" data-a="'+a+'" data-w="'+w+'" data-m="'+(MIR[a]?1:0)+'" data-b="'+bar+'"'+(an?' data-ax="'+an[0]+'" data-ay="'+an[1]+'"':'')+' aria-hidden="true">'+figDecor(a)+'<line class="cb"/><line class="cb"/><line class="br"/><polyline/><polyline/><polyline/><polyline/><polyline/><circle class="hd" r="7"/><circle class="wt" r="5"/><circle class="wt" r="5"/></svg>';
   }
   function tickFig(t){
     var els=document.querySelectorAll("svg.fig");if(!els.length)return;
-    var ph=RM?.5:(1-Math.cos(t/1000*Math.PI))/2;
+    var ph=RM?.5:(1-Math.cos(t/1000*Math.PI))/2,X=function(x){return 100-x};
     els.forEach(function(el){
       var P=FIG[el.dataset.a];if(!P)return;
-      var r=el._r;if(!r){var pl=el.querySelectorAll("polyline"),ci=el.querySelectorAll("circle");r=el._r={a:pl[0],b:pl[1],c:pl[2],h:ci[0],w:ci[1]}}
-      var q=P[0].map(function(v,i){return v+(P[1][i]-v)*ph});
-      r.a.setAttribute("points",q[2]+","+q[3]+" "+q[4]+","+q[5]);
-      r.b.setAttribute("points",q[2]+","+q[3]+" "+q[6]+","+q[7]+" "+q[8]+","+q[9]);
-      r.c.setAttribute("points",q[4]+","+q[5]+" "+q[10]+","+q[11]+" "+q[12]+","+q[13]);
+      var r=el._r;
+      if(!r){var pl=el.querySelectorAll("polyline"),ci=el.querySelectorAll("circle"),ln=el.querySelectorAll("line.cb,line.br");
+        r=el._r={a:pl[0],b:pl[1],c:pl[2],d:pl[3],e:pl[4],h:ci[0],w:ci[1],v:ci[2],k0:ln[0],k1:ln[1],br:ln[2],M:el.dataset.m==="1",W:el.dataset.w==="1",B:el.dataset.b==="1",ax:el.dataset.ax,ay:el.dataset.ay}}
+      var q=P[0].map(function(v,i){return v+(P[1][i]-v)*ph}),S=function(e,p){e.setAttribute("points",p)};
+      S(r.a,q[2]+","+q[3]+" "+q[4]+","+q[5]);
+      S(r.b,q[2]+","+q[3]+" "+q[6]+","+q[7]+" "+q[8]+","+q[9]);
+      S(r.c,q[4]+","+q[5]+" "+q[10]+","+q[11]+" "+q[12]+","+q[13]);
+      if(r.M){
+        S(r.d,X(q[2])+","+q[3]+" "+X(q[6])+","+q[7]+" "+X(q[8])+","+q[9]);
+        S(r.e,X(q[4])+","+q[5]+" "+X(q[10])+","+q[11]+" "+X(q[12])+","+q[13]);
+      }else if(P[0].length>14){S(r.e,q[4]+","+q[5]+" "+q[14]+","+q[15]+" "+q[16]+","+q[17])}
       r.h.setAttribute("cx",q[0]);r.h.setAttribute("cy",q[1]);
-      if(el.dataset.w==="1"){r.w.setAttribute("cx",q[8]);r.w.setAttribute("cy",q[9])}else r.w.setAttribute("r",0);
+      var wt=r.W&&!r.B;
+      r.w.setAttribute("r",wt?5:0);r.w.setAttribute("cx",q[8]);r.w.setAttribute("cy",q[9]);
+      r.v.setAttribute("r",wt&&r.M?5:0);r.v.setAttribute("cx",X(q[8]));r.v.setAttribute("cy",q[9]);
+      if(r.B){r.br.setAttribute("x1",q[8]);r.br.setAttribute("y1",q[9]);r.br.setAttribute("x2",X(q[8]));r.br.setAttribute("y2",q[9])}
+      if(r.ax){
+        r.k0.setAttribute("x1",r.ax);r.k0.setAttribute("y1",r.ay);r.k0.setAttribute("x2",q[8]);r.k0.setAttribute("y2",q[9]);
+        if(r.M){r.k1.setAttribute("x1",X(r.ax));r.k1.setAttribute("y1",r.ay);r.k1.setAttribute("x2",X(q[8]));r.k1.setAttribute("y2",q[9])}
+      }
     });
   }
   function showDemo(name){
@@ -640,7 +687,7 @@ body:not(.cm) .cm-only{display:none}
     var em=$("cem").value.trim().toLowerCase(),lv=+$("clv").value;
     if(em&&em.indexOf("@")<1){alert("Enter a valid Google email.");return}
     if(em&&!lv){alert("Choose a workout level for this client.");return}
-    var c=cur();c.email=em;c.level=lv;persist();$("sync").textContent="Saving client access\u2026";
+    var c=cur();c.email=em;c.level=lv;c.split=$("csp").value;persist();$("sync").textContent="Saving client access\u2026";
   });
   startAuth();
   $("lv").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;PLAN.lv=+b.dataset.l;try{localStorage.setItem("wt-level",PLAN.lv)}catch(x){}renderPlan()});
