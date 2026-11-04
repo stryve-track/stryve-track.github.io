@@ -31,10 +31,34 @@ button.sec,a.btn{background:var(--bg);color:var(--tx);border:1px solid var(--ln)
 #gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
 #gate[hidden]{display:none}.gbody{max-width:360px;text-align:center}.gt{font-size:24px;font-weight:800;margin:8px 0}
 .foot{text-align:center;margin-top:16px;font-size:14px}.foot a{color:var(--ac);font-weight:600}
+#gate{background:#09090b;color:#f3f4f6;overflow:hidden}
+#gate::before{content:"";position:absolute;inset:-10%;background:radial-gradient(520px 420px at 88% 8%,rgba(255,90,31,.38),transparent 62%),radial-gradient(480px 420px at 6% 96%,rgba(255,154,61,.26),transparent 60%);animation:gpulse 7s ease-in-out infinite alternate}
+#gate::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:38px 38px;-webkit-mask-image:radial-gradient(circle at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(circle at 50% 40%,#000 20%,transparent 75%)}
+@keyframes gpulse{from{opacity:.75;transform:scale(1)}to{opacity:1;transform:scale(1.06)}}
+@media (prefers-reduced-motion:reduce){#gate::before{animation:none}}
+#gate .gbody{position:relative;z-index:1;width:100%;max-width:370px;padding:30px 24px 24px;text-align:center;background:rgba(18,18,22,.78);border:1px solid rgba(255,255,255,.09);border-radius:28px;box-shadow:0 24px 70px rgba(0,0,0,.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+#gate .glogo{width:132px;height:auto;display:block;margin:0 auto 4px;filter:drop-shadow(0 8px 22px rgba(255,90,31,.5))}
+#gate .gname{font-size:12px;font-weight:800;letter-spacing:.38em;color:#ff8a3d;margin-bottom:14px}
+#gate .gt{font-size:30px;font-weight:900;letter-spacing:.12em;margin:4px 0 2px;background:linear-gradient(135deg,#ff4d17,#ffb347);-webkit-background-clip:text;background-clip:text;color:transparent}
+#gate .gbody p{color:#a1a1aa;font-size:14px;margin:6px 0 18px}
+#gate .gtag{letter-spacing:.04em}
+#gate .gnote{font-size:12px!important;margin:12px 0 0!important}
+#gate button{width:100%;min-height:50px;font-size:16px;border-radius:14px}
+#gate #gsign{background:#fff;color:#111;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 8px 24px rgba(255,90,31,.25)}
+#gate svg.gg{width:20px;height:20px;display:inline-block}
+#gate .gor{display:flex;align-items:center;gap:10px;color:#6b7280;font-size:12px;margin:14px 0}
+#gate .gor::before,#gate .gor::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.12)}
+#gate button.sec{background:transparent;color:#ff8a3d;border:1.5px solid rgba(255,138,61,.6);box-shadow:none}
+#gate .gsup{position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2;text-align:center;font-size:13px;color:#8b8b94}
+#gate .gsup a{color:#ff8a3d;font-weight:700;text-decoration:none}
+select{width:100%;font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--ln);border-radius:12px;padding:11px;min-height:46px;margin-bottom:10px}
+.ck{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--tx);margin:6px 0}
+.ck input{width:20px;height:20px;min-height:0;margin:0}
+.mvmsg{color:var(--mu);font-size:13px;margin-top:6px}
 </style>
 </head>
 <body>
-<div id="gate"><div class="gbody"><p>Loading…</p><p style="font-size:13px">If this stays on screen, open the page from your website link in Safari, not from the Files app or a preview.</p><noscript><p>JavaScript is turned off, so this page cannot run.</p></noscript></div></div>
+<div id="gate"><div class="gbody"><p>Loading…</p><p style="font-size:13px">If this stays on screen, open the page from your website link in Safari, not from the Files app or a preview.</p><noscript><p>JavaScript is turned off, so this page cannot run.</p></noscript></div><div class="gsup">Need help? <a href="mailto:nihalstryve@gmail.com">nihalstryve@gmail.com</a></div></div>
 <main>
   <header class="hero"><div class="hs">Stryve Track</div><h1>Admin</h1><div id="who"></div></header>
   <div id="app" hidden>
@@ -52,13 +76,30 @@ button.sec,a.btn{background:var(--bg);color:var(--tx);border:1px solid var(--ln)
   var $=function(i){return document.getElementById(i)};
   var esc=function(s){var d=document.createElement("div");d.textContent=s==null?"":s;return d.innerHTML};
   window.addEventListener("error",function(e){var g=document.getElementById("gate");if(g){g.hidden=false;document.querySelector(".gbody").innerHTML='<p>Something went wrong:</p><p>'+String(e.message||"unknown error")+'</p>'}});
-  var me="",GL='<div class="hs" style="color:var(--ac)">Stryve Track Admin</div>',BTN='<button id="gsign">Sign in with Google</button>';
+  var me="",GL='<img class="glogo" alt="" src="icon.png" style="width:92px;border-radius:24px"><div class="gname">STRYVE TRACK \u00b7 ADMIN</div>',BTN='<button id="gsign"><svg class="gg" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.1 1.4-4.9 2.3-8.2 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Sign in with Google</button>';
   function gate(h){$("gate").hidden=!h;document.querySelector(".gbody").innerHTML=h||"";$("app").hidden=!!h}
-  function row(t){return'<div class="tr" data-e="'+esc(t.email)+'" data-act="'+(t.active===false?0:1)+'"><b>'+esc(t.name||t.email)+'</b><span>'+esc(t.email)+' \u00b7 '+(t.active===false?"Revoked":"Active")+' \u00b7 <em class="cnt">\u2026</em></span><div class="acts"><button class="sec" data-a="view">Clients</button><a class="btn" href="index.html#as='+encodeURIComponent(t.email)+'">Open</a><button class="sec" data-a="tog">'+(t.active===false?"Restore":"Revoke")+'</button><button class="sec" data-a="del">Remove</button></div><div class="cl"></div></div>'}
+  function row(t){return'<div class="tr" data-e="'+esc(t.email)+'" data-act="'+(t.active===false?0:1)+'"><b>'+esc(t.name||t.email)+'</b><span>'+esc(t.email)+' \u00b7 '+(t.active===false?"Revoked":"Active")+' \u00b7 <em class="cnt">\u2026</em></span><div class="acts"><button class="sec" data-a="view">Clients</button><button class="sec" data-a="move">Transfer</button><a class="btn" href="index.html#as='+encodeURIComponent(t.email)+'">Open</a><button class="sec" data-a="tog">'+(t.active===false?"Restore":"Revoke")+'</button><button class="sec" data-a="del">Remove</button></div><div class="cl"></div></div>'}
   async function refresh(){
     var l=await FB.trainers();l.sort(function(a,b){return(a.name||a.email).localeCompare(b.name||b.email)});
     $("tl").innerHTML=l.length?l.map(row).join(""):'<div class="empty">No trainers yet. Add one above.</div>';
     document.querySelectorAll(".tr").forEach(function(r){FB.count(r.dataset.e).then(function(n){r.querySelector(".cnt").textContent=n+(n===1?" client":" clients")}).catch(function(){r.querySelector(".cnt").textContent="?"})});
+  }
+  async function openMove(r,e){
+    var box=r.querySelector(".cl"),c=(await FB.clients(e)).filter(function(x){return !x.archived}),tr=await FB.trainers();
+    var opts=tr.filter(function(x){return x.email!==e&&x.active!==false});
+    if(!c.length){box.innerHTML='<div class="empty">This trainer has no clients to transfer.</div>';return}
+    if(!opts.length){box.innerHTML='<div class="empty">Add another active trainer first.</div>';return}
+    box.innerHTML='<label>Transfer to</label><select class="mvto">'+opts.map(function(x){return'<option value="'+esc(x.email)+'">'+esc(x.name||x.email)+' ('+esc(x.email)+')</option>'}).join("")+'</select><label>Clients to move</label>'+c.map(function(x){return'<label class="ck"><input type="checkbox" class="mvck" value="'+esc(x.id)+'" checked>'+esc(x.name||"Client")+'</label>'}).join("")+'<button data-a="domove" style="width:100%;margin-top:8px">Transfer selected clients</button><div class="mvmsg"></div>';
+  }
+  async function doMove(r,e,b){
+    var box=r.querySelector(".cl"),to=box.querySelector(".mvto").value,ids=[].slice.call(box.querySelectorAll(".mvck:checked")).map(function(i){return i.value});
+    if(!ids.length){box.querySelector(".mvmsg").textContent="Select at least one client.";return}
+    b.disabled=true;b.textContent="Transferring\u2026";
+    var n=0;
+    try{for(var i=0;i<ids.length;i++){if(await FB.moveClient(e,to,ids[i]))n++}}
+    catch(x){alert("Transfer stopped after "+n+" client(s): "+(x.code||x.message))}
+    alert("Moved "+n+(n===1?" client":" clients")+" to "+to+". Ask both trainers to reload their page.");
+    refresh();
   }
   $("tadd").addEventListener("click",async function(){
     var e=$("te").value.trim().toLowerCase(),n=$("tn").value.trim();
@@ -68,9 +109,11 @@ button.sec,a.btn{background:var(--bg);color:var(--tx);border:1px solid var(--ln)
   $("tl").addEventListener("click",async function(ev){
     var b=ev.target.closest("[data-a]");if(!b)return;var r=b.closest(".tr"),e=r.dataset.e,a=b.dataset.a;
     try{
-      if(a==="view"){
-        var c=await FB.clients(e);
-        r.querySelector(".cl").innerHTML=c.length?c.map(function(x){var d={};(x.entries||[]).forEach(function(y){d[y.date]=1});var ds=Object.keys(d).sort();return'<div><b>'+esc(x.name)+' \u00b7 '+(["Level not set","Beginner","Intermediate","Expert"][x.level||0])+'</b><span>'+ds.length+' training days \u00b7 '+(ds.length?"last "+ds[ds.length-1]:"no workouts yet")+'</span></div>'}).join(""):'<div class="empty">No clients yet.</div>';
+      if(a==="move"){await openMove(r,e)}
+      else if(a==="domove"){await doMove(r,e,b)}
+      else if(a==="view"){
+        var c=(await FB.clients(e)).filter(function(x){return !x.archived});
+        r.querySelector(".cl").innerHTML=c.length?c.map(function(x){var d={};(x.entries||[]).forEach(function(y){d[y.date]=1});var ds=Object.keys(d).sort();return'<div><b>'+esc(x.name)+' \u00b7 '+(["Level not set","Beginner","Intermediate","Expert","Home DB"][x.level||0])+'</b><span>'+ds.length+' training days \u00b7 '+(ds.length?"last "+ds[ds.length-1]:"no workouts yet")+'</span></div>'}).join(""):'<div class="empty">No clients yet.</div>';
       }else if(a==="tog"){await FB.setTrainer(e,{active:r.dataset.act!=="1"});refresh()}
       else if(a==="del"){
         if(b.dataset.armed){await FB.removeTrainer(e);refresh()}

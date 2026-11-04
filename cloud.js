@@ -1,6 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,getDoc,setDoc,deleteDoc,updateDoc,collection,getDocs,getCountFromServer} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFirestore,doc,getDoc,setDoc,deleteDoc,updateDoc,collection,getDocs,getCountFromServer,writeBatch} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const cfg=window.FIREBASE_CONFIG;
 const ok=!!(cfg&&cfg.apiKey&&cfg.projectId);
 let auth,db;
@@ -22,11 +22,24 @@ window.FB={
     return{admin:!!(a&&a.exists()),trainer:!!(t&&t.exists()&&t.data().active!==false)};
   },
   async clients(email){const s=await getDocs(collection(db,"trainers",email,"clients"));return s.docs.map(d=>({id:d.id,...d.data()}))},
-  async count(email){const s=await getCountFromServer(collection(db,"trainers",email,"clients"));return s.data().count},
+  async count(email){const s=await getDocs(collection(db,"trainers",email,"clients"));return s.docs.filter(d=>!d.data().archived).length},
+  archiveClient(email,id){return setDoc(doc(db,"trainers",email,"clients",id),{archived:true,archivedAt:new Date().toISOString()},{merge:true})},
   saveClient(email,id,data){return setDoc(doc(db,"trainers",email,"clients",id),data,{merge:true})},
   async getClient(email,id){const s=await getDoc(doc(db,"trainers",email,"clients",id));return s.exists()?s.data():null},
   updateClientData(email,id,data){return updateDoc(doc(db,"trainers",email,"clients",id),data)},
   deleteClient(email,id){return deleteDoc(doc(db,"trainers",email,"clients",id))},
+  async moveClient(from,to,cid){
+    const src=doc(db,"trainers",from,"clients",cid),s=await getDoc(src);
+    if(!s.exists())return null;
+    const data=s.data();let nid=cid;
+    if((await getDoc(doc(db,"trainers",to,"clients",nid))).exists())nid="c"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+    const b=writeBatch(db);
+    b.set(doc(db,"trainers",to,"clients",nid),data);
+    const em=(data.email||"").toLowerCase();
+    if(em&&data.level>=1&&!data.revoked)b.set(doc(db,"clientAccess",em),{trainer:to,cid:nid,name:data.name||"Client",level:data.level,split:data.split||""});
+    b.delete(src);
+    await b.commit();return nid;
+  },
   async access(email){const s=await getDoc(doc(db,"clientAccess",email));return s.exists()?s.data():null},
   setAccess(email,data){return setDoc(doc(db,"clientAccess",email),data)},
   deleteAccess(email){return deleteDoc(doc(db,"clientAccess",email))},
