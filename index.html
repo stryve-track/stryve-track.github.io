@@ -63,6 +63,9 @@ nav{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));pad
 nav button{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;border-radius:20px}
 nav button span{font-size:20px;line-height:1;color:inherit}
 nav button.on{background:rgba(255,90,31,.13);color:var(--ac)}
+nav button span svg{width:24px;height:24px;display:block;margin:0 auto}
+nav button.on span svg{stroke-width:2.4;filter:drop-shadow(0 0 6px rgba(255,90,31,.55))}
+nav button{transition:color .15s,background .15s}
 .htop{display:flex;justify-content:space-between;align-items:center;gap:12px}.logo{height:60px;width:auto;flex:none;margin:0 8px 0 20px}
 .row>div{min-width:0}
 input[type=date]{-webkit-appearance:none;appearance:none;display:block;width:100%;min-width:0;max-width:100%;height:46px;margin:0;text-align:left;line-height:1.2}
@@ -98,7 +101,7 @@ body:not(.cm) .cm-only{display:none}
 #lock{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:24px}
 #lock[hidden]{display:none}
 .lockcard{width:100%;max-width:340px;background:var(--card);border:1px solid var(--ln);border-radius:24px;padding:26px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.lockico{font-size:34px}.lockt{font-size:20px;font-weight:800;margin:8px 0}
+.lockico{width:64px;height:64px;margin:0 auto 6px;border-radius:50%;background:rgba(255,90,31,.14);display:flex;align-items:center;justify-content:center;color:var(--ac)}.lockico svg{width:30px;height:30px}.lockt{font-size:20px;font-weight:800;margin:8px 0}
 .lockcard p{color:var(--mu);font-size:14px;margin:6px 0 18px}.lockcard button{margin-top:8px}
 .lkmail{display:block;margin-top:10px;padding:13px;border-radius:14px;border:1px solid var(--ln);color:var(--ac);font-weight:600;text-decoration:none}
 #gate{background:#09090b;color:#f3f4f6;overflow:hidden}
@@ -183,13 +186,13 @@ body:not(.cm) .cm-only{display:none}
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
-<div id="lock" hidden><div class="lockcard"><div class="lockico">🔒</div><div class="lockt">Get the workout plan to access this page</div><p>Workout plans are for Stryve clients. Ask your trainer to set you up, then sign in with your Google account to unlock this page.</p><button id="lksign">Sign in</button><a class="lkmail" href="mailto:nihalstryve@gmail.com?subject=Workout%20plan%20access">Contact support</a><button class="sec" id="lkclose">Not now</button></div></div>
+<div id="lock" hidden><div class="lockcard"><div class="lockico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div class="lockt">Get the workout plan to access this page</div><p>Workout plans are for Stryve clients. Ask your trainer to set you up, then sign in with your Google account to unlock this page.</p><button id="lksign">Sign in</button><a class="lkmail" href="mailto:nihalstryve@gmail.com?subject=Workout%20plan%20access">Contact support</a><button class="sec" id="lkclose">Not now</button></div></div>
 
 <nav>
-  <button class="on" data-t="log"><span>🏋️</span>Log</button>
-  <button data-t="plan"><span>📋</span>Plans</button>
-  <button data-t="prog"><span>📈</span>Progress</button>
-  <button data-t="hist"><span>📅</span>History</button>
+  <button class="on" data-t="log"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span>Log</button>
+  <button data-t="plan"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m9 15.5 2 2 4-4"/></svg></span>Plans</button>
+  <button data-t="prog"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>Progress</button>
+  <button data-t="hist"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg></span>History</button>
 </nav>
 
 <script>
@@ -420,7 +423,7 @@ body:not(.cm) .cm-only{display:none}
     GUEST=true;KEY="wt-guest-v1";document.body.classList.add("guest");
     try{var l=norm2(JSON.parse(localStorage.getItem(KEY)));if(l){root=l;pick(l.active)}}catch(e){}
     gate("");renderClients();renderAll();renderAcct();
-    var pi=document.querySelector('nav button[data-t="plan"] span');if(pi)pi.textContent="🔒";
+    var pi=document.querySelector('nav button[data-t="plan"] span');if(pi)pi.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
   }
   function startAuth(){
     if(!CM)return;
