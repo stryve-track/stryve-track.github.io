@@ -586,7 +586,7 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
     hinge:[[50,16,50,28,48,55,52,42,52,54,50,72,50,88],[78,42,68,46,40,56,70,60,70,72,44,72,46,88]],
     swing:[[78,42,68,46,40,56,70,60,66,72,44,72,46,88],[50,16,50,28,48,55,64,30,78,30,50,72,50,88]],
     lunge:[[50,16,50,28,48,55,52,42,52,54,50,72,52,88,50,72,48,88],[50,28,50,40,50,66,52,54,52,66,64,68,64,88,40,80,26,88]],
-    pushup:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[88,66,80,70,45,76,88,76,80,82,28,79,12,82]],
+    pushup:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[88,66,80,70,45,76,68,78,80,82,28,79,12,82]],
     bench:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,38,62,31,54,76,56,84,88]],
     incline:[[24,42,32,50,56,76,36,38,42,26,74,62,80,88],[24,42,32,50,56,76,42,54,38,44,74,62,80,88]],
     fly:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,24,54,14,46,76,56,84,88]],
@@ -602,7 +602,8 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
     facepull:[[50,18,50,30,48,56,62,32,76,30,50,72,50,88],[50,18,50,30,48,56,64,34,56,20,50,72,50,88]],
     crossover:[[50,16,50,28,50,55,34,30,20,28,47,72,45,88],[50,16,50,28,50,55,44,42,50,54,47,72,45,88]],
     crunch:[[14,74,24,78,56,78,22,72,16,72,72,64,82,84],[32,56,38,66,56,78,36,58,30,50,72,64,82,84]],
-    plank:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[86,50,80,54,45,66,80,68,80,82,28,74,12,82]],
+    plank:[[88,52,80,58,46,68,80,80,92,82,28,76,12,82],[88,53,80,59,46,69,80,80,92,82,28,76,12,82]],
+    plank_side:[[88,54,80,60,46,74,80,80,92,82,28,78,12,82],[88,52,80,58,46,66,80,80,92,82,28,72,12,82]],
     legraise:[[14,74,24,78,56,78,36,78,46,78,72,78,90,78],[14,74,24,78,56,78,36,78,46,78,58,60,58,42]],
     calf:[[50,18,50,30,48,56,52,44,52,56,50,72,52,88],[50,12,50,24,48,50,52,38,52,50,50,66,56,86]],
     shrug:[[50,16,50,30,50,56,42,44,41,56,47,72,45,88],[50,16,50,25,50,56,42,40,41,52,47,72,45,88]],
@@ -612,7 +613,7 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
     run:[[52,18,50,30,48,56,40,44,34,52,62,62,58,78,44,72,30,76],[52,18,50,30,48,56,62,44,68,38,44,72,28,74,62,62,58,78]],
     jump:[[50,18,50,30,48,56,52,44,52,56,50,72,52,88],[50,6,50,18,48,44,56,28,58,16,56,56,46,66]],
     jacks:[[50,16,50,28,50,55,42,44,40,56,47,72,47,88],[50,14,50,28,50,55,40,20,34,6,38,72,30,88]],
-    dip:[[50,16,50,28,50,54,50,39,50,50,56,68,52,82],[50,28,50,40,50,66,61,47,50,50,56,78,52,88]],
+    dip:[[50,16,50,28,50,54,50,39,50,50,56,68,52,82],[50,28,50,40,50,66,40,46,50,50,56,78,52,88]],
     climber:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82,58,66,44,76],[86,48,80,52,45,64,80,68,80,82,58,66,44,76,28,73,12,82]],
     thruster:[[56,34,52,46,38,70,60,54,57,45,62,70,50,88],[50,16,50,28,48,55,54,16,54,2,50,72,50,88]],
     renegade:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[86,48,80,52,45,64,72,56,62,62,28,73,12,82]]
@@ -643,10 +644,10 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
   function gv(o,a){return o[a]!==undefined?o[a]:o[fam(a)]}
   function kf(P,ph){var n=P.length-1,s=ph*n,i=Math.min(n-1,Math.floor(s)),f=s-i,a=P[i],b=P[i+1];return a.map(function(v,k){return v+(b[k]-v)*f})}
   Object.assign(FIG,{
-    pushup_knee:[[86,48,80,52,48,66,80,68,80,82,34,80,20,70],[88,66,80,70,48,76,88,76,80,82,34,82,20,76]],
-    pushup_inc:[[80,36,74,44,44,66,78,52,80,60,30,76,14,86],[82,46,76,54,46,70,84,58,80,60,32,78,14,86]],
-    pushup_cg:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[88,66,80,70,45,76,84,74,80,82,28,79,12,82]],
-    pushup_def:[[86,44,80,48,45,60,80,62,80,74,28,70,12,82],[88,76,80,78,45,80,90,82,80,74,28,82,12,84]],
+    pushup_knee:[[86,48,80,52,48,66,80,68,80,82,34,80,20,70],[88,66,80,70,48,76,68,78,80,82,34,82,20,76]],
+    pushup_inc:[[80,36,74,44,44,66,78,52,80,60,30,76,14,86],[82,46,76,54,46,70,68,58,80,60,32,78,14,86]],
+    pushup_cg:[[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[88,66,80,70,45,76,72,76,80,82,28,79,12,82]],
+    pushup_def:[[86,44,80,48,45,60,80,62,80,74,28,70,12,82],[88,76,80,78,45,80,68,82,80,74,28,82,12,84]],
     press_mach:[[38,32,38,44,36,70,46,54,50,48,56,68,56,88],[38,32,38,44,36,70,58,48,70,44,56,68,56,88]],
     press_cable:[[52,16,50,28,48,55,44,40,54,38,56,72,60,88,42,72,36,88],[52,16,50,28,48,55,64,36,78,34,56,72,60,88,42,72,36,88]],
     pecdeck:[[50,26,50,38,50,64,28,44,28,32,45,70,44,88],[50,26,50,38,50,64,38,46,46,34,45,70,44,88]],
@@ -654,7 +655,7 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
     decl:[[14,78,24,74,56,58,30,62,34,48,72,46,80,60],[14,78,24,74,56,58,38,70,32,62,72,46,80,60]],
     incfly:[[24,42,32,50,56,76,36,38,42,26,74,62,80,88],[24,42,32,50,56,76,28,56,16,52,74,62,80,88]],
     svend:[[50,16,50,28,48,55,54,42,56,34,50,72,52,88],[50,16,50,28,48,55,66,36,78,34,50,72,52,88]],
-    dip_chest:[[58,16,54,28,48,54,56,40,50,50,54,70,48,84],[64,30,58,42,46,64,68,48,50,50,52,78,46,88]],
+    dip_chest:[[58,16,54,28,48,54,54,39,54,50,54,70,48,84],[64,30,58,42,46,64,46,46,54,50,52,78,46,88]],
     crossover_low:[[50,16,50,28,50,55,38,46,30,60,47,72,45,88],[50,16,50,28,50,55,42,38,48,30,47,72,45,88]],
     lmp:[[52,16,50,28,48,55,52,38,56,30,56,72,60,88,42,72,36,88],[52,16,50,28,48,55,62,22,70,12,56,72,60,88,42,72,36,88]],
     squat_bw:[[50,16,50,28,48,55,60,34,72,32,50,72,50,88],[56,34,52,46,38,70,62,46,74,44,62,70,50,88]],
@@ -696,6 +697,201 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
     "Sissy Squat":["squat_sissy","","floor"],"Pause Squat":["squat","bb","floor","p"],"Zercher Squat":["squat_zer","bb","floor"],"Pistol Squat":["squat_pistol","","floor"],
     "Overhead Squat":["squat_oh","bb","floor"],"Heavy Leg Press":["lpress","mach","sledrail plates"],"Safety Bar Squat":["squat_safe","bbs","floor"],"Deficit Lunge":["lunge_def","db","lungeplat"]
   };
+  Object.assign(FIG,{
+    bench_board:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,36,64,30,54,76,56,84,88]],
+    bench_cg:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,32,66,30,56,76,56,84,88]],
+    pullover:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,16,58,6,68,76,56,84,88]],
+    pulldown_m:[[50,26,50,38,50,64,38,16,36,4,45,70,44,88],[50,26,50,38,50,64,34,42,40,32,45,70,44,88]],
+    sapd:[[54,18,52,30,48,56,60,22,66,14,50,72,52,88],[56,22,54,34,48,58,54,48,54,62,50,72,52,88]],
+    row_bench:[[78,40,68,44,38,52,68,58,66,72,40,72,38,88],[78,40,68,44,38,52,56,52,60,56,40,72,38,88]],
+    row_rev:[[72,30,64,36,42,56,66,50,66,64,46,72,46,88],[72,30,64,36,42,56,56,46,60,54,46,72,46,88]],
+    invrow:[[84,58,76,60,40,68,76,52,76,42,24,76,10,84],[84,54,76,56,40,64,74,56,76,42,24,72,10,82]],
+    csrow:[[80,46,72,52,40,62,72,70,72,82,30,70,24,84],[80,46,72,52,40,62,62,58,66,66,30,70,24,84]],
+    meadows:[[72,30,64,36,44,56,66,52,66,66,52,72,56,88,38,74,30,88],[72,30,64,36,44,56,58,46,60,54,52,72,56,88,38,74,30,88]],
+    seal:[[84,46,74,52,38,56,74,70,76,84,26,60,12,66],[84,46,74,52,38,56,62,58,68,64,26,60,12,66]],
+    pendlay:[[74,40,66,44,40,52,68,64,70,84,44,72,46,88],[74,40,66,44,40,52,60,52,62,58,44,72,46,88]],
+    bext:[[64,68,58,62,38,46,54,60,48,52,32,66,26,82],[60,26,54,32,38,46,50,42,46,36,32,66,26,82]],
+    dl:[[60,36,56,48,40,66,60,66,60,80,56,72,50,88],[50,16,50,28,48,55,52,42,52,56,50,72,52,88]],
+    gm:[[50,16,50,28,48,55,46,34,52,30,50,72,52,88],[76,40,68,44,40,56,62,44,66,46,44,72,46,88]],
+    hinge_stiff:[[50,16,50,28,48,55,52,42,52,54,50,72,52,88],[82,46,72,50,38,52,74,64,74,76,42,70,44,88]],
+    rdl_1l:[[50,16,50,28,48,55,52,42,52,54,50,72,52,88,50,72,48,88],[80,46,70,50,40,56,72,64,72,76,46,72,46,88,26,54,10,52]],
+    rdl_bst:[[50,16,50,28,48,55,52,42,52,54,50,72,52,88,40,76,34,88],[78,42,68,46,40,56,70,60,70,72,50,72,52,88,40,76,34,88]],
+    rdl_def:[[50,16,50,28,48,55,52,42,52,54,50,72,52,82],[80,46,70,50,40,58,72,66,72,80,44,72,48,82]],
+    rhyper:[[84,50,74,54,50,58,76,66,76,76,46,74,44,88],[84,50,74,54,50,58,76,66,76,76,34,60,18,58]],
+    sumo:[[50,36,50,48,50,70,44,66,44,80,48,78,46,88],[50,16,50,28,50,55,46,44,46,56,47,72,45,88]],
+    hingeF:[[50,16,50,28,50,55,36,44,32,56,47,72,45,88],[50,34,50,44,50,60,34,56,30,72,47,72,45,88]],
+    dlrow:[[76,42,68,46,40,56,70,60,70,72,44,72,46,88],[78,42,68,46,40,56,52,50,60,58,44,72,46,88],[50,16,50,28,48,55,52,42,52,54,50,72,52,88]],
+    rack:[[70,34,64,40,42,58,66,56,66,70,50,70,50,88],[50,16,50,28,48,55,52,42,52,56,50,72,52,88]],
+    pull_m:[[50,18,50,28,50,54,38,16,36,4,47,70,45,84],[50,6,50,18,50,44,34,20,36,4,47,60,45,74]],
+    chin_m:[[50,18,50,28,50,54,42,16,44,4,47,70,45,84],[50,6,50,18,50,44,40,20,44,4,47,60,45,74]],
+    hang_m:[[50,18,50,28,50,54,40,16,38,4,47,70,45,84],[50,19,50,29,50,55,40,17,38,4,48,71,44,85]],
+    upr:[[50,16,50,28,50,55,40,46,44,52,47,72,45,88],[50,16,50,28,50,55,32,28,44,34,47,72,45,88]],
+    rdf:[[78,42,68,46,40,56,70,60,70,72,44,72,46,88],[78,42,68,46,40,56,72,52,72,38,44,72,46,88]],
+    bpa:[[50,16,50,28,50,55,42,30,48,30,47,72,45,88],[50,16,50,28,50,55,32,30,22,30,47,72,45,88]],
+    yr:[[78,50,70,52,44,58,72,66,74,78,46,74,48,88],[78,50,70,52,44,58,80,44,90,34,46,74,48,88]],
+    rpd:[[50,26,50,38,50,64,40,42,46,34,45,70,44,88],[50,26,50,38,50,64,30,38,22,34,45,70,44,88]],
+    rdcf:[[50,16,50,28,50,55,44,40,48,36,47,72,45,88],[50,16,50,28,50,55,32,32,22,30,47,72,45,88]],
+    arn:[[50,16,50,28,50,55,42,40,46,32,47,72,45,88],[50,16,50,28,50,55,36,34,36,22,47,72,45,88],[50,16,50,28,50,55,40,16,42,2,47,72,45,88]],
+    lmp_sh:[[52,22,50,34,50,62,52,44,56,36,58,70,62,88,44,86,30,86],[52,22,50,34,50,62,62,26,70,16,58,70,62,88,44,86,30,86]],
+    pushp:[[50,16,50,28,50,55,38,34,38,22,47,72,45,88],[50,28,50,40,50,64,38,44,38,32,44,76,43,88],[50,16,50,28,50,55,40,16,42,2,47,72,45,88]],
+    pike:[[66,64,60,56,44,36,62,70,64,86,34,62,24,86],[72,78,64,70,44,40,56,80,64,86,34,64,24,86]],
+    zpress:[[38,28,38,42,38,70,44,50,44,40,56,72,74,74],[38,28,38,42,38,70,42,28,42,14,56,72,74,74]],
+    hspu:[[50,74,50,64,50,38,50,76,50,86,50,24,50,10],[50,82,50,72,50,46,56,78,50,86,50,32,50,18]],
+    ohp_mach:[[50,26,50,38,50,64,38,44,38,32,45,70,44,88],[50,26,50,38,50,64,40,26,42,12,45,70,44,88]],
+    curl_inc:[[26,40,32,50,56,76,34,64,34,78,74,62,80,88],[26,40,32,50,56,76,34,64,44,50,74,62,80,88]],
+    conc:[[56,42,50,50,38,68,52,62,52,74,58,68,58,88],[56,42,50,50,38,68,52,62,58,50,58,68,58,88]],
+    spider:[[74,38,66,46,46,66,68,64,68,78,46,78,40,88],[74,38,66,46,46,66,70,64,66,52,46,78,40,88]],
+    prc:[[42,32,40,44,36,72,54,52,64,66,56,68,56,88],[42,32,40,44,36,72,54,52,62,38,56,68,56,88]],
+    drag:[[50,16,50,28,48,55,42,44,46,58,50,72,52,88],[50,16,50,28,48,55,40,42,50,32,50,72,52,88]],
+    bay:[[50,16,50,28,48,55,42,48,36,62,50,72,52,88],[50,16,50,28,48,55,42,48,46,36,50,72,52,88]],
+    curl_rev:[[50,16,50,28,50,55,42,44,41,58,47,72,45,88],[50,16,50,28,50,55,42,44,44,36,47,72,45,88]],
+    curl_21:[[50,16,50,28,50,55,42,44,41,58,47,72,45,88],[50,16,50,28,50,55,42,44,43,46,47,72,45,88]],
+    curl_xb:[[50,16,50,28,50,55,42,44,41,58,47,72,45,88],[50,16,50,28,50,55,48,40,56,34,47,72,45,88]],
+    curl_zot:[[50,16,50,28,50,55,42,44,41,58,47,72,45,88],[50,16,50,28,50,55,42,44,44,30,47,72,45,88],[50,16,50,28,50,55,44,42,46,54,47,72,45,88]],
+    wrist:[[38,32,38,44,36,72,46,62,60,64,58,68,58,88],[38,32,38,44,36,72,46,62,60,54,58,68,58,88]],
+    wrist_rev:[[38,32,38,44,36,72,46,62,60,58,58,68,58,88],[38,32,38,44,36,72,46,62,60,68,58,68,58,88]],
+    wrist_bb:[[50,16,50,28,48,55,46,48,44,64,50,72,52,88],[50,16,50,28,48,55,46,48,44,56,50,72,52,88]],
+    roller:[[52,16,50,28,48,55,64,28,76,30,50,72,52,88],[52,16,50,28,48,55,64,28,76,38,50,72,52,88]],
+    trio:[[50,16,50,28,48,55,54,14,46,22,50,72,52,88],[50,16,50,28,48,55,54,14,54,2,50,72,52,88]],
+    trik:[[78,42,68,46,40,56,60,52,64,64,44,72,46,88],[78,42,68,46,40,56,60,52,46,52,44,72,46,88]],
+    sk:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,28,52,20,56,76,56,84,88]],
+    trbw:[[62,24,56,36,46,60,64,46,70,58,50,74,48,88],[66,34,60,46,46,62,66,46,70,58,50,74,48,88]],
+    tri_m:[[50,16,50,28,50,55,42,44,40,34,47,72,45,88],[50,16,50,28,50,55,42,44,41,58,47,72,45,88]],
+    tri_rev:[[50,18,50,30,48,56,52,44,64,36,50,72,50,88],[50,18,50,30,48,56,52,44,64,58,50,72,50,88]],
+    bdip:[[48,30,46,42,50,66,41,56,38,68,66,70,84,72],[50,40,48,52,50,76,34,60,38,68,66,76,84,78]],
+    jm:[[18,62,28,66,60,66,28,52,28,38,76,56,84,88],[18,62,28,66,60,66,30,56,22,58,76,56,84,88]],
+    tate:[[18,62,28,66,60,66,30,56,30,42,76,56,84,88],[18,62,28,66,60,66,36,64,26,60,76,56,84,88]],
+    shrug_oh:[[50,16,50,28,50,55,42,14,44,2,47,72,45,88],[50,16,50,25,50,55,42,12,44,1,47,72,45,88]],
+    shrug_rack:[[50,16,50,30,50,56,42,50,41,68,47,72,45,88],[50,16,50,25,50,56,42,46,41,64,47,72,45,88]],
+    hcs:[[76,42,68,46,40,56,70,60,70,72,44,72,46,88],[50,16,50,28,48,55,52,42,52,54,50,72,52,88],[50,16,50,25,48,55,52,40,52,52,50,72,52,88]]
+  });
+  Object.assign(MIR,{pulldown_m:1,upr:1,bpa:1,rpd:1,rdcf:1,arn:1,pushp:1,ohp_mach:1,curl_rev:1,curl_21:1,curl_xb:1,curl_zot:1,tri_m:1,shrug_oh:1,shrug_rack:1,pull_m:1,chin_m:1,hang_m:1,sumo:1,hingeF:1});
+  Object.assign(TMUS2,{pulldown:[[],["bicep_f","forearm_f"]],pullover:[[],["tricep_b","delt_f"]],sapd:[[],["tricep_b"]],invrow:[[],["bicep_f","delt_b"]],csrow:[[],["bicep_f","delt_b"]],seal:[[],["bicep_f","delt_b"]],meadows:[[],["bicep_f","delt_b"]],pendlay:[[],["bicep_f","delt_b","lowback_b"]],bext:[[],["glute_b","ham_b"]],dl:[[],["glute_b","ham_b","quad_f"]],gm:[[],["glute_b","ham_b"]],rdl:[[],["glute_b","lowback_b"]],rhyper:[[],["ham_b","lowback_b"]],sumo:[[],["quad_f","glute_b","ham_b"]],hingeF:[[],["glute_b","lowback_b"]],dlrow:[[],["lat_b","bicep_f"]],rack:[[],["glute_b","ham_b","trap_b"]],hang:[[],["bicep_f"]],yr:[[],["trap_b","delt_b"]],arn:[[],["tricep_b"]],pushp:[[],["tricep_b","quad_f"]],pike:[[],["tricep_b","trap_f"]],zpress:[[],["tricep_b","abs_f"]],hspu:[[],["tricep_b","trap_f"]],conc:[[],["forearm_f"]],spider:[[],["forearm_f"]],prc:[[],["forearm_f"]],drag:[[],["forearm_f","delt_f"]],bay:[[],["forearm_f"]],wrist:[[],[]],roller:[[],["delt_f"]],trio:[[],["forearm_b"]],trik:[[],["delt_b"]],sk:[[],["forearm_b"]],trbw:[[],["delt_f"]],bdip:[[],["delt_f","chest_f"]],jm:[[],["chest_f","delt_f"]],tate:[[],["chest_f","delt_f"]],hcs:[[],["glute_b","ham_b"]],ohp:[[],["tricep_b","trap_f","trap_b"]]});
+  Object.assign(XS,{
+    "Board Press":["bench_board","bb","bench board"],"Dumbbell Squeeze Press":["bench","dbsq","bench"],"Dumbbell Floor Fly":["fly","db","floor"],"Dumbbell Pullover":["pullover","db","bench"],
+    "Lat Pulldown":["pulldown_m","cbar","seatF"],"Wide-Grip Pulldown":["pulldown_m","cbar","seatF"],"Close-Grip Pulldown":["pulldown_m","cbar","seatF"],"Single-Arm Lat Pulldown":["pulldown_m","cable","seatF"],"Straight-Arm Pulldown":["sapd","cable","",null,[72,2]],
+    "Dumbbell Row":["row_bench","db","bench2"],"Bent-Over Dumbbell Row":["row","db","floor"],"Barbell Row":["row","bb","floor"],"T-Bar Row":["row","plate","landmine",null,[10,86]],"Pendlay Row":["pendlay","bb","plat0"],
+    "Reverse-Grip Row":["row_rev","bb","floor"],"Inverted Row":["invrow","","pbar2"],"Chest-Supported Row":["csrow","db","incl"],"Meadows Row":["meadows","plate","landmine",null,[10,86]],"Seal Row":["seal","bb","bench3"],
+    "Back Extension":["bext","","bext"],"Deadlift":["dl","bb","floor"],"Bodyweight Good Morning":["gm","","floor"],"Barbell Good Morning":["gm","bb","floor"],"Romanian Deadlift":["hinge","bb","floor"],"Stiff-Leg Deadlift":["hinge_stiff","bb","floor"],
+    "Single-Leg Romanian Deadlift":["rdl_1l","db","floor"],"B-Stance Romanian Deadlift":["rdl_bst","bb","floor"],"Deficit Romanian Deadlift":["rdl_def","bb","plat2"],"Reverse Hyperextension":["rhyper","","bench3"],
+    "Sumo Deadlift":["sumo","bb","floor",null,null,["wide"]],"Deficit Sumo Deadlift":["sumo","bb","plat2",null,null,["wide"]],"Rack Pull":["rack","bb","rack"],"Snatch-Grip Romanian Deadlift":["hingeF","bb","floor",null,null,["wide"]],
+    "Dumbbell Romanian Deadlift":["hinge","db","floor"],"Dumbbell Deadlift":["dl","db","floor"],"Dumbbell Single-Leg Romanian Deadlift":["rdl_1l","db","floor"],"Dumbbell Sumo Deadlift":["sumo","db","floor",null,null,["wide"]],"Dumbbell Stiff-Leg Deadlift":["hinge_stiff","db","floor"],"Dumbbell Deadlift to Row":["dlrow","db","floor"],
+    "Pull-ups":["pull_m","cbar","pbarM",null,null,["wide"]],"Chin-ups":["chin_m","cbar","pbarM"],"Dead Hang":["hang_m","","pbarM"],"Towel Hang":["hang_m","","pbarM towels"],"Towel Pull-ups":["pull_m","","pbarM towels"],
+    "Weighted Pull-ups":["pull_m","cbar","pbarM",null,null,["wide","wtd"]],"Weighted Chin-ups":["chin_m","cbar","pbarM",null,null,["wtd"]],"Weighted Dead Hang":["hang_m","plateH","pbarM"],
+    "Lateral Raise":["lat","db","floor"],"Rear Delt Fly":["rdf","db","seatb"],"Band Pull-Apart":["bpa","band","",null,[50,30]],"Upright Row":["upr","bb","floor"],"Bent-Over Lateral Raise":["rdf","db","floor"],"Prone Y Raise":["yr","db","incl"],
+    "Cable Lateral Raise":["lat","cable","",null,[30,92]],"Rear Delt Cable Fly":["rdcf","cable","",null,[20,4]],"Cable Y Raise":["yr","cable","",null,[40,90]],
+    "Dumbbell Reverse Fly":["yr","db","bench2"],"Dumbbell Lateral Raise":["lat","db","floor",null,null,["lean"]],"Dumbbell Rear Delt Raise":["rdf","db","seatb"],
+    "Overhead Press":["ohp","bb","floor"],"Arnold Press":["arn","db","floor"],"Landmine Shoulder Press":["lmp_sh","plate","landmine",null,[10,86]],"Push Press":["pushp","bb","floor"],"Pike Push-ups":["pike","","floor"],"Z Press":["zpress","bb","floor"],"Handstand Push-ups":["hspu","","floor"],
+    "Dumbbell Shoulder Press":["ohp","db","floor"],"Machine Shoulder Press":["ohp_mach","mach","mfront"],"Seated Barbell Press":["ohp","bb","seatb"],"Overhead Cable Press":["ohp","cable","",null,[10,90]],
+    "Dumbbell Curl":["curl","db","floor"],"Incline Dumbbell Curl":["curl_inc","db","incl"],"Dumbbell Biceps Curl":["curl","db","floor",null,null,["close"]],"Dumbbell Reverse Curl":["curl_rev","db","floor"],
+    "Hammer Curl":["curl","db","floor",null,null,["ham"]],"Cross-Body Hammer Curl":["curl_xb","db","floor",null,null,["ham","1a"]],"Hammer Wrist Curl":["wrist","db","benchw"],
+    "Barbell Curl":["curl","bb","floor"],"Reverse Barbell Curl":["curl_rev","bb","floor"],"Cable Curl":["curl","cable","",null,[28,92]],"Bayesian Cable Curl":["bay","cable","",null,[14,88]],"Cable Wrist Curl":["wrist","cable","benchw",null,[10,90]],
+    "Band Curl":["curl","band","",null,[40,90]],"Preacher Curl":["prc","ez","preach"],"Concentration Curl":["conc","db","seatb"],"Spider Curl":["spider","ez","incl"],"Zottman Curl":["curl_zot","db","floor"],"Drag Curl":["drag","bb","floor"],
+    "Reverse-Grip Curl":["curl_rev","ez","floor"],"21s Curl":["curl_21","bb","floor"],"Waiter Curl":["curl","dbC","floor"],"Wrist Curl":["wrist","bb","benchw"],"Reverse Wrist Curl":["wrist_rev","bb","benchw"],"Behind-the-Back Wrist Curl":["wrist_bb","bb","floor"],"Wrist Roller":["roller","plate","floor"],
+    "Tricep Pushdown":["tri","cbar","",null,[58,2]],"Rope Pushdown":["tri_m","rope","",null,[36,2]],"Cable Overhead Extension":["trio","cable","",null,[50,90]],"Reverse-Grip Pushdown":["tri_rev","cable","",null,[58,2]],"Single-Arm Pushdown":["tri_m","cable","",null,[36,2],["1a"]],
+    "Overhead Tricep Extension":["trio","db","floor"],"Tricep Kickback":["trik","db","floor"],"Skull Crushers":["sk","ez","bench"],"Bodyweight Tricep Extension":["trbw","","bar2"],
+    "Dumbbell Skull Crusher":["sk","db","bench"],"Dumbbell Overhead Extension":["trio","db","floor"],"Dumbbell Overhead Triceps Extension":["trio","db","seatb"],"Dumbbell Triceps Kickback":["trik","db","bench2"],"Dumbbell Floor Skull Crusher":["sk","db","floor"],
+    "Bench Dips":["bdip","","bdipb"],"Tricep Dips":["dip","","dips"],"Close-Grip Bench Press":["bench_cg","bb","bench"],"Close-Grip Floor Press":["bench_floor","bb","floor"],
+    "JM Press":["jm","bb","bench"],"Tate Press":["tate","db","bench"],"Dumbbell Tate Press":["tate","db","incl"],
+    "Dumbbell Shrug":["shrug","db","floor"],"Incline Dumbbell Shrug":["shrug","db","incl"],"Barbell Shrug":["shrug","bb","floor"],"Snatch-Grip Shrug":["shrug","bb","floor",null,null,["wide"]],
+    "Band Shrug":["shrug","band","",null,[40,90]],"Rack Shrug":["shrug_rack","bb","rack"],"Hang Clean Shrug":["hcs","bb","floor"],"Overhead Shrug":["shrug_oh","bb","floor"],"Deficit Shrug":["shrug","bb","plat2"]
+  });
+  Object.assign(FIG,{
+    walk:[[50,16,50,28,48,55,52,43,52,55,54,72,56,88,46,72,42,88],[50,16,50,28,48,55,52,43,52,55,46,72,44,88,54,72,58,88]],
+    cycle:[[62,30,56,40,44,60,64,46,70,50,56,66,58,78,50,64,42,74],[62,30,56,40,44,60,64,46,70,50,58,72,50,86,52,60,50,66],[62,30,56,40,44,60,64,46,70,50,50,64,42,74,56,66,58,78],[62,30,56,40,44,60,64,46,70,50,52,60,50,66,58,72,50,86]],
+    assault:[[46,26,46,38,44,60,54,44,60,40,56,66,58,78,50,64,42,74],[46,26,46,38,44,60,46,50,46,58,58,72,50,86,52,60,50,66],[46,26,46,38,44,60,38,44,32,50,50,64,42,74,56,66,58,78],[46,26,46,38,44,60,46,50,46,58,52,60,50,66,58,72,50,86]],
+    ellip:[[50,16,50,28,48,55,60,40,66,30,58,70,60,84,40,70,34,84],[50,16,50,28,48,55,40,44,34,52,42,70,36,84,58,70,64,84]],
+    stairc:[[50,16,50,28,48,55,56,44,62,50,60,60,60,72,46,74,44,88],[50,16,50,28,48,55,56,44,62,50,46,74,44,88,60,60,60,72]],
+    sledp:[[70,36,64,44,46,62,76,52,84,56,56,74,58,88,38,74,26,88],[72,38,66,46,48,62,78,52,86,56,40,74,34,88,60,72,64,88]],
+    sledd:[[46,24,46,36,50,60,52,50,60,66,40,74,34,88,60,74,62,88],[44,24,44,36,48,60,50,50,58,66,56,74,60,88,36,74,30,88]],
+    hknees:[[50,16,50,28,48,55,56,42,60,34,50,72,52,88,56,56,58,68],[50,16,50,28,48,55,44,40,40,48,56,56,58,68,50,72,52,88]],
+    boxing:[[52,16,50,28,48,55,56,40,56,32,50,72,52,88,40,74,32,88],[52,16,50,28,48,55,66,34,78,32,50,72,52,88,40,74,32,88]],
+    sprint:[[60,22,56,32,46,56,52,46,46,54,62,60,58,78,38,70,22,72],[60,22,56,32,46,56,66,44,72,36,38,70,22,72,62,60,58,78]],
+    rowm:[[52,40,46,52,40,72,62,56,74,58,60,62,50,78],[38,42,40,56,38,72,48,62,52,60,58,68,76,72]],
+    jrope:[[50,16,50,28,48,55,46,44,44,54,50,72,52,88],[50,10,50,22,48,49,46,38,44,48,50,66,52,82]],
+    burpee:[[50,16,50,28,48,55,52,42,52,54,50,72,52,88],[64,44,58,52,40,70,68,70,70,86,56,68,50,88],[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[64,44,58,52,40,70,68,70,70,86,56,68,50,88],[50,6,50,18,48,44,56,28,58,16,56,56,46,66]],
+    burpeebox:[[50,16,50,28,48,55,52,42,52,54,50,72,52,88],[64,44,58,52,40,70,68,70,70,86,56,68,50,88],[86,48,80,52,45,64,80,68,80,82,28,73,12,82],[64,44,58,52,40,70,68,70,70,86,56,68,50,88],[72,6,72,18,70,44,76,32,78,24,72,58,72,70]],
+    boxj:[[56,34,52,46,38,70,60,54,57,45,62,70,50,88],[64,16,60,28,52,50,70,40,76,38,66,62,60,70],[72,6,72,18,70,44,76,32,78,24,72,58,72,70]],
+    skater:[[44,16,46,28,46,55,40,44,36,54,40,72,34,88,56,70,64,84],[56,16,54,28,54,55,60,44,64,54,60,72,66,88,44,70,38,84]],
+    ropes:[[50,24,50,34,50,58,42,44,40,34,40,70,36,88],[50,24,50,34,50,58,42,44,40,56,40,70,36,88]],
+    deadbug:[[14,74,24,78,56,78,24,62,24,48,56,62,66,62,70,72,86,78],[14,74,24,78,56,78,14,74,4,74,70,72,86,78,56,62,66,62]],
+    birddog:[[20,52,28,58,64,60,28,70,28,84,76,76,86,84,62,76,74,84],[20,52,28,58,64,60,16,56,4,54,80,62,96,60,62,76,74,84]],
+    lsit:[[44,22,44,36,44,62,44,66,44,78,62,60,80,58],[44,20,44,34,44,60,44,64,44,78,62,58,80,56]],
+    fghold:[[50,16,50,28,48,55,52,44,52,56,50,72,52,88],[50,17,50,29,48,56,52,45,52,57,50,72,52,88]],
+    pinch:[[50,16,50,28,48,55,54,44,54,56,50,72,52,88],[50,17,50,29,48,56,54,45,54,57,50,72,52,88]],
+    grip:[[50,16,50,28,48,55,60,40,66,48,50,72,52,88],[50,16,50,28,48,55,60,40,64,46,50,72,52,88]],
+    abwheel:[[44,38,44,50,38,66,44,66,44,82,34,82,22,84],[78,66,72,70,40,72,78,76,84,82,34,82,22,84]],
+    abwheel_s:[[64,36,58,46,44,56,60,66,60,82,50,72,52,88],[88,64,80,66,48,60,88,74,92,82,50,74,52,88]],
+    bike:[[24,62,30,70,56,78,24,58,30,60,58,58,66,66,70,74,88,76],[24,62,30,70,56,78,24,58,30,60,70,74,88,76,58,58,66,66]],
+    heel:[[26,64,32,70,56,78,46,74,62,78,72,64,80,84],[26,66,32,72,56,78,44,76,58,80,72,64,80,84]],
+    rtwist:[[30,42,36,52,46,74,46,58,56,56,62,66,74,56],[30,42,36,52,46,74,46,62,56,68,62,66,74,56]],
+    pallof:[[52,16,50,28,48,55,52,40,56,36,56,72,60,88,42,72,38,88],[52,16,50,28,48,55,64,36,78,34,56,72,60,88,42,72,38,88]],
+    wchop:[[50,16,50,28,48,55,44,20,38,12,54,72,60,88,42,72,36,88],[50,16,50,28,48,55,58,46,66,60,54,72,60,88,42,72,36,88]],
+    lmtwist:[[50,16,50,28,48,55,58,32,64,36,50,72,52,88],[50,16,50,28,48,55,44,32,38,36,50,72,52,88]],
+    ccrunch:[[46,20,46,32,42,58,50,36,50,26,52,76,36,86],[62,56,56,50,42,60,60,52,58,46,52,76,36,86]],
+    hkr:[[50,18,50,28,50,54,53,16,54,6,52,70,50,84],[50,18,50,28,50,54,53,16,54,6,60,50,56,62]],
+    hlr:[[50,18,50,28,50,54,53,16,54,6,52,70,50,84],[50,18,50,28,50,54,53,16,54,6,66,52,82,50]],
+    ttb:[[50,18,50,28,50,54,53,16,54,6,52,70,50,84],[50,18,50,28,50,54,53,16,54,6,58,30,56,8]],
+    dragon:[[20,66,26,70,54,52,16,66,10,60,70,36,84,22],[20,70,26,72,54,70,16,68,10,60,72,70,90,70]],
+    vup:[[14,74,24,78,56,78,10,72,4,70,72,78,90,78],[36,56,40,66,56,78,52,56,64,48,66,60,74,46]],
+    flutter:[[14,74,24,78,56,78,36,78,46,78,72,70,90,64,72,78,90,78],[14,74,24,78,56,78,36,78,46,78,72,78,90,78,72,70,90,64]],
+    rcrunch:[[14,74,24,78,56,78,36,78,46,78,62,58,62,44],[14,74,24,78,52,70,36,78,46,78,56,50,56,36]],
+    situp:[[14,74,24,78,56,78,22,72,16,72,72,64,82,84],[38,36,40,50,56,78,48,56,44,46,72,64,82,84]],
+    sbend:[[50,16,50,28,50,55,42,44,41,56,47,72,45,88],[44,18,46,28,50,55,40,44,38,56,47,72,45,88]],
+    squat_press:[[56,34,52,46,38,70,60,54,57,45,62,70,50,88],[50,16,50,28,48,55,54,40,56,32,50,72,52,88],[50,16,50,28,48,55,54,16,54,2,50,72,52,88]],
+    thruster:[[56,34,52,46,38,70,60,54,57,45,62,70,50,88],[50,16,50,28,48,55,54,16,54,2,50,72,52,88]],
+    lcurl_s:[[38,28,38,42,36,66,44,56,50,62,56,66,56,86],[38,28,38,42,36,66,44,56,50,62,56,66,42,80]],
+    lcurl_p:[[84,52,74,56,40,60,80,62,88,62,26,62,10,62],[84,52,74,56,40,60,80,62,88,62,26,62,26,40]],
+    lcurl_st:[[54,18,52,30,48,56,60,44,64,54,50,72,50,88,48,72,50,88],[54,18,52,30,48,56,60,44,64,54,50,72,50,88,50,72,34,74]],
+    bcurl:[[14,74,24,78,52,64,34,78,44,80,68,64,84,74],[14,74,24,78,52,62,34,78,44,80,62,62,60,76]],
+    nord:[[46,20,46,32,42,58,52,42,52,54,46,78,34,86],[70,52,64,56,44,66,72,64,76,74,46,80,34,86]],
+    hthrust:[[20,70,28,68,50,82,40,76,46,78,66,66,74,86],[20,70,28,68,52,64,40,74,46,78,66,62,72,86]],
+    hthrust_1l:[[20,70,28,68,50,82,40,76,46,78,66,66,74,86,70,54,86,50],[20,70,28,68,52,64,40,74,46,78,66,62,72,86,70,54,86,50]],
+    hthrust_bst:[[20,70,28,68,50,82,40,76,46,78,66,66,74,86,56,70,60,86],[20,70,28,68,52,64,40,74,46,78,66,62,72,86,56,70,60,86]],
+    frog:[[14,74,24,76,50,80,34,78,44,80,60,70,52,84],[14,74,24,76,52,58,34,78,44,80,60,64,52,80]],
+    donkey:[[20,52,28,58,64,60,28,70,28,84,76,76,86,84,62,76,74,84],[20,52,28,58,64,60,28,70,28,84,82,58,96,54,62,76,74,84]],
+    hydrant:[[20,52,28,58,64,60,28,70,28,84,76,76,86,84,62,76,74,84],[20,52,28,58,64,60,28,70,28,84,74,52,80,66,62,76,74,84]],
+    clam:[[14,74,24,78,56,78,30,66,40,70,60,68,50,80,60,68,50,80],[14,74,24,78,56,78,30,66,40,70,62,54,50,78,60,68,50,80]],
+    lwalk:[[50,20,50,32,50,58,42,46,40,56,44,74,40,88],[50,20,50,32,50,58,42,46,40,56,38,72,30,88]],
+    abd:[[50,26,50,38,50,64,40,52,38,60,47,68,46,88],[50,26,50,38,50,64,40,52,38,60,36,66,34,88]],
+    toeR:[[48,18,48,30,48,56,50,44,50,56,48,72,50,88],[46,18,46,30,46,56,48,44,48,56,46,72,52,84]],
+    calf_1l:[[50,18,50,30,48,56,52,44,52,56,50,72,52,88,52,64,56,72],[50,12,50,24,48,50,52,38,52,50,50,66,56,86,50,56,54,64]],
+    calf_step:[[50,18,50,30,48,56,52,44,52,56,50,72,52,90],[50,10,50,22,48,48,52,36,52,48,50,64,56,84]],
+    tib:[[40,16,40,30,40,56,44,44,44,56,50,72,60,88],[40,16,40,30,40,56,44,44,44,56,50,72,60,84]],
+    cwalk:[[50,12,50,24,48,50,52,38,52,50,54,66,58,84,46,66,42,86],[50,12,50,24,48,50,52,38,52,50,46,66,42,86,54,66,58,84]],
+    lpc:[[14,46,20,54,36,72,28,66,34,72,48,62,60,50],[14,46,20,54,36,72,28,66,34,72,48,62,62,48]],
+    dcalf:[[76,44,68,48,40,52,70,60,70,72,40,70,44,88],[76,44,68,48,40,50,70,60,70,72,40,66,48,82]],
+    hackc:[[32,20,38,32,46,58,46,46,48,58,52,74,54,88],[32,16,38,28,46,54,46,42,48,54,52,70,58,84]],
+    calfF:[[50,18,50,30,50,56,42,44,41,56,47,72,45,88],[50,12,50,24,50,50,42,38,41,50,47,66,45,84]],
+    calf_bk:[[52,22,52,34,48,60,56,46,56,58,60,74,52,88],[52,18,52,30,48,56,56,42,56,54,60,70,56,84]],
+    sumo_sq:[[50,16,50,28,50,55,42,38,46,32,47,72,45,88],[50,38,50,50,50,72,42,56,46,50,47,80,45,88]]
+  });
+  Object.assign(MIR,{ropes:1,lwalk:1,abd:1,sbend:1,calfF:1,sumo_sq:1});
+  Object.assign(TMUS2,{walk:[[],["forearm_f","forearm_b","abs_f"]],cycle:[[],["abs_f"]],assault:[[],["delt_f","bicep_f"]],ellip:[[],["abs_f"]],stairc:[[],["abs_f"]],sledp:[[],["delt_f","chest_f"]],sledd:[[],["lat_b","bicep_f"]],hknees:[[],["abs_f"]],boxing:[[],["delt_f","chest_f"]],sprint:[[],["abs_f"]],rowm:[[],["lat_b","bicep_f"]],jrope:[[],["abs_f"]],burpee:[[],["chest_f","tricep_b","abs_f"]],burpeebox:[[],["chest_f","tricep_b","abs_f"]],boxj:[[],["abs_f"]],skater:[[],["abs_f"]],ropes:[[],["lat_b","abs_f"]],deadbug:[[],["quad_f"]],birddog:[[],["lowback_b","glute_b","delt_f"]],lsit:[[],["quad_f","tricep_b"]],fghold:[[],["trap_f","trap_b"]],pinch:[[],["trap_f"]],grip:[[],["bicep_f"]],abwheel:[[],["lat_b","delt_f"]],bike:[[],["quad_f"]],heel:[[],[]],rtwist:[[],["quad_f"]],pallof:[[],["delt_f","chest_f"]],wchop:[[],["delt_f","lat_b"]],lmtwist:[[],["delt_f","lat_b"]],ccrunch:[[],[]],hkr:[[],["forearm_f","lat_b"]],hlr:[[],["forearm_f","lat_b"]],ttb:[[],["forearm_f","lat_b"]],dragon:[[],["lat_b","quad_f"]],vup:[[],["quad_f"]],flutter:[[],["quad_f"]],rcrunch:[[],["quad_f"]],situp:[[],["quad_f"]],sbend:[[],["lat_b"]],squat_press:[[],["delt_f","tricep_b","abs_f"]],lcurl:[[],["calf_b"]],bcurl:[[],["glute_b","calf_b"]],nord:[[],["glute_b","lowback_b"]],hthrust:[[],["ham_b","quad_f"]],frog:[[],["ham_b"]],donkey:[[],["ham_b","lowback_b"]],hydrant:[[],["abs_f"]],clam:[[],[]],lwalk:[[],["quad_f"]],abd:[[],[]],toeR:[[],[]],tib:[[],[]],cwalk:[[],["quad_f"]],lpc:[[],[]],dcalf:[[],[]],hackc:[[],["quad_f"]],calfF:[[],[]],thruster:[[],["tricep_b","abs_f"]]});
+  Object.assign(XS,{
+    "Plank":["plank","","floor"],"Side Plank":["plank_side","","floor"],"Weighted Plank":["plank","","floor",null,null,["wtd"]],"Dead Bug":["deadbug","","floor"],"Bird Dog":["birddog","","floor"],"L-Sit Hold":["lsit","","parallel"],
+    "Plate Pinch":["pinch","plate","floor"],"Plate Pinch Carry":["walk","plate","floor"],"Fat Grip Hold":["fghold","bb","floor"],"Gripper Squeeze":["grip","","floor"],"Dumbbell Pinch Hold":["pinch","db","floor"],
+    "Ab Wheel Rollout":["abwheel","wheel","floor"],"Standing Ab Wheel Rollout":["abwheel_s","wheel","floor"],"Dumbbell Dead Bug":["deadbug","db","floor"],
+    "Farmers Walk":["walk","kb","floor"],"Heavy Farmers Walk":["walk","kb","floor",null,null,["hv"]],"Suitcase Carry":["walk","db","floor",null,null,["lean"]],"Treadmill Walk":["walk","","tread"],"Treadmill Run":["run","","tread"],
+    "Cycling":["cycle","","bike"],"Elliptical":["ellip","","elliptical"],"Stair Climber":["stairc","","steps"],"Sled Push":["sledp","","sledB"],"Sled Drag":["sledd","","floor",null,[94,84]],
+    "High Knees":["hknees","","floor"],"Shadow Boxing":["boxing","","floor"],"Assault Bike Intervals":["assault","","bike",""],"Sprint Intervals":["sprint","","floor",null,null],"Rowing Machine":["rowm","","rower"],"Rowing Sprints":["rowm","","rower","f"],
+    "Jump Rope":["jrope","","floor"],"Tabata Jump Rope":["jrope","","floor","f"],"Burpees":["burpee","","floor"],"Box Jumps":["boxj","","box"],"Battle Ropes":["ropes","","floor",null,[50,86],["alt"]],"Skater Jumps":["skater","","floor"],"Burpee Box Jump":["burpeebox","","box"],
+    "Crunches":["crunch","","floor"],"Bicycle Crunch":["bike","","floor"],"Heel Taps":["heel","","floor"],"Cable Crunch":["ccrunch","cable","",null,[46,4]],"Russian Twist":["rtwist","plate","floor"],"Pallof Press":["pallof","cable","",null,[6,36]],
+    "Woodchopper":["wchop","cable","",null,[4,6]],"Landmine Twist":["lmtwist","plate","landmine",null,[10,86]],"Dumbbell Russian Twist":["rtwist","db","floor"],"Dumbbell Sit-Up":["situp","db","floor"],"Dumbbell Side Bend":["sbend","db","floor",null,null,["1a"]],
+    "Leg Raise":["legraise","","floor"],"Flutter Kicks":["flutter","","floor"],"Hanging Knee Raise":["hkr","","pbarM"],"Reverse Crunch":["rcrunch","","floor"],"V-Ups":["vup","","floor"],"Hanging Leg Raise":["hlr","","pbarM"],"Toes-to-Bar":["ttb","","pbarM"],"Dragon Flag":["dragon","","bench"],
+    "Leg Curl":["lcurl_st","mach","legpad"],"Seated Leg Curl":["lcurl_s","mach","seat"],"Lying Leg Curl":["lcurl_p","mach","bench3"],"Cable Leg Curl":["lcurl_st","cable","",null,[40,90]],"Stability Ball Leg Curl":["bcurl","","ball"],"Slider Leg Curl":["bcurl","","sliders"],"Assisted Nordic Curl":["nord","mach","assist"],"Nordic Curl":["nord","","floor"],"Glute Ham Raise":["bext","mach","ghd"],"Slider Leg Curl ":["bcurl","","sliders"],
+    "Glute Bridge":["bridge","","floor"],"Bodyweight Hip Thrust":["hthrust","","bench4"],"Frog Pumps":["frog","","floor"],"Hip Thrust":["hthrust","bb","bench4"],"Single-Leg Hip Thrust":["hthrust_1l","","bench4"],"Banded Hip Thrust":["hthrust","band","bench4 bandk"],"B-Stance Hip Thrust":["hthrust_bst","bb","bench4"],"Elevated Glute Bridge":["bridge","","bench5"],
+    "Donkey Kicks":["donkey","","floor"],"Fire Hydrants":["hydrant","","floor"],"Clamshells":["clam","band","floor"],"Banded Lateral Walk":["lwalk","band","bandk",null,null,["altl","wide"]],"Hip Abduction Machine":["abd","mach","mfront"],"Glute Kickback Machine":["kick","mach","kmachd"],
+    "Bodyweight Calf Raise":["calf","","floor"],"Standing Calf Raise":["calf","mach","shpad"],"Toe Raise":["toeR","","wall"],"Single-Leg Calf Raise":["calf_1l","","floor"],"Step Calf Raise":["calf_step","","step"],"Tibialis Raise":["tib","","wall"],"Calf Walk on Toes":["cwalk","","floor"],
+    "Leg Press Calf Raise":["lpc","mach","sledrail"],"Machine Donkey Calf Raise":["dcalf","mach","machD"],"Hack Squat Calf Raise":["hackc","mach","hackrail"],"Weighted Donkey Calf Raise":["dcalf","plateT","floor"],
+    "Dumbbell Single-Leg Calf Raise":["calf_1l","db","floor"],"Dumbbell Standing Calf Raise":["calf","db","floor"],"Dumbbell Sumo Calf Raise":["calfF","db","floor",null,null,["wide"]],"Dumbbell Bent-Knee Calf Raise":["calf_bk","db","floor"],
+    "Heavy Standing Calf Raise":["calf","bb","shpad",null,null,["hv"]],"Single-Leg Heavy Calf Raise":["calf_1l","db","floor",null,null,["hv"]],
+    "Dumbbell Goblet Squat":["squat_goblet","db","floor"],"Dumbbell Sumo Squat":["sumo_sq","db","floor",null,null,["wide"]],"Walking Lunges":["lunge_walk","","floor"],"Bulgarian Split Squat":["lunge_bsplit","","bench2"],
+    "Dumbbell Walking Lunge":["lunge_walk","db","floor"],"Dumbbell Bulgarian Split Squat":["lunge_bsplit","db","bench2"],"Dumbbell Step-Up":["stepup","db","box"],"Dumbbell Reverse Lunge":["lunge_rev","db","floor"],
+    "Dumbbell Thruster":["thruster","db","floor"],"Dumbbell Squat to Press":["squat_press","db","floor"],
+    "Rear Delt Fly":["rdf","db","seatb"],"Dumbbell Rear Delt Raise":["rdf","db","incl"],"Dumbbell Overhead Extension":["trio","kb","floor"],"Single-Leg Romanian Deadlift":["rdl_1l","kb","floor"],
+    "Push-ups":["pushup","","floor"],"Weighted Push-ups":["pushup","","floor",null,null,["wtd"]],"Dead Hang":["hang_m","","pbarM"],"Weighted Dead Hang":["hang_m","","pbarM",null,null,["wtd"]]
+  });
   var DEFD={bench:"bench",fly:"bench",incline:"incl",pull:"pbar",dip:"dips",legext:"seat",pulldown:"seat2",seatedrow:"rowseat"};
   var DEC={
     bench:'<line class="dc" x1="10" y1="73" x2="68" y2="73"/><line class="dc" x1="16" y1="73" x2="16" y2="90"/><line class="dc" x1="62" y1="73" x2="62" y2="90"/>',
@@ -711,27 +907,82 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
     lungeplat:'<rect class="dcb" x="56" y="82" width="20" height="8"/>',machseat:'<line class="dc" x1="24" y1="72" x2="46" y2="72"/><line class="dc" x1="26" y1="30" x2="26" y2="72" style="stroke-width:5"/>',
     sledrail:'<line class="dc" x1="14" y1="88" x2="84" y2="40"/><line class="dc" x1="8" y1="62" x2="30" y2="80" style="stroke-width:5"/>',
     hackrail:'<line class="dc" x1="22" y1="88" x2="44" y2="14" style="stroke-width:4"/>',bench2:'<rect class="dcb" x="8" y="68" width="18" height="22"/>',
+    seatF:'<line class="dc" x1="34" y1="66" x2="66" y2="66" style="stroke-width:3"/><line class="dc" x1="40" y1="66" x2="40" y2="90"/><line class="dc" x1="60" y1="66" x2="60" y2="90"/>',
+    mfront:'<line class="dc" x1="26" y1="8" x2="26" y2="90"/><line class="dc" x1="74" y1="8" x2="74" y2="90"/><line class="dc" x1="26" y1="66" x2="74" y2="66"/>',
+    pbarM:'<line class="dc" x1="26" y1="4" x2="74" y2="4" style="stroke-width:5"/>',
+    pbar2:'<line class="dc" x1="68" y1="42" x2="86" y2="42"/><line class="dc" x1="86" y1="42" x2="86" y2="90"/>',
+    towels:'<line class="eqs" x1="34" y1="4" x2="34" y2="18"/><line class="eqs" x1="66" y1="4" x2="66" y2="18"/>',
+    rack:'<line class="dc" x1="22" y1="30" x2="22" y2="90"/><line class="dc" x1="78" y1="30" x2="78" y2="90"/><line class="dc" x1="22" y1="70" x2="30" y2="70"/><line class="dc" x1="70" y1="70" x2="78" y2="70"/>',
+    plat0:'<circle class="dcb" cx="70" cy="84" r="6"/>',plat2:'<rect class="dcb" x="36" y="82" width="30" height="8"/>',
+    bench3:'<rect class="dcb" x="30" y="56" width="52" height="6"/><line class="dc" x1="36" y1="62" x2="36" y2="90"/><line class="dc" x1="76" y1="62" x2="76" y2="90"/>',
+    bext:'<line class="dc" x1="26" y1="82" x2="40" y2="44" style="stroke-width:4"/><line class="dc" x1="22" y1="86" x2="34" y2="86"/>',
+    benchw:'<line class="dc" x1="26" y1="72" x2="48" y2="72"/><line class="dc" x1="30" y1="72" x2="30" y2="90"/>',
+    preach:'<line class="dc" x1="46" y1="42" x2="68" y2="74" style="stroke-width:5"/><line class="dc" x1="28" y1="72" x2="50" y2="72"/>',
+    bar2:'<line class="dc" x1="64" y1="60" x2="88" y2="60"/><line class="dc" x1="76" y1="60" x2="76" y2="90"/>',
+    bdipb:'<rect class="dcb" x="28" y="68" width="18" height="22"/>',board:'<rect class="dcb" x="22" y="58" width="14" height="5"/>',
+    parallel:'<line class="dc" x1="36" y1="78" x2="46" y2="78" style="stroke-width:3"/><line class="dc" x1="36" y1="78" x2="36" y2="90"/>',
+    tread:'<line class="dc" x1="14" y1="90" x2="86" y2="90" style="stroke-width:4"/><line class="dc" x1="78" y1="90" x2="78" y2="44"/><line class="dc" x1="70" y1="44" x2="86" y2="44"/>',
+    bike:'<circle class="dc" cx="34" cy="80" r="8" fill="none"/><circle class="dc" cx="72" cy="80" r="8" fill="none"/><line class="dc" x1="34" y1="80" x2="50" y2="66"/><line class="dc" x1="50" y1="66" x2="72" y2="80"/><line class="dc" x1="50" y1="66" x2="68" y2="50"/>',
+    elliptical:'<line class="dc" x1="28" y1="90" x2="78" y2="90" style="stroke-width:3"/><line class="dc" x1="70" y1="90" x2="76" y2="30" style="stroke-width:3"/>',
+    steps:'<rect class="dcb" x="56" y="74" width="26" height="16"/><rect class="dcb" x="70" y="58" width="26" height="32"/>',
+    sledB:'<rect class="dcb" x="84" y="50" width="12" height="38"/>',rower:'<line class="dc" x1="20" y1="84" x2="90" y2="84" style="stroke-width:3"/><rect class="dcb" x="82" y="52" width="8" height="32"/>',
+    legpad:'<line class="dc" x1="40" y1="40" x2="40" y2="90" style="stroke-width:4"/>',ball:'<circle class="dcb" cx="80" cy="76" r="10"/>',sliders:'<rect class="dcb" x="74" y="84" width="10" height="3"/>',
+    assist:'<line class="dc" x1="28" y1="84" x2="44" y2="84" style="stroke-width:4"/>',bench4:'<rect class="dcb" x="8" y="64" width="26" height="26"/>',bench5:'<rect class="dcb" x="58" y="70" width="30" height="20"/>',
+    ghd:'<line class="dc" x1="26" y1="84" x2="40" y2="48" style="stroke-width:4"/><line class="dc" x1="20" y1="88" x2="34" y2="88"/>',kmachd:'<line class="dc" x1="60" y1="20" x2="60" y2="90" style="stroke-width:4"/><line class="dc" x1="54" y1="50" x2="70" y2="50"/>',
+    shpad:'<line class="dc" x1="40" y1="24" x2="62" y2="24" style="stroke-width:4"/><line class="dc" x1="50" y1="24" x2="50" y2="10"/>',machD:'<line class="dc" x1="30" y1="52" x2="50" y2="52" style="stroke-width:4"/>',
+    step:'<rect class="dcb" x="44" y="86" width="20" height="4"/>',wall2:'',bandk:'<line class="eqs" x1="36" y1="66" x2="64" y2="66"/>',
+    seatb:'<line class="dc" x1="26" y1="72" x2="64" y2="72"/><line class="dc" x1="32" y1="72" x2="32" y2="90"/><line class="dc" x1="58" y1="72" x2="58" y2="90"/>',
     plates:'<rect class="dcb" x="82" y="34" width="5" height="14"/><rect class="dcb" x="88" y="34" width="5" height="14"/>'
   };
   var EQRE=[[/smith/i,"smith"],[/ez-bar/i,"ez"],[/trap bar/i,"trapbar"],[/barbell|\bbar\b|snatch-grip|rack pull|pendlay|t-bar|zercher|board press|jm press|tate/i,"bb"],[/dumbbell/i,"db"],[/kettlebell/i,"kb"],[/plate/i,"plate"],[/cable|pulldown|pushdown|face pull|pull-through|crossover|seated cable/i,"cable"],[/machine|pec deck|leg press|hack squat|leg extension|leg curl|assisted|glute ham|belt squat|seated calf|donkey calf/i,"mach"]];
   function eqOf(n){for(var i=0;i<EQRE.length;i++)if(EQRE[i][0].test(n))return EQRE[i][1];return""}
   var SPC={};
+  var LOWER={squat:1,lunge:1,hinge:1,bridge:1,calf:1,kick:1,legext:1,run:1,jump:1,stepup:1,lpress:1,wall:1};
+  var MODRE=[[/seated|sitting/i,"sit"],[/single-arm|one-arm/i,"1a"],[/alternating/i,"alt"],[/single-leg/i,"1l"],[/wide/i,"wide"],[/close-grip|close|narrow|diamond/i,"close"],[/leaning/i,"lean"],[/pause/i,"p"],[/eccentric|negative|slow/i,"s"],[/plyometric|explosive|power|tabata|sprint/i,"f"],[/weighted/i,"wtd"],[/heavy/i,"hv"],[/hold|isometric/i,"hold"],[/hammer/i,"ham"]];
+  function modsOf(n){return MODRE.filter(function(r){return r[0].test(n)}).map(function(r){return r[1]})}
+  function rotUp(q,deg){var a=deg*Math.PI/180,c=Math.cos(a),s2=Math.sin(a),hx=q[4],hy=q[5],o=q.slice();[[0,1],[2,3],[6,7],[8,9]].forEach(function(p){var dx=q[p[0]]-hx,dy=q[p[1]]-hy;o[p[0]]=hx+dx*c-dy*s2;o[p[1]]=hy+dx*s2+dy*c});return o}
+  function applyMods(P,mods,M){
+    var o=P.map(function(q){return q.slice()});
+    if(mods.indexOf("sit")>-1)o=o.map(function(q){var r=q.slice();[1,3,5,7,9].forEach(function(i){r[i]+=16});if(M){r[10]=45;r[11]=r[5]+6;r[12]=44;r[13]=88}else{r[10]=q[4]+14;r[11]=r[5];r[12]=q[4]+14;r[13]=88}return r});
+    if(mods.indexOf("lean")>-1)o=o.map(function(q){return rotUp(q,16)});
+    if(mods.indexOf("hold")>-1)o=[o[0],o[0].map(function(v,i){return [1,3,7,9].indexOf(i)>-1?v+1.6:v})];
+    return o;
+  }
   function spec(n){
     if(SPC[n])return SPC[n];
-    var x=XS[n]||[],a=figType(n),e=x[1]!==undefined?x[1]:eqOf(n),d=x[2]!==undefined?x[2]:(DEFD[fam(a)]||"");
+    var x=XS[n]||[],a=figType(n),mods=x[5]||modsOf(n),M=!!gv(MIR,a),low=!!LOWER[fam(a)],vis=[];
+    var e=x[1]!==undefined?x[1]:eqOf(n),d=x[2]!==undefined?x[2]:(DEFD[fam(a)]||""),tp=x[3]||"";
+    var P=FIG[a]?applyMods(FIG[a],mods,M):null,fl={},xt="";
+    if(e==="plateT"||e==="plateH"||e==="dbC"){xt=e;e=""}
+    ["sit","lean","hold","hv"].forEach(function(k){if(mods.indexOf(k)>-1)vis.push(k)});
+    if(mods.indexOf("sit")>-1)d+=" seatb";
+    if(M){
+      if(mods.indexOf("alt")>-1){fl.alt=1;vis.push("alt")}
+      if(mods.indexOf("1a")>-1){fl.one=1;vis.push("1a")}
+      if(mods.indexOf("1l")>-1){fl.lift=1;vis.push("1l")}
+      if(mods.indexOf("altl")>-1){fl.altl=1;vis.push("altl")}
+      if(mods.indexOf("wide")>-1){if(low)fl.lg=9;else if(P)P=P.map(function(q){var r=q.slice();r[6]-=6;r[8]-=6;return r});vis.push("wide")}
+      else if(mods.indexOf("close")>-1){if(low)fl.lg=1.5;else if(P)P=P.map(function(q){var r=q.slice();r[6]+=5;r[8]+=5;return r});vis.push("close")}
+      if(mods.indexOf("ham")>-1)vis.push("ham");
+    }
+    if(!tp){tp=mods.indexOf("p")>-1?"p":mods.indexOf("s")>-1?"s":mods.indexOf("f")>-1?"f":""}
+    if(mods.indexOf("wtd")>-1&&!xt){xt=(fam(a)==="pushup"||fam(a)==="plank")?"plateT":"plateH";vis.push("wtd")}
     var an=x[4]||(gv(ANC,a)&&CAB.test(n)?gv(ANC,a):null);
-    return SPC[n]={a:a,e:e,d:d,t:x[3]||"",an:an};
+    return SPC[n]={a:a,e:e,xt:xt,d:d,t:tp,an:an,P:P,fl:fl,ori:mods.indexOf("ham")>-1?"v":"",big:mods.indexOf("hv")>-1,vis:vis.join("+"),mods:mods};
   }
-  function glyph(e,M){
-    if(e==="db")return M?'<rect class="eq" x="-6" y="-3.4" width="2.6" height="6.8"/><rect class="eq" x="3.4" y="-3.4" width="2.6" height="6.8"/><rect class="eq2" x="-3.4" y="-1" width="6.8" height="2"/>':'<circle class="eq" r="3.4"/><circle class="eq2" r="1.4"/>';
+  function glyph(e,M,ori){
+    if(e==="db")return ori==="v"&&M?'<rect class="eq2" x="-.9" y="-3.4" width="1.8" height="6.8"/><rect class="eq" x="-3.4" y="-6" width="6.8" height="2.6"/><rect class="eq" x="-3.4" y="3.4" width="6.8" height="2.6"/>':M?'<rect class="eq" x="-6" y="-3.4" width="2.6" height="6.8"/><rect class="eq" x="3.4" y="-3.4" width="2.6" height="6.8"/><rect class="eq2" x="-3.4" y="-1" width="6.8" height="2"/>':'<circle class="eq" r="3.4"/><circle class="eq2" r="1.4"/>';
     if(e==="kb")return'<path class="eqs" d="M-2.4 -1 Q0 -6.6 2.4 -1"/><circle class="eq" cx="0" cy="1.6" r="3.8"/>';
     if(e==="plate"||e==="plateT")return'<circle class="eq" r="5.4"/><circle class="eq2" r="1.8"/>';
     if(e==="plateH")return'<line class="eqs" x1="0" y1="-12" x2="0" y2="-3"/><circle class="eq" r="5"/><circle class="eq2" r="1.7"/>';
     if(e==="bb"||e==="bbs"||e==="smith"||e==="ez"||e==="trapbar")return'<circle class="eq" r="5.2"/><circle class="eq2" r="2.2"/>'+(e==="bbs"?'<path class="eqs" d="M0 0 L8 2"/>':"");
+    if(e==="wheel")return'<circle class="eq" r="4.4"/><circle class="eq2" r="1.6"/>';
+    if(e==="dbsq")return'<circle class="eq" r="4.6"/><circle class="eq2" r="2.2"/>';
+    if(e==="rope")return'<circle class="eq" cx="-2.2" r="1.9"/><circle class="eq" cx="2.2" r="1.9"/>';
     if(e==="cable"||e==="mach")return'<circle class="eq2" r="2"/>';
     return"";
   }
-  function figType(n){var x=XS[n];if(x&&x[0])return x[0];for(var i=0;i<FR.length;i++)if(FR[i][0].test(n))return FR[i][1];return""}
+    function figType(n){var x=XS[n];if(x&&x[0])return x[0];for(var i=0;i<FR.length;i++)if(FR[i][0].test(n))return FR[i][1];return""}
     function f1(x){return Math.round(x*10)/10}
   function tp(x1,y1,x2,y2,r1,rm,r2,b){
     var dx=x2-x1,dy=y2-y1,l=Math.sqrt(dx*dx+dy*dy)||1,nx=-dy/l,ny=dx/l,mx=x1+dx*b,my=y1+dy*b,c=2*rm-(r1+r2)/2;
@@ -757,11 +1008,12 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
   var ORD=["tor","low","lat","trap","glute","chest","abs","abl","neck","head","fth","fsh","fhip","fqd","fhm","fcf","fknee","ffoot","nth","nsh","nhip","nqd","nhm","ncf","nknee","nfoot","fua","ffa","fbi","ftr","ffr","felb","fhand","nua","nfa","nbi","ntr","nfr","nelb","nhand","fdelt","ndelt"];
   var SLM=ORD.map(function(n){return SL.filter(function(s){return s.n===n})[0]});
   var LY={bench:1,fly:1,crunch:1,bridge:1,legraise:1};
-  function frame(P,ph,M,ly){
-    var q=kf(P,ph),X=function(x){return 100-x},it={},ref=ly?[0,-1]:[1,.5];
-    var L2=P[0].length>14&&!M,sx=M?q[2]-9:q[2],hx=M?q[4]-4:q[4],lg=M?4:0;
+  function frame(P,ph,M,ly,fl){
+    fl=fl||{};var q=kf(P,ph),ql=fl.altl?kf(P,1-ph):q,X=function(x){return 100-x},it={},ref=ly?[0,-1]:[1,.5];
+    var qa=fl.alt?kf(P,1-ph):fl.one?kf(P,0):q;
+    var L2=P[0].length>14&&!M,sx=M?q[2]-9:q[2],hx=M?q[4]-4:q[4],lg=M?(fl.lg!==undefined?fl.lg:4):0;
     var sg={T:[q[2],q[3],q[4],q[5]],nua:[sx,q[3],q[6],q[7]],nfa:[q[6],q[7],q[8],q[9]],nth:[hx,q[5],q[10]-lg,q[11]],nsh:[q[10]-lg,q[11],q[12]-lg,q[13]]};
-    if(M){sg.fua=[X(sx),q[3],X(q[6]),q[7]];sg.ffa=[X(q[6]),q[7],X(q[8]),q[9]];sg.fth=[X(hx),q[5],X(q[10]-lg),q[11]];sg.fsh=[X(q[10]-lg),q[11],X(q[12]-lg),q[13]]}
+    if(M){sg.fua=[X(sx),q[3],X(qa[6]),qa[7]];sg.ffa=[X(qa[6]),qa[7],X(qa[8]),qa[9]];sg.fth=[X(hx),q[5],X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0)];sg.fsh=[X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0),X(ql[12]-lg)+(fl.lift?8:0),ql[13]-(fl.lift?22:0)]}
     else if(L2){sg.fth=[q[4],q[5],q[14],q[15]];sg.fsh=[q[14],q[15],q[16],q[17]]}
     var shp=function(k,s,r1,rm,r2,b){it[k]={p:s?tp(s[0],s[1],s[2],s[3],r1,rm,r2,b):""}};
     var ell=function(k,cx,cy,ra,rp,ang){it[k]={e:[f1(cx),f1(cy),ra,rp,ang||0]}};
@@ -782,7 +1034,7 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
     var lines=function(k,s,ts){var x1=s[0],y1=s[1],dx=s[2]-x1,dy=s[3]-y1,l=Math.sqrt(dx*dx+dy*dy)||1,nx=-dy/l,ny=dx/l;if(nx*ref[0]+ny*ref[1]<0){nx=-nx;ny=-ny}it[k]={p:ts.map(function(t){var cx=x1+dx*t,cy=y1+dy*t,a=M?-3.4:1,b=M?3.4:4.4;return"M"+f1(cx+nx*a)+" "+f1(cy+ny*a)+"L"+f1(cx+nx*b)+" "+f1(cy+ny*b)}).join("")}};
     lines("abl",sg.T,[.58,.66,.74]);
     ["n","f"].forEach(function(w){
-      var ua=sg[w+"ua"],fa=sg[w+"fa"],th=sg[w+"th"],sh=sg[w+"sh"],hand=w==="n"?[q[8],q[9]]:[X(q[8]),q[9]],elb=w==="n"?[q[6],q[7]]:[X(q[6]),q[7]],kn=th?(w==="n"||M?(w==="n"?[q[10]-lg,q[11]]:[X(q[10]-lg),q[11]]):[q[14],q[15]]):null,an=sh?(w==="n"||M?(w==="n"?[q[12]-lg,q[13]]:[X(q[12]-lg),q[13]]):[q[16],q[17]]):null;
+      var ua=sg[w+"ua"],fa=sg[w+"fa"],th=sg[w+"th"],sh=sg[w+"sh"],hand=w==="n"?[q[8],q[9]]:[X(qa[8]),qa[9]],elb=w==="n"?[q[6],q[7]]:[X(qa[6]),qa[7]],kn=th?(w==="n"||M?(w==="n"?[q[10]-lg,q[11]]:[X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0)]):[q[14],q[15]]):null,an=sh?(w==="n"||M?(w==="n"?[q[12]-lg,q[13]]:[X(ql[12]-lg)+(fl.lift?8:0),ql[13]-(fl.lift?22:0)]):[q[16],q[17]]):null;
       shp(w+"ua",ua,3.8,4.5,2.9,.42);shp(w+"fa",fa,3.1,3.7,2.1,.32);shp(w+"th",th,5.2,5.9,3.8,.4);shp(w+"sh",sh,3.9,4.6,2.3,.3);
       pad(w+"bi",ua,.5,1,1.5,4.8,2.3,4.8,2.6);pad(w+"tr",ua,.5,-1,1.5,4.8,2.2,0,0);pad(w+"fr",fa,.4,1,1.2,4.8,1.9,4.8,2.2);
       pad(w+"qd",th,.45,1,2,6.8,2.5,6.8,2.9);pad(w+"hm",th,.45,-1,2,6.6,2.3,0,0);pad(w+"cf",sh,.3,-1,1.7,4.6,2.3,4.6,2.5);
@@ -793,21 +1045,21 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
       if(sh)ell(w+"foot",M?an[0]:an[0]+3.8,an[1]+(M?1.5:1.2),M?3:5,2.2);else hid(w+"foot");
     });
     pad("ndelt",sg.nua,.17,1,0,5,3.4,5,3.6);if(M)pad("fdelt",sg.fua,.17,1,0,5,3.4,5,3.6);else hid("fdelt");
-    return{it:it,q:q};
+    return{it:it,q:q,qa:qa};
   }
-  Object.assign(LY,{decl:1});
+  Object.assign(LY,{decl:1,deadbug:1,bike:1,heel:1,vup:1,flutter:1,rcrunch:1,situp:1,hthrust:1,hthrust_1l:1,hthrust_bst:1,frog:1,bcurl:1,clam:1,dragon:1,lcurl_p:1});
   function decorOf(s){var h='<line class="fl" x1="4" y1="92" x2="96" y2="92"/>';(s.d||"").split(" ").forEach(function(t){if(DEC[t])h+=DEC[t]});return h}
   function figSvg(n,big){
-    var s=spec(n),a=s.a;if(!a||!FIG[a])return"";
-    var M=!!gv(MIR,a),e=s.e,bar=M&&/^(bb|bbs|ez|smith|trapbar)$/.test(e)?1:0,tor=e==="plateT"||e==="plateH";
+    var s=spec(n),a=s.a;if(!a||!s.P)return"";
+    var M=!!gv(MIR,a),e=s.e,bar=M&&/^(bb|bbs|ez|smith|trapbar|cbar)$/.test(e)?1:0,xt=s.xt,tor=!!xt;
     var m=muscles(n),h="";
     (M?SLM:SL).forEach(function(q){
       var c=q.r+(q.f?" far":"");
       if(q.m){c+=q.m.some(function(i){return m.p.indexOf(i)>-1})?" p":q.m.some(function(i){return m.s.indexOf(i)>-1})?" s":""}
       h+=q.k==="p"?'<path class="'+c+'"/>':'<ellipse class="'+c+'"/>';
     });
-    var g=tor||bar?"":glyph(e,M),gt=tor?glyph(e,0):"";
-    return'<svg class="fig'+(big?' figL':'')+'" viewBox="0 0 100 96" data-a="'+a+'" data-m="'+(M?1:0)+'" data-ly="'+(gv(LY,a)?1:0)+'" data-bar="'+bar+'" data-tor="'+(e==="plateT"?"T":e==="plateH"?"H":"")+'" data-tp="'+s.t+'"'+(s.an?' data-ax="'+s.an[0]+'" data-ay="'+s.an[1]+'"':'')+' aria-hidden="true">'+decorOf(s)+'<line class="cb"/><line class="cb"/>'+h+'<line class="br"/><rect class="bpl"/><rect class="bpl"/><g class="ga">'+g+'</g><g class="gb">'+(M?g:"")+'</g><g class="gc">'+gt+'</g></svg>';
+    var g=bar?"":glyph(e,M,s.ori),gt=xt?glyph(xt==="dbC"?"db":xt,xt==="dbC"?1:0):"",sc=s.big?' transform="scale(1.35)"':"";
+    return'<svg class="fig'+(big?' figL':'')+'" viewBox="0 0 100 96" data-n="'+n+'" data-m="'+(M?1:0)+'" data-ly="'+(gv(LY,a)?1:0)+'" data-bar="'+bar+'" data-tor="'+(xt==="plateT"?"T":xt==="plateH"?"H":xt==="dbC"?"C":"")+'" data-nopl="'+(e==="cbar"?1:0)+'" data-tp="'+s.t+'"'+(s.an?' data-ax="'+s.an[0]+'" data-ay="'+s.an[1]+'"':'')+' aria-hidden="true">'+decorOf(s)+'<line class="cb"/><line class="cb"/>'+h+'<line class="br"/><rect class="bpl"/><rect class="bpl"/><g class="ga"><g'+sc+'>'+g+'</g></g><g class="gb"><g'+sc+'>'+(M?g:"")+'</g></g><g class="gc"><g'+sc+'>'+gt+'</g></g></svg>';
   }
   var TF=0;
   function tickFig(t){
@@ -816,31 +1068,31 @@ svg.fig{width:76px;height:73px}svg.figL{width:150px;height:144px}
     var set=function(e,x1,y1,x2,y2){e.setAttribute("x1",x1);e.setAttribute("y1",y1);e.setAttribute("x2",x2);e.setAttribute("y2",y2)};
     var mv=function(e,x,y){e.setAttribute("transform","translate("+f1(x)+" "+f1(y)+")")};
     els.forEach(function(el){
-      var P=FIG[el.dataset.a];if(!P||!el.getClientRects().length)return;
+      if(!el.getClientRects().length)return;
       var r=el._r;
-      if(!r){r={els:el.querySelectorAll("path,ellipse"),cb:el.querySelectorAll("line.cb"),br:el.querySelector("line.br"),bp:el.querySelectorAll("rect.bpl"),ga:el.querySelector("g.ga"),gb:el.querySelector("g.gb"),gc:el.querySelector("g.gc"),M:el.dataset.m==="1",bar:el.dataset.bar==="1",tor:el.dataset.tor,ly:el.dataset.ly==="1",tp:el.dataset.tp,ax:el.dataset.ax,ay:el.dataset.ay};el._r=r}
-      var ph=(1-Math.cos((r.tp==="f"?t*1.7:t)/1000*Math.PI))/2;
+      if(!r){var sp=spec(el.dataset.n);if(!sp||!sp.P)return;r={P:sp.P,fl:sp.fl,els:el.querySelectorAll("path,ellipse"),cb:el.querySelectorAll("line.cb"),br:el.querySelector("line.br"),bp:el.querySelectorAll("rect.bpl"),ga:el.querySelector("g.ga"),gb:el.querySelector("g.gb"),gc:el.querySelector("g.gc"),M:el.dataset.m==="1",bar:el.dataset.bar==="1",tor:el.dataset.tor,nopl:el.dataset.nopl==="1",ly:el.dataset.ly==="1",tp:el.dataset.tp,ax:el.dataset.ax,ay:el.dataset.ay};el._r=r}
+      var ph=(1-Math.cos((r.tp==="f"?t*1.7:r.tp==="s"?t*.55:t)/1000*Math.PI))/2;
       if(RM)ph=.5;else if(r.tp==="p")ph=Math.min(1,ph*1.35);
-      var fr=frame(P,ph,r.M,r.ly),q=fr.q;
+      var fr=frame(r.P,ph,r.M,r.ly,r.fl),q=fr.q,qa=fr.qa;
       (r.M?SLM:SL).forEach(function(s,i){
         var e=r.els[i],o=fr.it[s.n];
         if(s.k==="p")e.setAttribute("d",o.p);
         else{var v=o.e;e.setAttribute("cx",v[0]);e.setAttribute("cy",v[1]);e.setAttribute("rx",v[2]);e.setAttribute("ry",v[3]);e.setAttribute("transform","rotate("+f1(v[4])+" "+v[0]+" "+v[1]+")")}
       });
-      mv(r.ga,q[8],q[9]);if(r.M)mv(r.gb,X(q[8]),q[9]);
+      mv(r.ga,q[8],q[9]);if(r.M)mv(r.gb,X(qa[8]),qa[9]);
       if(r.bar){
         set(r.br,q[8]-13,q[9],X(q[8])+13,q[9]);
-        r.bp[0].setAttribute("x",q[8]-16);r.bp[0].setAttribute("y",q[9]-5);r.bp[0].setAttribute("width",3);r.bp[0].setAttribute("height",10);
-        r.bp[1].setAttribute("x",X(q[8])+13);r.bp[1].setAttribute("y",q[9]-5);r.bp[1].setAttribute("width",3);r.bp[1].setAttribute("height",10);
+        r.bp[0].setAttribute("x",q[8]-16);r.bp[0].setAttribute("y",q[9]-5);r.bp[0].setAttribute("width",r.nopl?0:3);r.bp[0].setAttribute("height",10);
+        r.bp[1].setAttribute("x",X(q[8])+13);r.bp[1].setAttribute("y",q[9]-5);r.bp[1].setAttribute("width",r.nopl?0:3);r.bp[1].setAttribute("height",10);
       }
       if(r.tor){
         var dx=q[4]-q[2],dy=q[5]-q[3],l=Math.sqrt(dx*dx+dy*dy)||1,nx=-dy/l,ny=dx/l,rf=r.ly?[0,-1]:[1,.5];
         if(nx*rf[0]+ny*rf[1]<0){nx=-nx;ny=-ny}
-        if(r.tor==="T")mv(r.gc,(q[2]+q[4])/2-nx*7,(q[3]+q[5])/2-ny*7);else mv(r.gc,q[4],q[5]+10);
+        if(r.tor==="T")mv(r.gc,(q[2]+q[4])/2-nx*7,(q[3]+q[5])/2-ny*7);else if(r.tor==="C")mv(r.gc,50,q[9]);else mv(r.gc,q[4],q[5]+10);
       }
       if(r.ax){
         set(r.cb[0],r.ax,r.ay,q[8],q[9]);
-        if(r.M)set(r.cb[1],X(r.ax),r.ay,X(q[8]),q[9]);
+        if(r.M)set(r.cb[1],X(r.ax),r.ay,X(qa[8]),qa[9]);
       }
     });
   }
