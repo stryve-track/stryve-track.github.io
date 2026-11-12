@@ -223,6 +223,40 @@ textarea:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(255
 .ck input{width:20px;height:20px;min-height:0;padding:0;flex:none;accent-color:var(--ac)}
 .ck.all{border-color:var(--ac);font-weight:700;background:rgba(255,90,31,.08)}
 .nl{margin-left:auto;font-size:11px;color:var(--mu)}
+.nurow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.nurow input{min-height:42px;font-size:15px;padding:8px 12px}
+.dtot{margin:4px 0 6px;padding:12px 14px;border-radius:14px;background:rgba(255,90,31,.1);color:var(--tx);font-size:14px}
+.dtot b{color:var(--ac)}
+.dsum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.dsum div{padding:14px;border-radius:18px;text-align:center;color:#fff;background:linear-gradient(135deg,#ff4d17,#ff8a3d 65%,#ffb347);box-shadow:0 8px 22px rgba(255,90,31,.3)}
+.dsum b{display:block;font-size:26px;line-height:1.1}.dsum span{font-size:12px;opacity:.92}
+.mchip{margin-left:auto;font-size:11px;letter-spacing:0;text-transform:none;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(255,90,31,.14);color:var(--ac)}
+#chatfab{position:fixed;right:16px;bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:30;width:56px;height:56px;min-height:0;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;box-shadow:0 8px 22px rgba(255,90,31,.5)}
+#chatfab svg{width:26px;height:26px}
+#chatbadge{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:#dc2626;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}
+#chatfab[hidden],#chatbadge[hidden],#chatform[hidden]{display:none}
+#chat{position:fixed;inset:0;z-index:57;background:rgba(0,0,0,.6);display:flex;align-items:flex-end}#chat[hidden]{display:none}
+.chatcard{width:100%;max-width:560px;margin:0 auto;height:86vh;background:var(--bg);border-radius:28px 28px 0 0;border-top:1px solid var(--ln);display:flex;flex-direction:column;overflow:hidden}
+#chathd{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--ln)}
+#chathd .ct{flex:1;min-width:0}#chathd b{display:block;font-size:17px}#chathd span{font-size:12px;color:var(--mu)}
+#chathd button{width:38px;min-height:38px;height:38px;padding:0;border-radius:50%;background:var(--card);color:var(--tx);border:1px solid var(--ln);box-shadow:none;font-size:18px;flex:none}
+#chatbody{flex:1;overflow:auto;padding:14px 14px 6px;display:flex;flex-direction:column;gap:6px;-webkit-overflow-scrolling:touch}
+.cday{align-self:center;font-size:11px;font-weight:700;color:var(--mu);letter-spacing:.05em;text-transform:uppercase;margin:8px 0 2px}
+.cm{max-width:82%;display:flex;flex-direction:column}
+.cm .cb2{padding:10px 14px;border-radius:18px;white-space:pre-wrap;word-break:break-word;font-size:15px;line-height:1.4}
+.cm span{font-size:10.5px;color:var(--mu);margin:2px 6px 0}
+.cm.me{align-self:flex-end;align-items:flex-end}.cm.me .cb2{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-bottom-right-radius:6px}
+.cm.them{align-self:flex-start}.cm.them .cb2{background:var(--card);border:1px solid var(--ln);border-bottom-left-radius:6px}
+#chatform{display:flex;gap:8px;align-items:flex-end;padding:10px 12px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--ln)}
+#chatform textarea{min-height:44px;max-height:120px;height:44px;resize:none;border-radius:22px;padding:11px 16px;overflow:auto}
+#chatform button{width:48px;min-height:44px;height:44px;padding:0;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center}
+#chatform button svg{width:20px;height:20px}
+.conv{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;background:var(--card);border:1px solid var(--ln);margin-bottom:8px;cursor:pointer}
+.conv .av{width:44px;height:44px;border-radius:50%;background:rgba(255,90,31,.15);color:var(--ac);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+.conv .cx2{flex:1;min-width:0}.conv b{display:block;font-size:15px}.conv .p{display:block;font-size:13px;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv .dot{width:10px;height:10px;border-radius:50%;background:var(--ac);flex:none}
+.cempty{margin:auto;text-align:center;color:var(--mu);padding:20px;font-size:14px;line-height:1.5}
+.cerr{align-self:center;color:#dc2626;font-size:12.5px;text-align:center;padding:4px 12px}
 .dlink{display:block;width:100%;margin-top:10px;background:none;box-shadow:none;color:var(--mu);font-size:14px;min-height:40px}
 .seg.s3{grid-template-columns:repeat(3,1fr)}
 #v-plan .item{gap:10px}
@@ -290,7 +324,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.23</div>
+  <div class="sync" id="ver">Stryve Track v1.25</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
@@ -311,6 +345,8 @@ button.rf:active{transform:rotate(180deg)}
     <div class="row r2"><button class="sec" id="addrow">+ Set</button><button id="add">Save exercise</button></div>
   </div>
 </div></div>
+<button id="chatfab" hidden aria-label="Chat with your trainer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span id="chatbadge" hidden></span></button>
+<div id="chat" hidden><div class="chatcard"><div id="chathd"></div><div id="chatbody"></div><div id="chatform" hidden><textarea id="chatin" rows="1" maxlength="1000" placeholder="Type a message…"></textarea><button id="chatsend" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button></div></div></div>
 <div id="lock" hidden><div class="lockcard"><div class="lockico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div class="lockt">Get the workout plan to access this page</div><p>Workout plans are for Stryve clients. Ask your trainer to set you up, then sign in with your Google account to unlock this page.</p><button id="lksign">Sign in</button><a class="lkmail" href="mailto:nihalstryve@gmail.com?subject=Workout%20plan%20access">Contact support</a><button class="sec" id="lkclose">Not now</button></div></div>
 
 <nav>
@@ -573,14 +609,14 @@ button.rf:active{transform:rotate(180deg)}
     list.sort(function(a,b){return(a.name||"").localeCompare(b.name||"")});
     list.forEach(function(c){
       var lv=c.level||0,em=c.email||"",en=c.entries||[],bd=c.body||[],nm=c.name||"Client",sp=c.split||"",rv=!!c.revoked;
-      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,diet:c.diet||null,diets:c.diets||[]});r.store[c.id]={entries:en,body:bd};
+      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
       CLOUD.cm[c.id]=JSON.stringify([nm,lv,em,sp,rv?1:0]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1&&!rv)?em:"";
     });
     if(!r.clients.length){r.clients.push({id:"me",name:"Me"});r.store.me={entries:[],body:[]}}
     var a="";try{a=localStorage.getItem("wt-act")||""}catch(e){}
     r.active=r.store[a]?a:r.clients[0].id;
     CLOUD.diets=[];CLOUD.dietErr=false;try{CLOUD.diets=await FB.diets(CLOUD.email)}catch(e){CLOUD.dietErr=true}
-    root=r;pick(r.active);renderClients();renderAll();
+    root=r;pick(r.active);renderClients();renderAll();chatStartTrainer();
     if(!list.length)cloudSave();
   }
   function renderAcct(){
@@ -631,7 +667,7 @@ button.rf:active{transform:rotate(180deg)}
             if(!cd){gate(GL+'<p>Could not load your workouts. Ask your trainer to check your access.</p><button class="sec" id="gout">Sign out</button>');return}
             var dd={entries:cd.entries||[],body:cd.body||[]};CLOUD.cc=JSON.stringify([dd.entries,dd.body]);
             root={clients:[{id:ac.cid,name:cd.name||ac.name||"Me"}],active:ac.cid,store:{}};root.store[ac.cid]=dd;root.clients[0].diet=cd.diet||null;root.clients[0].diets=cd.diets||[];
-            pick(ac.cid);renderClients();renderAll();
+            pick(ac.cid);renderClients();renderAll();chatStartClient(ac);
             gate("");renderAcct();tab("plan");document.querySelector(".hs").textContent="Stryve Track \u00b7 "+(root.clients[0].name||"");return;
           }
           gate(GL+'<div class="gt">No access yet</div><p>'+esc(email)+' has not been approved. Ask your trainer or the admin to add this Google email, or use the app as a guest.</p><button id="gguest">Continue as guest</button><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
@@ -1351,12 +1387,17 @@ button.rf:active{transform:rotate(180deg)}
     var m=muscles(name),tl=mlabels(m.p),sl=mlabels(m.s).filter(function(x){return tl.indexOf(x)<0});
     el.innerHTML='<div class="demo"><div class="demoRow">'+figSvg(name,1)+mapSvg(name)+'</div><div class="demoTxt"><b>'+esc(name)+'</b>'+(tl.length?'<div class="sync" style="text-align:left;margin:4px 0 0">Targets: <span class="tg">'+esc(tl.join(", "))+'</span></div>':'')+(sl.length?'<div class="sync" style="text-align:left;margin:2px 0 6px">Also works: '+esc(sl.join(", "))+'</div>':'')+'<a href="https://www.youtube.com/results?search_query='+encodeURIComponent(name+" exercise form")+'" target="_blank" rel="noopener">Watch video \u203a</a></div></div>';
   }
-  function renderAll(){renderLog();renderProg();renderHist();renderHero();renderOverview();if(!$("v-diet").hidden)renderDiet()}
+  function renderAll(){renderLog();renderProg();renderHist();renderHero();renderOverview();chatBadge();if(!$("v-diet").hidden)renderDiet()}
 
   var MEALS=[["pre","Pre workout"],["post","Post workout"],["bf","Breakfast"],["lunch","Lunch"],["snack","Snacks"],["dinner","Dinner"]],DMSG="",DSEL="",DCV="",DBUSY=false;
   function dl(){if(CM)return CLOUD.diets||(CLOUD.diets=[]);root.diets=root.diets||[];return root.diets}
   function dietHas(m){return !!m&&MEALS.some(function(x){return(m[x[0]]||"").trim()})}
   function dWhen(iso){try{return new Date(iso).toLocaleString(undefined,{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}catch(e){return""}}
+  function nuNum(v,max){var n=parseFloat(v);return isFinite(n)&&n>0?Math.min(max,Math.round(n*10)/10):0}
+  function nuOf(nu,id){var x=(nu&&nu[id])||{};return{k:nuNum(x.k,9999),p:nuNum(x.p,999)}}
+  function nuTotals(nu){var k=0,p=0;MEALS.forEach(function(m){var x=nuOf(nu,m[0]);k+=x.k;p+=x.p});return{k:Math.round(k),p:Math.round(p*10)/10}}
+  function nuText(x){var a=[];if(x.k)a.push(x.k+" kcal");if(x.p)a.push(x.p+" g protein");return a.join(" \u00b7 ")}
+  function dtotHtml(nu){var t=nuTotals(nu);return t.k||t.p?'Daily total: <b>'+nuText(t)+'</b>':'Add kcal and protein under each meal to see the daily total.'}
   function chartById(id){return dl().filter(function(x){return x.id===id})[0]}
   function newId(){return"d"+Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
   function clientCharts(c){
@@ -1378,7 +1419,7 @@ button.rf:active{transform:rotate(180deg)}
     var targets=ch.pub?(ch.all?root.clients.map(function(c){return c.id}):(ch.cids||[])):[],jobs=[];
     root.clients.forEach(function(c){
       var had=(c.diets||[]).some(function(x){return x.id===ch.id}),want=targets.indexOf(c.id)>-1,arr=(c.diets||[]).filter(function(x){return x.id!==ch.id});
-      if(want)arr.push({id:ch.id,name:ch.name,m:ch.m,at:ch.pubAt});
+      if(want)arr.push({id:ch.id,name:ch.name,m:ch.m,nu:ch.nu||{},at:ch.pubAt});
       if(want||had){c.diets=arr;jobs.push(storeClientDiets(c))}
     });
     return Promise.all(jobs);
@@ -1390,15 +1431,16 @@ button.rf:active{transform:rotate(180deg)}
       root.clients.forEach(function(c){
         var cp=(c.diets||[]).filter(function(x){return x.id===ch.id})[0];
         if(cp&&cp.at===ch.pubAt)return;
-        c.diets=(c.diets||[]).filter(function(x){return x.id!==ch.id}).concat([{id:ch.id,name:ch.name,m:ch.m,at:ch.pubAt}]);
+        c.diets=(c.diets||[]).filter(function(x){return x.id!==ch.id}).concat([{id:ch.id,name:ch.name,m:ch.m,nu:ch.nu||{},at:ch.pubAt}]);
         storeClientDiets(c).catch(function(){});
       });
     });
   }
   function readForm(){
     var m={};MEALS.forEach(function(x){var e=$("dm-"+x[0]);m[x[0]]=e?(e.value||"").slice(0,1500):""});
+    var nu={};MEALS.forEach(function(x){var k=$("dk-"+x[0]),p=$("dp-"+x[0]);nu[x[0]]={k:k?nuNum(k.value,9999):0,p:p?nuNum(p.value,999):0}});
     var cids=[];document.querySelectorAll("#dcl input").forEach(function(i){if(i.checked)cids.push(i.value)});
-    return{name:($("dname").value||"").trim().slice(0,60),m:m,all:$("dall").checked,cids:cids};
+    return{name:($("dname").value||"").trim().slice(0,60),m:m,nu:nu,all:$("dall").checked,cids:cids};
   }
   function renderDiet(){
     var box=$("dietbox"),c=cur();
@@ -1406,17 +1448,18 @@ button.rf:active{transform:rotate(180deg)}
       var list=clientCharts(c);
       if(!list.length){box.innerHTML='<div class="card"><div class="empty">Your trainer has not published a diet plan yet. Check back soon.</div></div>';return}
       if(!list.some(function(x){return x.id===DCV}))DCV=list[0].id;
-      var d=list.filter(function(x){return x.id===DCV})[0];
+      var d=list.filter(function(x){return x.id===DCV})[0],tot=nuTotals(d.nu);
       box.innerHTML=(list.length>1?'<div class="fchips">'+list.map(function(x){return'<button data-dc="'+qa(x.id)+'"'+(x.id===DCV?' class="on"':'')+'>'+esc(x.name||"Diet plan")+'</button>'}).join("")+'</div>':'')+
         '<div class="sync" style="text-align:left;margin:0 2px 10px">'+esc(d.name||"Diet plan")+' · updated '+esc(dWhen(d.at))+'</div>'+
-        MEALS.filter(function(x){return(d.m[x[0]]||"").trim()}).map(function(x){return'<div class="meal"><b>'+x[1]+'</b><div class="mt">'+esc(d.m[x[0]])+'</div></div>'}).join("");
+        (tot.k||tot.p?'<div class="dsum"><div><b>'+(tot.k||"\u2013")+'</b><span>kcal / day</span></div><div><b>'+(tot.p?tot.p+" g":"\u2013")+'</b><span>protein / day</span></div></div>':'')+
+        MEALS.filter(function(x){return(d.m[x[0]]||"").trim()||nuText(nuOf(d.nu,x[0]))}).map(function(x){var ch=nuText(nuOf(d.nu,x[0])),tx=(d.m[x[0]]||"").trim();return'<div class="meal"><b>'+x[1]+(ch?'<span class="mchip">'+ch+'</span>':'')+'</b>'+(tx?'<div class="mt">'+esc(d.m[x[0]])+'</div>':'')+'</div>'}).join("");
       return;
     }
     syncAll();
     var L=dl().slice().sort(function(a,b){return(a.at||"")<(b.at||"")?1:-1});
     if(DSEL&&DSEL!=="new"&&!chartById(DSEL))DSEL="";
     if(!DSEL)DSEL=L.length?L[0].id:"new";
-    var ch=DSEL==="new"?null:chartById(DSEL),m=(ch&&ch.m)||{},all=!!(ch&&ch.all),cids=ch?(ch.cids||[]):[c.id];
+    var ch=DSEL==="new"?null:chartById(DSEL),m=(ch&&ch.m)||{},nu=(ch&&ch.nu)||{},all=!!(ch&&ch.all),cids=ch?(ch.cids||[]):[c.id];
     var nTo=ch&&ch.pub?(ch.all?root.clients.length:(ch.cids||[]).length):0;
     var st=ch&&ch.pub?'<span class="dstat pub">✓ Published to '+(ch.all?"all clients":nTo+(nTo===1?" client":" clients"))+'</span>'+((ch.at||"")>(ch.pubAt||"")?' <span class="dstat dr">Unpublished changes</span>':''):'<span class="dstat dr">'+(ch?'Draft · not published':'New chart')+'</span>';
     var warn=CM&&CLOUD.dietErr?'<div class="sync" style="text-align:left;margin:0 0 10px;color:#dc2626">Diet charts need the updated firestore.rules. Deploy them, then reload this page.</div>':'';
@@ -1424,7 +1467,8 @@ button.rf:active{transform:rotate(180deg)}
     box.innerHTML='<div class="card"><h2>Diet charts</h2>'+warn+
       '<label for="dsel">Chart</label><select id="dsel" style="margin-bottom:12px">'+L.map(function(x){return'<option value="'+qa(x.id)+'"'+(x.id===DSEL?' selected':'')+'>'+esc(x.name||"Untitled")+(x.pub?" ✓":"")+'</option>'}).join("")+'<option value="new"'+(DSEL==="new"?' selected':'')+'>＋ New chart</option></select>'+
       '<div class="dfield"><label for="dname">Chart name</label><input id="dname" maxlength="60" placeholder="e.g. Fat loss, Muscle gain" value="'+qa((ch&&ch.name)||"")+'"></div>'+
-      MEALS.map(function(x){return'<div class="dfield"><label for="dm-'+x[0]+'">'+x[1]+'</label><textarea id="dm-'+x[0]+'" maxlength="1500" rows="3" placeholder="e.g. 2 eggs, 1 banana, black coffee">'+esc(m[x[0]]||"")+'</textarea></div>'}).join("")+
+      MEALS.map(function(x){return'<div class="dfield"><label for="dm-'+x[0]+'">'+x[1]+'</label><textarea id="dm-'+x[0]+'" maxlength="1500" rows="3" placeholder="e.g. 2 eggs, 1 banana, black coffee">'+esc(m[x[0]]||"")+'</textarea><div class="nurow"><input id="dk-'+x[0]+'" type="number" inputmode="decimal" min="0" max="9999" placeholder="kcal" value="'+(nuOf(nu,x[0]).k||"")+'"><input id="dp-'+x[0]+'" type="number" inputmode="decimal" min="0" max="999" step="0.1" placeholder="protein (g)" value="'+(nuOf(nu,x[0]).p||"")+'"></div></div>'}).join("")+
+      '<div class="dtot" id="dtot">'+dtotHtml(nu)+'</div>'+
       '<h2 style="margin-top:18px">Who can see this chart</h2>'+
       '<label class="ck all"><input type="checkbox" id="dall"'+(all?' checked':'')+'> All my clients</label><div id="dcl">'+
       root.clients.map(function(x){var on=all||cids.indexOf(x.id)>-1;return'<label class="ck"><input type="checkbox" value="'+qa(x.id)+'"'+(on?' checked':'')+(all?' disabled':'')+'> '+esc(x.name)+(CM&&!(x.email&&x.level>=1)?'<span class="nl">no login yet</span>':'')+'</label>'}).join("")+'</div>'+
@@ -1445,7 +1489,7 @@ button.rf:active{transform:rotate(180deg)}
     }
     var isNew=!ch;if(isNew)ch={id:newId(),pub:false,pubAt:""};
     var snap=JSON.stringify(ch);
-    ch.name=f.name;ch.m=f.m;ch.all=f.all;ch.cids=f.all?[]:f.cids;ch.at=now;
+    ch.name=f.name;ch.m=f.m;ch.nu=f.nu;ch.all=f.all;ch.cids=f.all?[]:f.cids;ch.at=now;
     if(kind==="pub"){ch.pub=true;ch.pubAt=now}
     if(kind==="unpub")ch.pub=false;
     DBUSY=true;DMSG="Saving…";renderDiet();
@@ -1478,18 +1522,121 @@ button.rf:active{transform:rotate(180deg)}
     if(b.dataset.dc){DCV=b.dataset.dc;renderDiet();return}
     if(b.id==="dsave")dietAct("draft");if(b.id==="dpub")dietAct("pub");if(b.id==="dunpub")dietAct("unpub");if(b.id==="ddel")dietDel();
   });
+  $("dietbox").addEventListener("input",function(e){if(/^d[kp]-/.test(e.target.id||"")){var t=$("dtot");if(t)t.innerHTML=dtotHtml(readForm().nu)}});
   $("dietbox").addEventListener("change",function(e){
     if(e.target.id==="dsel"){DSEL=e.target.value;DMSG="";renderDiet();return}
     if(e.target.id==="dall"){var on=e.target.checked;document.querySelectorAll("#dcl input").forEach(function(i){i.disabled=on;if(on)i.checked=true})}
   });
+  /* ---- chat bubble: clients ask their trainer, trainer replies ---- */
+  var CH={cid:"",msgs:[],unsub:null,unsubC:null,open:false,err:""};
+  function chatOn(){return !document.body.classList.contains("guest")&&!!(CM||window.__CHATDEMO)}
+  function chatIsClient(){return document.body.classList.contains("client")}
+  function chatMyCid(){return chatIsClient()?((CM&&CLOUD.client)?CLOUD.client.cid:cur().id):CH.cid}
+  function chatSeen(){try{return JSON.parse(localStorage.getItem("wt-chat-seen"))||{}}catch(e){return{}}}
+  function chatSetSeen(cid,at){var m=chatSeen(),k=(chatIsClient()?"c:":"t:")+cid;m[k]=at;try{localStorage.setItem("wt-chat-seen",JSON.stringify(m))}catch(e){}}
+  function chatList(cid){return CM?CH.msgs:((root.msgs&&root.msgs[cid])||[])}
+  function chatTime(iso){try{return new Date(iso).toLocaleTimeString([],{hour:"numeric",minute:"2-digit"})}catch(e){return""}}
+  function chatDay(iso){try{var d=new Date(iso),t=new Date(),y=new Date();y.setDate(t.getDate()-1);
+    if(d.toDateString()===t.toDateString())return"Today";if(d.toDateString()===y.toDateString())return"Yesterday";return d.toLocaleDateString([],{day:"numeric",month:"short"})}catch(e){return""}}
+  function chatName(cid){var c=root.clients.filter(function(x){return x.id===cid})[0];return c?c.name:"Client"}
+  function chatUnreadConvs(){var sm=chatSeen();return root.clients.filter(function(c){var l=c.lastMsg;return l&&l.from==="client"&&l.at>(sm["t:"+c.id]||"")&&!(CH.open&&CH.cid===c.id)})}
+  function chatUnreadClient(){var sm=chatSeen(),cid=chatMyCid(),n=0;chatList(cid).forEach(function(m){if(m.from==="trainer"&&m.at>(sm["c:"+cid]||""))n++});return n}
+  function chatBadge(){
+    var f=$("chatfab"),b=$("chatbadge");if(!f)return;
+    f.hidden=!chatOn()||CH.open;
+    var n=chatIsClient()?chatUnreadClient():chatUnreadConvs().length;
+    b.hidden=!n;b.textContent=n>9?"9+":n;
+  }
+  function chatSeenNow(){
+    if(!CH.open)return;var cid=chatMyCid();if(!cid)return;
+    var mx="";chatList(cid).forEach(function(m){if(m.at>mx)mx=m.at});if(mx)chatSetSeen(cid,mx);
+  }
+  function chatWatchThread(cid){
+    if(CH.unsub){try{CH.unsub()}catch(e){}CH.unsub=null}
+    CH.msgs=[];if(!CM)return;
+    try{CH.unsub=FB.watchMsgs(CLOUD.email,cid,function(l){
+      if(l===null){CH.err="Could not load messages. Check your connection, and that the updated firestore.rules are deployed."}
+      else{CH.err="";CH.msgs=l}
+      chatSeenNow();if(CH.open)renderChat();chatBadge();
+    })}catch(e){CH.err="Chat is not available yet."}
+  }
+  function chatStartClient(ac){CH.cid=ac.cid;chatWatchThread(ac.cid)}
+  function chatStartTrainer(){
+    if(!CM||!FB.watchClients)return;
+    if(CH.unsubC){try{CH.unsubC()}catch(e){}}
+    try{CH.unsubC=FB.watchClients(CLOUD.email,function(docs){
+      docs.forEach(function(d){var c=root.clients.filter(function(x){return x.id===d.id})[0];if(c)c.lastMsg=d.lastMsg});
+      chatBadge();if(CH.open&&!CH.cid)renderChat();
+    })}catch(e){}
+  }
+  function chatOpen(){
+    if(!chatOn())return;
+    CH.open=true;CH.err=CH.err||"";$("chat").hidden=false;document.body.classList.add("noscroll");
+    if(chatIsClient()){CH.cid=chatMyCid();if(!CM)CH.msgs=[]}else CH.cid="";
+    chatSeenNow();renderChat();chatBadge();
+  }
+  function chatClose(){
+    CH.open=false;$("chat").hidden=true;document.body.classList.remove("noscroll");
+    if(!chatIsClient()){if(CH.unsub){try{CH.unsub()}catch(e){}CH.unsub=null}CH.cid="";CH.msgs=[]}
+    chatBadge();
+  }
+  function renderChat(){
+    var box=$("chatbody"),hd=$("chathd"),cl=chatIsClient();
+    if(!cl&&!CH.cid){
+      hd.innerHTML='<div class="ct"><b>Messages</b><span>Questions from your clients</span></div><button id="chatx" aria-label="Close">✕</button>';
+      $("chatform").hidden=true;
+      var sm=chatSeen(),L=root.clients.slice().sort(function(a,b){var x=(a.lastMsg&&a.lastMsg.at)||"",y=(b.lastMsg&&b.lastMsg.at)||"";return x<y?1:x>y?-1:(a.name||"")<(b.name||"")?-1:1});
+      box.innerHTML=L.length?L.map(function(c){var l=c.lastMsg,un=l&&l.from==="client"&&l.at>(sm["t:"+c.id]||"");
+        return'<div class="conv" data-cv="'+qa(c.id)+'"><div class="av">'+esc((c.name||"?").trim().charAt(0).toUpperCase())+'</div><div class="cx2"><b>'+esc(c.name)+'</b><span class="p">'+(l?(l.from==="trainer"?"You: ":"")+esc(l.text):"No messages yet")+'</span></div>'+(un?'<i class="dot"></i>':'')+'</div>'}).join(""):'<div class="cempty">No clients yet.</div>';
+      return;
+    }
+    var cid=cl?chatMyCid():CH.cid;
+    hd.innerHTML=(cl?'':'<button id="chatback" aria-label="Back">‹</button>')+'<div class="ct"><b>'+(cl?"Your trainer":esc(chatName(cid)))+'</b><span>'+(cl?"Ask about workouts, diet or anything else":"Reply to your client")+'</span></div><button id="chatx" aria-label="Close">✕</button>';
+    $("chatform").hidden=false;
+    var msgs=chatList(cid),last="",h="";
+    msgs.forEach(function(m){
+      var d=chatDay(m.at),mine=cl?m.from==="client":m.from==="trainer";
+      if(d!==last){h+='<div class="cday">'+esc(d)+'</div>';last=d}
+      h+='<div class="cm '+(mine?"me":"them")+'"><div class="cb2">'+esc(m.text)+'</div><span>'+esc(chatTime(m.at))+'</span></div>';
+    });
+    if(!msgs.length)h='<div class="cempty">'+(cl?"Ask your trainer a question. They will reply here.":"No messages yet. Say hi to "+esc(chatName(cid))+".")+'</div>';
+    if(CH.err)h+='<div class="cerr">'+esc(CH.err)+'</div>';
+    box.innerHTML=h;box.scrollTop=box.scrollHeight;
+  }
+  async function chatSend(){
+    var inp=$("chatin"),t=(inp.value||"").trim().slice(0,1000),cl=chatIsClient();if(!t)return;
+    var cid=cl?chatMyCid():CH.cid,from=cl?"client":"trainer",at=new Date().toISOString(),lm={from:from,text:t.slice(0,80),at:at};
+    inp.value="";inp.style.height="44px";CH.err="";
+    try{
+      if(CM){
+        await FB.sendMsg(CLOUD.email,cid,{from:from,text:t,at:at});
+        if(cl)await FB.updateClientData(CLOUD.email,cid,{lastMsg:lm});else await FB.saveClient(CLOUD.email,cid,{lastMsg:lm});
+      }else{
+        root.msgs=root.msgs||{};(root.msgs[cid]=root.msgs[cid]||[]).push({id:"m"+Date.now(),from:from,text:t,at:at});
+        var c=root.clients.filter(function(x){return x.id===cid})[0];if(c)c.lastMsg=lm;persist();
+      }
+      chatSetSeen(cid,at);
+    }catch(e){CH.err="Message not sent. Check your connection, and that the updated firestore.rules are deployed.";inp.value=t}
+    renderChat();chatBadge();
+  }
+  $("chatfab").addEventListener("click",chatOpen);
+  $("chat").addEventListener("click",function(e){
+    if(e.target.id==="chat"||e.target.closest("#chatx")){chatClose();return}
+    if(e.target.closest("#chatback")){if(CH.unsub){try{CH.unsub()}catch(x){}CH.unsub=null}CH.cid="";CH.msgs=[];CH.err="";renderChat();return}
+    var cv=e.target.closest("[data-cv]");if(cv){CH.cid=cv.dataset.cv;CH.err="";chatWatchThread(CH.cid);chatSeenNow();renderChat();chatBadge();return}
+    if(e.target.closest("#chatsend"))chatSend();
+  });
+  $("chatin").addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.shiftKey&&!/Mobi|Android|iPhone|iPad/.test(navigator.userAgent)){e.preventDefault();chatSend()}});
+  $("chatin").addEventListener("input",function(){this.style.height="44px";this.style.height=Math.min(120,this.scrollHeight)+"px"});
   function tab(t){
+    if(CH.open)chatClose();chatBadge();
     if((t==="plan"||t==="diet")&&document.body.classList.contains("guest")){
       $("lock").querySelector(".lockt").textContent=t==="diet"?"Get your diet plan to access this page":"Get the workout plan to access this page";
       $("lock").querySelector("p").textContent=(t==="diet"?"Diet plans":"Workout plans")+" are for Stryve clients. Ask your trainer to set you up, then sign in with your Google account to unlock this page.";
       $("lock").hidden=false;return}
     ["log","plan","diet","prog","hist"].forEach(function(n){$("v-"+n).hidden=n!==t});
     document.querySelectorAll("nav button").forEach(function(b){b.classList.toggle("on",b.dataset.t===t)});
-    $("title").textContent={log:"Log workout",plan:"Workout plans",diet:"Diet plan",prog:"Progress",hist:"History"}[t];if(t==="plan")renderPlan();if(t==="diet")renderDiet();
+    $("title").textContent={log:"Log workout",plan:"Workout plans",diet:"Diet plan",prog:"Progress",hist:"History"}[t];if(t==="plan")renderPlan();if(t==="diet")renderDiet();chatBadge();
     window.scrollTo(0,0);
   }
 

@@ -1,6 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,getDoc,setDoc,deleteDoc,updateDoc,collection,getDocs,getCountFromServer,writeBatch} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFirestore,doc,getDoc,setDoc,deleteDoc,updateDoc,collection,getDocs,getCountFromServer,writeBatch,onSnapshot,query,orderBy,addDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const cfg=window.FIREBASE_CONFIG;
 const ok=!!(cfg&&cfg.apiKey&&cfg.projectId);
 let auth,db;
@@ -31,6 +31,9 @@ window.FB={
   async diets(email){const s=await getDocs(collection(db,"trainers",email,"diets"));return s.docs.map(d=>({id:d.id,...d.data()}))},
   saveDiet(email,id,data){return setDoc(doc(db,"trainers",email,"diets",id),data)},
   deleteDiet(email,id){return deleteDoc(doc(db,"trainers",email,"diets",id))},
+  watchMsgs(email,cid,cb){return onSnapshot(query(collection(db,"trainers",email,"clients",cid,"messages"),orderBy("at")),s=>cb(s.docs.map(d=>({id:d.id,...d.data()}))),()=>cb(null))},
+  sendMsg(email,cid,data){return addDoc(collection(db,"trainers",email,"clients",cid,"messages"),data)},
+  watchClients(email,cb){return onSnapshot(collection(db,"trainers",email,"clients"),s=>cb(s.docs.map(d=>({id:d.id,lastMsg:d.data().lastMsg||null}))),()=>{})},
   async moveClient(from,to,cid){
     const src=doc(db,"trainers",from,"clients",cid),s=await getDoc(src);
     if(!s.exists())return null;

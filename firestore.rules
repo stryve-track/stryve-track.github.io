@@ -26,7 +26,20 @@ service cloud.firestore {
         // A client can read their own record and change only their workout logs.
         allow read: if isClient(email, cid);
         allow update: if isClient(email, cid)
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body']);
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body', 'lastMsg']);
+
+        // Chat between a trainer and one client. Each message says who sent it.
+        match /messages/{mid} {
+          allow read: if isAdmin() || isTrainer(email) || isClient(email, cid);
+          allow create: if (isAdmin() || isTrainer(email) || isClient(email, cid))
+            && request.resource.data.keys().hasOnly(['from', 'text', 'at'])
+            && request.resource.data.text is string
+            && request.resource.data.text.size() > 0
+            && request.resource.data.text.size() <= 1000
+            && request.resource.data.at is string
+            && request.resource.data.from == ((isAdmin() || isTrainer(email)) ? 'trainer' : 'client');
+          allow delete: if isAdmin() || isTrainer(email);
+        }
       }
       // The trainer's own diet chart library. Clients never read this: published charts are copied onto each client's record.
       match /diets/{id} {
