@@ -28,7 +28,12 @@ service cloud.firestore {
         allow update: if isClient(email, cid)
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body']);
       }
+      // The trainer's own diet chart library. Clients never read this: published charts are copied onto each client's record.
+      match /diets/{id} {
+        allow read, write: if isAdmin() || isTrainer(email);
+      }
     }
+
     // One small record per client login: which trainer they belong to and their level.
     match /clientAccess/{email} {
       allow read: if signedIn() && (me() == email || isAdmin()

@@ -28,6 +28,9 @@ window.FB={
   async getClient(email,id){const s=await getDoc(doc(db,"trainers",email,"clients",id));return s.exists()?s.data():null},
   updateClientData(email,id,data){return updateDoc(doc(db,"trainers",email,"clients",id),data)},
   deleteClient(email,id){return deleteDoc(doc(db,"trainers",email,"clients",id))},
+  async diets(email){const s=await getDocs(collection(db,"trainers",email,"diets"));return s.docs.map(d=>({id:d.id,...d.data()}))},
+  saveDiet(email,id,data){return setDoc(doc(db,"trainers",email,"diets",id),data)},
+  deleteDiet(email,id){return deleteDoc(doc(db,"trainers",email,"diets",id))},
   async moveClient(from,to,cid){
     const src=doc(db,"trainers",from,"clients",cid),s=await getDoc(src);
     if(!s.exists())return null;
