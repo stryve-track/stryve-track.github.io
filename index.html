@@ -229,6 +229,7 @@ textarea:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(255
 .dtot b{color:var(--ac)}
 .bmig{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bmig .dfield{margin-bottom:0}.bmig .full{grid-column:1/-1}
 .bmig input,.bmig select{width:100%}
+.bmh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--mu);padding:7px 0;border-bottom:1px solid var(--ln)}.bmh b{color:var(--tx)}
 .bmres{margin-top:14px}.bmres .dsum{margin-bottom:10px}.bmres .bmn{font-size:13px;color:var(--mu);line-height:1.5}.bmres .bmn b{color:var(--tx)}
 .dsum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
 .dsum div{padding:14px;border-radius:18px;text-align:center;color:#fff;background:linear-gradient(135deg,#ff4d17,#ff8a3d 65%,#ffb347);box-shadow:0 8px 22px rgba(255,90,31,.3)}
@@ -327,7 +328,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.31</div>
+  <div class="sync" id="ver">Stryve Track v1.33</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
@@ -1393,7 +1394,7 @@ button.rf:active{transform:rotate(180deg)}
   }
   function renderAll(){renderLog();renderProg();renderHist();renderHero();renderOverview();chatBadge();if(!$("v-diet").hidden)renderDiet()}
 
-  var MEALS=[["pre","Pre workout"],["post","Post workout"],["bf","Breakfast"],["lunch","Lunch"],["snack","Snacks"],["dinner","Dinner"]],DMSG="",DSEL="",DCV="",DBUSY=false;
+  var MEALS=[["pre","Pre workout"],["post","Post workout"],["bf","Breakfast"],["lunch","Lunch"],["snack","Snacks"],["dinner","Dinner"]],DMSG="",DEDIT=false,CALCOPEN=false,DSEL="",DCV="",DBUSY=false;
   function dl(){if(CM)return CLOUD.diets||(CLOUD.diets=[]);root.diets=root.diets||[];return root.diets}
   function dietHas(m){return !!m&&MEALS.some(function(x){return(m[x[0]]||"").trim()})}
   function dWhen(iso){try{return new Date(iso).toLocaleString(undefined,{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}catch(e){return""}}
@@ -1451,33 +1452,50 @@ button.rf:active{transform:rotate(180deg)}
   function calcAll(){try{return JSON.parse(localStorage.getItem("wt-calc"))||{}}catch(e){return{}}}
   function calcSave(cid,v){var m=calcAll();m[cid]=v;try{localStorage.setItem("wt-calc",JSON.stringify(m))}catch(e){}}
   function calcLastKg(cid){var b=((root.store[cid]||{}).body||[]).slice().sort(function(x,y){return x.date<y.date?1:-1})[0];return b?b.kg:""}
-  function calcOut(v){
+  function calcNums(v){
     var w=parseFloat(v.w),h=parseFloat(v.h),a=parseFloat(v.a),act=parseFloat(v.act)||1.375;
-    if(!(w>0&&h>0&&a>0))return'<div class="bmn">Enter weight, height and age to see BMI and maintenance calories.</div>';
-    var bmi=w/Math.pow(h/100,2),cat=bmi<18.5?"Underweight":bmi<25?"Normal weight":bmi<30?"Overweight":"Obese";
-    var bmr=10*w+6.25*h-5*a+(v.g==="f"?-161:5),tdee=bmr*act,r=function(x){return Math.round(x)};
-    var lo=18.5*Math.pow(h/100,2),hi=24.9*Math.pow(h/100,2);
-    return'<div class="dsum"><div><b>'+bmi.toFixed(1)+'</b><span>BMI · '+cat+'</span></div><div><b>'+r(tdee)+'</b><span>maintenance kcal / day</span></div></div>'+
-      '<div class="bmn">BMR (at rest): <b>'+r(bmr)+' kcal</b><br>Fat loss: <b>~'+r(tdee-500)+' kcal</b> · Muscle gain: <b>~'+r(tdee+300)+' kcal</b><br>Healthy weight range for this height: <b>'+lo.toFixed(1)+'–'+hi.toFixed(1)+' kg</b><br><i>Estimates (Mifflin-St Jeor). BMI does not separate muscle from fat.</i></div>'}
+    if(!(w>0&&h>0&&a>0))return null;
+    var m=h/100,bmi=w/(m*m),bmr=10*w+6.25*h-5*a+(v.g==="f"?-161:5);
+    return{w:w,h:h,a:a,bmi:bmi,cat:bmi<18.5?"Underweight":bmi<25?"Normal weight":bmi<30?"Overweight":"Obese",bmr:bmr,tdee:bmr*act,lo:18.5*m*m,hi:24.9*m*m}}
+  function calcOut(v){
+    var n=calcNums(v);if(!n)return'<div class="bmn">Enter weight, height and age to see BMI and maintenance calories.</div>';
+    var r=function(x){return Math.round(x)};
+    return'<div class="dsum"><div><b>'+n.bmi.toFixed(1)+'</b><span>BMI · '+n.cat+'</span></div><div><b>'+r(n.tdee)+'</b><span>maintenance kcal / day</span></div></div>'+
+      '<div class="bmn">BMR (at rest): <b>'+r(n.bmr)+' kcal</b><br>Fat loss: <b>~'+r(n.tdee-500)+' kcal</b> · Muscle gain: <b>~'+r(n.tdee+300)+' kcal</b><br>Healthy weight range: <b>'+n.lo.toFixed(1)+'–'+n.hi.toFixed(1)+' kg</b><br><i>Estimates (Mifflin-St Jeor). BMI does not separate muscle from fat.</i></div>'}
+  function calcHist(c){
+    var L=((root.store[c.id]||{}).body||[]).filter(function(x){return x.bmi}).sort(function(x,y){return x.date<y.date?1:-1});
+    if(!L.length)return"";
+    return'<div class="bmn" style="margin:14px 0 4px"><b>BMI history</b></div>'+L.slice(0,8).map(function(x){
+      var dt=new Date(x.date+"T00:00:00").toLocaleDateString(undefined,{day:"numeric",month:"short",year:"2-digit"});
+      return'<div class="bmh"><span>'+esc(dt)+'</span><span>'+x.kg+' kg</span><span><b>'+x.bmi+'</b></span><span>'+(x.kcal||"–")+' kcal</span></div>'}).join("")}
+  function calcSaveHist(){
+    var c=cur(),v=calcRead(),n=calcNums(v);if(!n){alert("Enter weight, height and age first.");return}
+    calcSave(c.id,v);var st=root.store[c.id],d=today(),old=st.body.filter(function(b){return b.date===d})[0]||{};
+    st.body=st.body.filter(function(b){return b.date!==d});
+    st.body.push(Object.assign({},old,{date:d,kg:n.w,bmi:+n.bmi.toFixed(1),h:n.h,a:n.a,g:v.g,act:v.act,kcal:Math.round(n.tdee)}));
+    persist();renderAll();renderDiet()}
   function calcCard(c){
-    if(!c)return"";var v=calcAll()[c.id]||{};if(!v.w)v.w=calcLastKg(c.id);
+    if(!c)return"";var v=Object.assign({},calcAll()[c.id]||{}),lb=((root.store[c.id]||{}).body||[]).filter(function(x){return x.bmi}).sort(function(x,y){return x.date<y.date?1:-1})[0];
+    if(lb){v.h=v.h||lb.h;v.a=v.a||lb.a;v.g=v.g||lb.g;v.act=v.act||lb.act}
+    if(!v.w)v.w=calcLastKg(c.id);
     var act=v.act||"1.375",g=v.g||"m";
+    if(!CALCOPEN)return'<button id="bmopen" style="width:100%;margin-bottom:12px">Check BMI</button>';
     return'<div class="card"><h2>BMI &amp; maintenance calories</h2><div class="sync" style="text-align:left;margin:0 0 12px">For '+esc(c.name||"client")+'</div><div class="bmig">'+
       '<div class="dfield"><label for="bc-w">Weight (kg)</label><input id="bc-w" type="number" inputmode="decimal" min="0" max="400" step="0.1" placeholder="e.g. 72" value="'+qa(v.w||"")+'"></div>'+
       '<div class="dfield"><label for="bc-h">Height (cm)</label><input id="bc-h" type="number" inputmode="decimal" min="0" max="260" placeholder="e.g. 170" value="'+qa(v.h||"")+'"></div>'+
       '<div class="dfield"><label for="bc-a">Age (years)</label><input id="bc-a" type="number" inputmode="numeric" min="0" max="120" placeholder="e.g. 28" value="'+qa(v.a||"")+'"></div>'+
       '<div class="dfield"><label for="bc-g">Gender</label><select id="bc-g"><option value="m"'+(g==="m"?" selected":"")+'>Male</option><option value="f"'+(g==="f"?" selected":"")+'>Female</option></select></div>'+
       '<div class="dfield full"><label for="bc-act">Daily activity level</label><select id="bc-act">'+ACT.map(function(x){return'<option value="'+x[0]+'"'+(x[0]===act?" selected":"")+'>'+x[1]+'</option>'}).join("")+'</select></div></div>'+
-      '<div class="bmres" id="bmres">'+calcOut({w:v.w,h:v.h,a:v.a,g:g,act:act})+'</div></div>'}
+      '<div class="bmres" id="bmres">'+calcOut({w:v.w,h:v.h,a:v.a,g:g,act:act})+'</div><button id="bmsave" style="width:100%;margin-top:12px">Save to BMI history</button>'+calcHist(c)+'<button class="dlink" id="bmopen">Hide</button></div>'}
   function calcRead(){var g=function(i){return($(i)||{}).value||""};return{w:g("bc-w"),h:g("bc-h"),a:g("bc-a"),g:g("bc-g")||"m",act:g("bc-act")||"1.375"}}
   function renderDiet(){
     var box=$("dietbox"),c=cur();
     if(document.body.classList.contains("client")){
       var list=clientCharts(c);
-      if(!list.length){box.innerHTML='<div class="card"><div class="empty">Your trainer has not published a diet plan yet. Check back soon.</div></div>';return}
+      if(!list.length){box.innerHTML=calcCard(c)+'<div class="card"><div class="empty">Your trainer has not published a diet plan yet. Check back soon.</div></div>';return}
       if(!list.some(function(x){return x.id===DCV}))DCV=list[0].id;
       var d=list.filter(function(x){return x.id===DCV})[0],tot=nuTotals(d.nu);
-      box.innerHTML=(list.length>1?'<div class="fchips">'+list.map(function(x){return'<button data-dc="'+qa(x.id)+'"'+(x.id===DCV?' class="on"':'')+'>'+esc(x.name||"Diet plan")+'</button>'}).join("")+'</div>':'')+
+      box.innerHTML=calcCard(c)+(list.length>1?'<div class="fchips">'+list.map(function(x){return'<button data-dc="'+qa(x.id)+'"'+(x.id===DCV?' class="on"':'')+'>'+esc(x.name||"Diet plan")+'</button>'}).join("")+'</div>':'')+
         '<div class="sync" style="text-align:left;margin:0 2px 10px">'+esc(d.name||"Diet plan")+' · updated '+esc(dWhen(d.at))+'</div>'+
         (tot.k||tot.p?'<div class="dsum"><div><b>'+(tot.k||"\u2013")+'</b><span>kcal / day</span></div><div><b>'+(tot.p?tot.p+" g":"\u2013")+'</b><span>protein / day</span></div></div>':'')+
         MEALS.filter(function(x){return(d.m[x[0]]||"").trim()||nuText(nuOf(d.nu,x[0]))}).map(function(x){var ch=nuText(nuOf(d.nu,x[0])),tx=(d.m[x[0]]||"").trim();return'<div class="meal"><b>'+x[1]+(ch?'<span class="mchip">'+ch+'</span>':'')+'</b>'+(tx?'<div class="mt">'+esc(d.m[x[0]])+'</div>':'')+'</div>'}).join("");
@@ -1487,6 +1505,7 @@ button.rf:active{transform:rotate(180deg)}
     var L=dl().slice().sort(function(a,b){return(a.at||"")<(b.at||"")?1:-1});
     if(DSEL&&DSEL!=="new"&&!chartById(DSEL))DSEL="";
     if(!DSEL)DSEL=L.length?L[0].id:"new";
+    if(DSEL==="new")DEDIT=true;
     var ch=DSEL==="new"?null:chartById(DSEL),m=(ch&&ch.m)||{},nu=(ch&&ch.nu)||{},all=!!(ch&&ch.all),cids=ch?(ch.cids||[]):[c.id];
     var nTo=ch&&ch.pub?(ch.all?root.clients.length:(ch.cids||[]).length):0;
     var st=ch&&ch.pub?'<span class="dstat pub">✓ Published to '+(ch.all?"all clients":nTo+(nTo===1?" client":" clients"))+'</span>'+((ch.at||"")>(ch.pubAt||"")?' <span class="dstat dr">Unpublished changes</span>':''):'<span class="dstat dr">'+(ch?'Draft · not published':'New chart')+'</span>';
@@ -1494,7 +1513,7 @@ button.rf:active{transform:rotate(180deg)}
     var nologin=CM?root.clients.filter(function(x){return !(x.email&&x.level>=1)}).length:0;
     box.innerHTML=calcCard(c)+'<div class="card"><h2>Diet charts</h2>'+warn+
       '<label for="dsel">Chart</label><select id="dsel" style="margin-bottom:12px">'+L.map(function(x){return'<option value="'+qa(x.id)+'"'+(x.id===DSEL?' selected':'')+'>'+esc(x.name||"Untitled")+(x.pub?" ✓":"")+'</option>'}).join("")+'<option value="new"'+(DSEL==="new"?' selected':'')+'>＋ New chart</option></select>'+
-      '<div class="dfield"><label for="dname">Chart name</label><input id="dname" maxlength="60" placeholder="e.g. Fat loss, Muscle gain" value="'+qa((ch&&ch.name)||"")+'"></div>'+
+      (!DEDIT?'<div style="margin:2px 0 10px">'+st+'</div><div class="dbtns"><button id="dedit">Edit</button></div>':'')+(DEDIT?'<div class="dfield"><label for="dname">Chart name</label><input id="dname" maxlength="60" placeholder="e.g. Fat loss, Muscle gain" value="'+qa((ch&&ch.name)||"")+'"></div>'+
       MEALS.map(function(x){return'<div class="dfield"><label for="dm-'+x[0]+'">'+x[1]+'</label><textarea id="dm-'+x[0]+'" maxlength="1500" rows="3" placeholder="e.g. 2 eggs, 1 banana, black coffee">'+esc(m[x[0]]||"")+'</textarea><div class="nurow"><input id="dk-'+x[0]+'" type="number" inputmode="decimal" min="0" max="9999" placeholder="kcal" value="'+(nuOf(nu,x[0]).k||"")+'"><input id="dp-'+x[0]+'" type="number" inputmode="decimal" min="0" max="999" step="0.1" placeholder="protein (g)" value="'+(nuOf(nu,x[0]).p||"")+'"></div></div>'}).join("")+
       '<div class="dtot" id="dtot">'+dtotHtml(nu)+'</div>'+
       '<h2 style="margin-top:18px">Who can see this chart</h2>'+
@@ -1503,7 +1522,7 @@ button.rf:active{transform:rotate(180deg)}
       (nologin?'<div class="sync" style="text-align:left;margin:4px 0 10px">Clients marked "no login yet" will see it once you add their Google email under Manage clients.</div>':'')+
       '<div style="margin:6px 0 4px">'+st+'</div>'+
       '<div class="dbtns"><button class="sec" id="dsave"'+(DBUSY?' disabled':'')+'>Save draft</button><button id="dpub"'+(DBUSY?' disabled':'')+'>Publish</button></div>'+
-      (ch&&ch.pub?'<button class="dlink" id="dunpub">Unpublish (hide from clients)</button>':'')+(ch?'<button class="dlink" id="ddel" style="color:#dc2626">Delete this chart</button>':'')+
+      (ch&&ch.pub?'<button class="dlink" id="dunpub">Unpublish (hide from clients)</button>':'')+(ch?'<button class="dlink" id="ddel" style="color:#dc2626">Delete this chart</button>':'')+(ch?'<button class="dlink" id="dclose">Close editor</button>':''):'')+
       '<div class="sync" id="dmsg">'+esc(DMSG)+'</div></div>';
     DMSG="";
   }
@@ -1525,7 +1544,7 @@ button.rf:active{transform:rotate(180deg)}
       await storeChart(ch);
       if(isNew)dl().push(ch);
       if(kind==="pub"||kind==="unpub")await applyChart(ch);
-      DSEL=ch.id;
+      DSEL=ch.id;DEDIT=false;
       DMSG=kind==="pub"?(ch.all?"Published to all your clients.":"Published to "+ch.cids.length+(ch.cids.length===1?" client.":" clients.")):kind==="unpub"?"Hidden from your clients. The chart is still saved.":"Draft saved.";
     }catch(e){
       if(!isNew){var o=JSON.parse(snap);Object.keys(ch).forEach(function(k){delete ch[k]});Object.assign(ch,o)}
@@ -1541,18 +1560,18 @@ button.rf:active{transform:rotate(180deg)}
       ch.pub=false;await applyChart(ch);
       if(CM&&CLOUD.email)await FB.deleteDiet(CLOUD.email,ch.id);
       var a=dl();a.splice(a.indexOf(ch),1);if(!CM)persist();
-      DSEL="";DMSG="Chart deleted.";
+      DSEL="";DEDIT=false;DMSG="Chart deleted.";
     }catch(e){DMSG="Could not delete. Check your connection and try again."}
     DBUSY=false;renderDiet();
   }
   $("dietbox").addEventListener("click",function(e){
     var b=e.target.closest("button");if(!b)return;
     if(b.dataset.dc){DCV=b.dataset.dc;renderDiet();return}
-    if(b.id==="dsave")dietAct("draft");if(b.id==="dpub")dietAct("pub");if(b.id==="dunpub")dietAct("unpub");if(b.id==="ddel")dietDel();
+    if(b.id==="dedit"){DEDIT=true;renderDiet();return}if(b.id==="dclose"){DEDIT=false;DMSG="";renderDiet();return}if(b.id==="bmsave"){calcSaveHist();return}if(b.id==="bmopen"){CALCOPEN=!CALCOPEN;renderDiet();return}if(b.id==="dsave")dietAct("draft");if(b.id==="dpub")dietAct("pub");if(b.id==="dunpub")dietAct("unpub");if(b.id==="ddel")dietDel();
   });
   $("dietbox").addEventListener("input",function(e){if(/^bc-/.test(e.target.id||"")){var v=calcRead(),r=$("bmres");calcSave(cur().id,v);if(r)r.innerHTML=calcOut(v);return}if(/^d[kp]-/.test(e.target.id||"")){var t=$("dtot");if(t)t.innerHTML=dtotHtml(readForm().nu)}});
   $("dietbox").addEventListener("change",function(e){
-    if(e.target.id==="dsel"){DSEL=e.target.value;DMSG="";renderDiet();return}
+    if(e.target.id==="dsel"){DSEL=e.target.value;DEDIT=DSEL==="new";DMSG="";renderDiet();return}
     if(e.target.id==="dall"){var on=e.target.checked;document.querySelectorAll("#dcl input").forEach(function(i){i.disabled=on;if(on)i.checked=true})}
   });
   /* ---- chat bubble: clients ask their trainer, trainer replies ---- */
@@ -1683,8 +1702,8 @@ button.rf:active{transform:rotate(180deg)}
   });
   $("addbw").addEventListener("click",function(){
     var kg=parseFloat($("bw").value);if(isNaN(kg))return;
-    var d=$("d").value;data.body=data.body.filter(function(b){return b.date!==d});
-    data.body.push({date:d,kg:kg});$("bw").value="";persist();renderAll();
+    var d=$("d").value,old=data.body.filter(function(b){return b.date===d})[0]||{};data.body=data.body.filter(function(b){return b.date!==d});
+    data.body.push(Object.assign({},old,{date:d,kg:kg}));$("bw").value="";persist();renderAll();
   });
 
   $("rt").innerHTML='<option value="">Choose routine…</option>'+Object.keys(ROUT).map(function(k){return'<option>'+esc(k)+'</option>'}).join("");
