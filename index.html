@@ -227,6 +227,9 @@ textarea:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(255
 .nurow input{min-height:42px;font-size:15px;padding:8px 12px}
 .dtot{margin:4px 0 6px;padding:12px 14px;border-radius:14px;background:rgba(255,90,31,.1);color:var(--tx);font-size:14px}
 .dtot b{color:var(--ac)}
+.bmig{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bmig .dfield{margin-bottom:0}.bmig .full{grid-column:1/-1}
+.bmig input,.bmig select{width:100%}
+.bmres{margin-top:14px}.bmres .dsum{margin-bottom:10px}.bmres .bmn{font-size:13px;color:var(--mu);line-height:1.5}.bmres .bmn b{color:var(--tx)}
 .dsum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
 .dsum div{padding:14px;border-radius:18px;text-align:center;color:#fff;background:linear-gradient(135deg,#ff4d17,#ff8a3d 65%,#ffb347);box-shadow:0 8px 22px rgba(255,90,31,.3)}
 .dsum b{display:block;font-size:26px;line-height:1.1}.dsum span{font-size:12px;opacity:.92}
@@ -261,7 +264,7 @@ textarea:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(255
 .seg.s3{grid-template-columns:repeat(3,1fr)}
 #v-plan .item{gap:10px}
 .pact{display:flex;align-items:center;gap:6px;flex:none}
-button.rf{width:40px;height:40px;min-height:40px;padding:0;border-radius:50%;background:var(--bg);color:var(--ac);border:1px solid var(--ln);box-shadow:none;display:flex;align-items:center;justify-content:center}
+button.rf{width:40px;height:40px;min-height:40px;padding:0;border-radius:50%;background:var(--card);color:var(--ac);border:1px solid var(--ln);box-shadow:none;display:flex;align-items:center;justify-content:center}
 button.rf svg{width:20px;height:20px}
 button.rf:active{transform:rotate(180deg)}
 </style>
@@ -324,7 +327,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.26</div>
+  <div class="sync" id="ver">Stryve Track v1.31</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
@@ -1011,7 +1014,7 @@ button.rf:active{transform:rotate(180deg)}
     shrug_rack:[[50,16,50,30,50,56,42,50,41,68,47,72,45,88],[50,16,50,25,50,56,42,46,41,64,47,72,45,88]],
     hcs:[[76,42,68,46,40,56,70,60,70,72,44,72,46,88],[50,16,50,28,48,55,52,42,52,54,50,72,52,88],[50,16,50,25,48,55,52,40,52,52,50,72,52,88]]
   });
-  Object.assign(MIR,{pulldown_m:1,upr:1,bpa:1,rpd:1,rdcf:1,arn:1,pushp:1,ohp_mach:1,curl_rev:1,curl_21:1,curl_xb:1,curl_zot:1,tri_m:1,shrug_oh:1,shrug_rack:1,pull_m:1,chin_m:1,hang_m:1,sumo:1,hingeF:1});
+  Object.assign(MIR,{curl_inc:0,pulldown_m:1,upr:1,bpa:1,rpd:1,rdcf:1,arn:1,pushp:1,ohp_mach:1,curl_rev:1,curl_21:1,curl_xb:1,curl_zot:1,tri_m:1,shrug_oh:1,shrug_rack:1,pull_m:1,chin_m:1,hang_m:1,sumo:1,hingeF:1});
   Object.assign(TMUS2,{pulldown:[[],["bicep_f","forearm_f"]],pullover:[[],["tricep_b","delt_f"]],sapd:[[],["tricep_b"]],invrow:[[],["bicep_f","delt_b"]],csrow:[[],["bicep_f","delt_b"]],seal:[[],["bicep_f","delt_b"]],meadows:[[],["bicep_f","delt_b"]],pendlay:[[],["bicep_f","delt_b","lowback_b"]],bext:[[],["glute_b","ham_b"]],dl:[[],["glute_b","ham_b","quad_f"]],gm:[[],["glute_b","ham_b"]],rdl:[[],["glute_b","lowback_b"]],rhyper:[[],["ham_b","lowback_b"]],sumo:[[],["quad_f","glute_b","ham_b"]],hingeF:[[],["glute_b","lowback_b"]],dlrow:[[],["lat_b","bicep_f"]],rack:[[],["glute_b","ham_b","trap_b"]],hang:[[],["bicep_f"]],yr:[[],["trap_b","delt_b"]],arn:[[],["tricep_b"]],pushp:[[],["tricep_b","quad_f"]],pike:[[],["tricep_b","trap_f"]],zpress:[[],["tricep_b","abs_f"]],hspu:[[],["tricep_b","trap_f"]],conc:[[],["forearm_f"]],spider:[[],["forearm_f"]],prc:[[],["forearm_f"]],drag:[[],["forearm_f","delt_f"]],bay:[[],["forearm_f"]],wrist:[[],[]],roller:[[],["delt_f"]],trio:[[],["forearm_b"]],trik:[[],["delt_b"]],sk:[[],["forearm_b"]],trbw:[[],["delt_f"]],bdip:[[],["delt_f","chest_f"]],jm:[[],["chest_f","delt_f"]],tate:[[],["chest_f","delt_f"]],hcs:[[],["glute_b","ham_b"]],ohp:[[],["tricep_b","trap_f","trap_b"]]});
   Object.assign(XS,{
     "Board Press":["bench_board","bb","bench board"],"Dumbbell Squeeze Press":["bench","dbsq","bench"],"Dumbbell Floor Fly":["fly","db","floor"],"Dumbbell Pullover":["pullover","db","bench"],
@@ -1026,7 +1029,7 @@ button.rf:active{transform:rotate(180deg)}
     "Weighted Pull-ups":["pull_m","cbar","pbarM",null,null,["wide","wtd"]],"Weighted Chin-ups":["chin_m","cbar","pbarM",null,null,["wtd"]],"Weighted Dead Hang":["hang_m","plateH","pbarM"],
     "Lateral Raise":["lat","db","floor"],"Rear Delt Fly":["rdf","db","seatb"],"Band Pull-Apart":["bpa","band","",null,[50,30]],"Upright Row":["upr","bb","floor"],"Bent-Over Lateral Raise":["rdf","db","floor"],"Prone Y Raise":["yr","db","incl"],
     "Cable Lateral Raise":["lat","cable","",null,[30,92]],"Rear Delt Cable Fly":["rdcf","cable","",null,[20,4]],"Cable Y Raise":["yr","cable","",null,[40,90]],
-    "Dumbbell Reverse Fly":["yr","db","bench2"],"Dumbbell Lateral Raise":["lat","db","floor",null,null,["lean"]],"Dumbbell Rear Delt Raise":["rdf","db","seatb"],
+    "Dumbbell Reverse Fly":["yr","db","bench2"],"Dumbbell Lateral Raise":["lat","db","floor"],"Leaning Lateral Raise":["lat","db","floor",null,null,["lean"]],"Dumbbell Rear Delt Raise":["rdf","db","seatb"],
     "Overhead Press":["ohp","bb","floor"],"Arnold Press":["arn","db","floor"],"Landmine Shoulder Press":["lmp_sh","plate","landmine",null,[10,86]],"Push Press":["pushp","bb","floor"],"Pike Push-ups":["pike","","floor"],"Z Press":["zpress","bb","floor"],"Handstand Push-ups":["hspu","","floor"],
     "Dumbbell Shoulder Press":["ohp","db","floor"],"Machine Shoulder Press":["ohp_mach","mach","mfront"],"Seated Barbell Press":["ohp","bb","seatb"],"Overhead Cable Press":["ohp","cable","",null,[10,90]],
     "Dumbbell Curl":["curl","db","floor"],"Incline Dumbbell Curl":["curl_inc","db","incl"],"Dumbbell Biceps Curl":["curl","db","floor",null,null,["close"]],"Dumbbell Reverse Curl":["curl_rev","db","floor"],
@@ -1190,7 +1193,7 @@ button.rf:active{transform:rotate(180deg)}
   function applyMods(P,mods,M){
     var o=P.map(function(q){return q.slice()});
     if(mods.indexOf("sit")>-1)o=o.map(function(q){var r=q.slice();[1,3,5,7,9].forEach(function(i){r[i]+=16});if(M){r[10]=45;r[11]=r[5]+6;r[12]=44;r[13]=88}else{r[10]=q[4]+14;r[11]=r[5];r[12]=q[4]+14;r[13]=88}return r});
-    if(mods.indexOf("lean")>-1)o=o.map(function(q){return rotUp(q,16)});
+    if(mods.indexOf("lean")>-1)o=o.map(function(q){if(!M)return rotUp(q,16);var r=q.slice();r[0]+=7;[2,6,8].forEach(function(i){r[i]+=5});return r});
     if(mods.indexOf("hold")>-1)o=[o[0],o[0].map(function(v,i){return [1,3,7,9].indexOf(i)>-1?v+1.6:v})];
     return o;
   }
@@ -1203,6 +1206,7 @@ button.rf:active{transform:rotate(180deg)}
     ["sit","lean","hold","hv"].forEach(function(k){if(mods.indexOf(k)>-1)vis.push(k)});
     if(mods.indexOf("sit")>-1)d+=" seatb";
     if(M){
+      if(mods.indexOf("lean")>-1)fl.lx=5;
       if(mods.indexOf("alt")>-1){fl.alt=1;vis.push("alt")}
       if(mods.indexOf("1a")>-1){fl.one=1;vis.push("1a")}
       if(mods.indexOf("1l")>-1){fl.lift=1;vis.push("1l")}
@@ -1257,9 +1261,9 @@ button.rf:active{transform:rotate(180deg)}
   function frame(P,ph,M,ly,fl){
     fl=fl||{};var q=kf(P,ph),ql=fl.altl?kf(P,1-ph):q,X=function(x){return 100-x},it={},ref=ly?[0,-1]:[1,.5];
     var qa=fl.alt?kf(P,1-ph):fl.one?kf(P,0):q;
-    var L2=P[0].length>14&&!M,sx=M?q[2]-9:q[2],hx=M?q[4]-4:q[4],lg=M?(fl.lg!==undefined?fl.lg:4):0;
+    var LX=(fl.lx||0)*2,L2=P[0].length>14&&!M,sx=M?q[2]-9:q[2],hx=M?q[4]-4:q[4],lg=M?(fl.lg!==undefined?fl.lg:4):0;
     var sg={T:[q[2],q[3],q[4],q[5]],nua:[sx,q[3],q[6],q[7]],nfa:[q[6],q[7],q[8],q[9]],nth:[hx,q[5],q[10]-lg,q[11]],nsh:[q[10]-lg,q[11],q[12]-lg,q[13]]};
-    if(M){sg.fua=[X(sx),q[3],X(qa[6]),qa[7]];sg.ffa=[X(qa[6]),qa[7],X(qa[8]),qa[9]];sg.fth=[X(hx),q[5],X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0)];sg.fsh=[X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0),X(ql[12]-lg)+(fl.lift?8:0),ql[13]-(fl.lift?22:0)]}
+    if(M){sg.fua=[X(sx)+LX,q[3],X(qa[6])+LX,qa[7]];sg.ffa=[X(qa[6])+LX,qa[7],X(qa[8])+LX,qa[9]];sg.fth=[X(hx),q[5],X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0)];sg.fsh=[X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0),X(ql[12]-lg)+(fl.lift?8:0),ql[13]-(fl.lift?22:0)]}
     else if(L2){sg.fth=[q[4],q[5],q[14],q[15]];sg.fsh=[q[14],q[15],q[16],q[17]]}
     var shp=function(k,s,r1,rm,r2,b){it[k]={p:s?tp(s[0],s[1],s[2],s[3],r1,rm,r2,b):""}};
     var ell=function(k,cx,cy,ra,rp,ang){it[k]={e:[f1(cx),f1(cy),ra,rp,ang||0]}};
@@ -1280,7 +1284,7 @@ button.rf:active{transform:rotate(180deg)}
     var lines=function(k,s,ts){var x1=s[0],y1=s[1],dx=s[2]-x1,dy=s[3]-y1,l=Math.sqrt(dx*dx+dy*dy)||1,nx=-dy/l,ny=dx/l;if(nx*ref[0]+ny*ref[1]<0){nx=-nx;ny=-ny}it[k]={p:ts.map(function(t){var cx=x1+dx*t,cy=y1+dy*t,a=M?-3.4:1,b=M?3.4:4.4;return"M"+f1(cx+nx*a)+" "+f1(cy+ny*a)+"L"+f1(cx+nx*b)+" "+f1(cy+ny*b)}).join("")}};
     lines("abl",sg.T,[.58,.66,.74]);
     ["n","f"].forEach(function(w){
-      var ua=sg[w+"ua"],fa=sg[w+"fa"],th=sg[w+"th"],sh=sg[w+"sh"],hand=w==="n"?[q[8],q[9]]:[X(qa[8]),qa[9]],elb=w==="n"?[q[6],q[7]]:[X(qa[6]),qa[7]],kn=th?(w==="n"||M?(w==="n"?[q[10]-lg,q[11]]:[X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0)]):[q[14],q[15]]):null,an=sh?(w==="n"||M?(w==="n"?[q[12]-lg,q[13]]:[X(ql[12]-lg)+(fl.lift?8:0),ql[13]-(fl.lift?22:0)]):[q[16],q[17]]):null;
+      var ua=sg[w+"ua"],fa=sg[w+"fa"],th=sg[w+"th"],sh=sg[w+"sh"],hand=w==="n"?[q[8],q[9]]:[X(qa[8])+LX,qa[9]],elb=w==="n"?[q[6],q[7]]:[X(qa[6])+LX,qa[7]],kn=th?(w==="n"||M?(w==="n"?[q[10]-lg,q[11]]:[X(ql[10]-lg)+(fl.lift?4:0),ql[11]-(fl.lift?10:0)]):[q[14],q[15]]):null,an=sh?(w==="n"||M?(w==="n"?[q[12]-lg,q[13]]:[X(ql[12]-lg)+(fl.lift?8:0),ql[13]-(fl.lift?22:0)]):[q[16],q[17]]):null;
       shp(w+"ua",ua,3.8,4.5,2.9,.42);shp(w+"fa",fa,3.1,3.7,2.1,.32);shp(w+"th",th,5.2,5.9,3.8,.4);shp(w+"sh",sh,3.9,4.6,2.3,.3);
       pad(w+"bi",ua,.5,1,1.5,4.8,2.3,4.8,2.6);pad(w+"tr",ua,.5,-1,1.5,4.8,2.2,0,0);pad(w+"fr",fa,.4,1,1.2,4.8,1.9,4.8,2.2);
       pad(w+"qd",th,.45,1,2,6.8,2.5,6.8,2.9);pad(w+"hm",th,.45,-1,2,6.6,2.3,0,0);pad(w+"cf",sh,.3,-1,1.7,4.6,2.3,4.6,2.5);
@@ -1316,7 +1320,7 @@ button.rf:active{transform:rotate(180deg)}
     els.forEach(function(el){
       if(!el.getClientRects().length)return;
       var r=el._r;
-      if(!r){var sp=spec(el.dataset.n);if(!sp||!sp.P)return;r={P:sp.P,fl:sp.fl,els:el.querySelectorAll("path,ellipse"),cb:el.querySelectorAll("line.cb"),br:el.querySelector("line.br"),bp:el.querySelectorAll("rect.bpl"),ga:el.querySelector("g.ga"),gb:el.querySelector("g.gb"),gc:el.querySelector("g.gc"),M:el.dataset.m==="1",bar:el.dataset.bar==="1",tor:el.dataset.tor,nopl:el.dataset.nopl==="1",ly:el.dataset.ly==="1",tp:el.dataset.tp,ax:el.dataset.ax,ay:el.dataset.ay};el._r=r}
+      if(!r){var sp=spec(el.dataset.n);if(!sp||!sp.P)return;r={P:sp.P,fl:sp.fl,els:el.querySelectorAll("path,ellipse"),cb:el.querySelectorAll("line.cb"),br:el.querySelector("line.br"),bp:el.querySelectorAll("rect.bpl"),ga:el.querySelector("g.ga"),gb:el.querySelector("g.gb"),gc:el.querySelector("g.gc"),M:el.dataset.m==="1",lx:(sp.fl&&sp.fl.lx?sp.fl.lx*2:0),bar:el.dataset.bar==="1",tor:el.dataset.tor,nopl:el.dataset.nopl==="1",ly:el.dataset.ly==="1",tp:el.dataset.tp,ax:el.dataset.ax,ay:el.dataset.ay};el._r=r}
       var ph=(1-Math.cos((r.tp==="f"?t*1.7:r.tp==="s"?t*.55:t)*(RM?.6:1)/1000*Math.PI))/2;
       if(r.tp==="p")ph=Math.min(1,ph*1.35);
       var fr=frame(r.P,ph,r.M,r.ly,r.fl),q=fr.q,qa=fr.qa;
@@ -1325,7 +1329,7 @@ button.rf:active{transform:rotate(180deg)}
         if(s.k==="p")e.setAttribute("d",o.p);
         else{var v=o.e;e.setAttribute("cx",v[0]);e.setAttribute("cy",v[1]);e.setAttribute("rx",v[2]);e.setAttribute("ry",v[3]);e.setAttribute("transform","rotate("+f1(v[4])+" "+v[0]+" "+v[1]+")")}
       });
-      mv(r.ga,q[8],q[9]);if(r.M)mv(r.gb,X(qa[8]),qa[9]);
+      mv(r.ga,q[8],q[9]);if(r.M)mv(r.gb,X(qa[8])+r.lx,qa[9]);
       if(r.bar){
         set(r.br,q[8]-13,q[9],X(q[8])+13,q[9]);
         r.bp[0].setAttribute("x",q[8]-16);r.bp[0].setAttribute("y",q[9]-5);r.bp[0].setAttribute("width",r.nopl?0:3);r.bp[0].setAttribute("height",10);
@@ -1442,6 +1446,30 @@ button.rf:active{transform:rotate(180deg)}
     var cids=[];document.querySelectorAll("#dcl input").forEach(function(i){if(i.checked)cids.push(i.value)});
     return{name:($("dname").value||"").trim().slice(0,60),m:m,nu:nu,all:$("dall").checked,cids:cids};
   }
+  /* ---- BMI + maintenance calories (trainer tool, remembered per client on this device) ---- */
+  var ACT=[["1.2","Sedentary (desk job, little exercise)"],["1.375","Light (exercise 1-3 days/week)"],["1.55","Moderate (exercise 3-5 days/week)"],["1.725","Very active (exercise 6-7 days/week)"],["1.9","Extra active (hard training + physical job)"]];
+  function calcAll(){try{return JSON.parse(localStorage.getItem("wt-calc"))||{}}catch(e){return{}}}
+  function calcSave(cid,v){var m=calcAll();m[cid]=v;try{localStorage.setItem("wt-calc",JSON.stringify(m))}catch(e){}}
+  function calcLastKg(cid){var b=((root.store[cid]||{}).body||[]).slice().sort(function(x,y){return x.date<y.date?1:-1})[0];return b?b.kg:""}
+  function calcOut(v){
+    var w=parseFloat(v.w),h=parseFloat(v.h),a=parseFloat(v.a),act=parseFloat(v.act)||1.375;
+    if(!(w>0&&h>0&&a>0))return'<div class="bmn">Enter weight, height and age to see BMI and maintenance calories.</div>';
+    var bmi=w/Math.pow(h/100,2),cat=bmi<18.5?"Underweight":bmi<25?"Normal weight":bmi<30?"Overweight":"Obese";
+    var bmr=10*w+6.25*h-5*a+(v.g==="f"?-161:5),tdee=bmr*act,r=function(x){return Math.round(x)};
+    var lo=18.5*Math.pow(h/100,2),hi=24.9*Math.pow(h/100,2);
+    return'<div class="dsum"><div><b>'+bmi.toFixed(1)+'</b><span>BMI · '+cat+'</span></div><div><b>'+r(tdee)+'</b><span>maintenance kcal / day</span></div></div>'+
+      '<div class="bmn">BMR (at rest): <b>'+r(bmr)+' kcal</b><br>Fat loss: <b>~'+r(tdee-500)+' kcal</b> · Muscle gain: <b>~'+r(tdee+300)+' kcal</b><br>Healthy weight range for this height: <b>'+lo.toFixed(1)+'–'+hi.toFixed(1)+' kg</b><br><i>Estimates (Mifflin-St Jeor). BMI does not separate muscle from fat.</i></div>'}
+  function calcCard(c){
+    if(!c)return"";var v=calcAll()[c.id]||{};if(!v.w)v.w=calcLastKg(c.id);
+    var act=v.act||"1.375",g=v.g||"m";
+    return'<div class="card"><h2>BMI &amp; maintenance calories</h2><div class="sync" style="text-align:left;margin:0 0 12px">For '+esc(c.name||"client")+'</div><div class="bmig">'+
+      '<div class="dfield"><label for="bc-w">Weight (kg)</label><input id="bc-w" type="number" inputmode="decimal" min="0" max="400" step="0.1" placeholder="e.g. 72" value="'+qa(v.w||"")+'"></div>'+
+      '<div class="dfield"><label for="bc-h">Height (cm)</label><input id="bc-h" type="number" inputmode="decimal" min="0" max="260" placeholder="e.g. 170" value="'+qa(v.h||"")+'"></div>'+
+      '<div class="dfield"><label for="bc-a">Age (years)</label><input id="bc-a" type="number" inputmode="numeric" min="0" max="120" placeholder="e.g. 28" value="'+qa(v.a||"")+'"></div>'+
+      '<div class="dfield"><label for="bc-g">Gender</label><select id="bc-g"><option value="m"'+(g==="m"?" selected":"")+'>Male</option><option value="f"'+(g==="f"?" selected":"")+'>Female</option></select></div>'+
+      '<div class="dfield full"><label for="bc-act">Daily activity level</label><select id="bc-act">'+ACT.map(function(x){return'<option value="'+x[0]+'"'+(x[0]===act?" selected":"")+'>'+x[1]+'</option>'}).join("")+'</select></div></div>'+
+      '<div class="bmres" id="bmres">'+calcOut({w:v.w,h:v.h,a:v.a,g:g,act:act})+'</div></div>'}
+  function calcRead(){var g=function(i){return($(i)||{}).value||""};return{w:g("bc-w"),h:g("bc-h"),a:g("bc-a"),g:g("bc-g")||"m",act:g("bc-act")||"1.375"}}
   function renderDiet(){
     var box=$("dietbox"),c=cur();
     if(document.body.classList.contains("client")){
@@ -1464,7 +1492,7 @@ button.rf:active{transform:rotate(180deg)}
     var st=ch&&ch.pub?'<span class="dstat pub">✓ Published to '+(ch.all?"all clients":nTo+(nTo===1?" client":" clients"))+'</span>'+((ch.at||"")>(ch.pubAt||"")?' <span class="dstat dr">Unpublished changes</span>':''):'<span class="dstat dr">'+(ch?'Draft · not published':'New chart')+'</span>';
     var warn=CM&&CLOUD.dietErr?'<div class="sync" style="text-align:left;margin:0 0 10px;color:#dc2626">Diet charts need the updated firestore.rules. Deploy them, then reload this page.</div>':'';
     var nologin=CM?root.clients.filter(function(x){return !(x.email&&x.level>=1)}).length:0;
-    box.innerHTML='<div class="card"><h2>Diet charts</h2>'+warn+
+    box.innerHTML=calcCard(c)+'<div class="card"><h2>Diet charts</h2>'+warn+
       '<label for="dsel">Chart</label><select id="dsel" style="margin-bottom:12px">'+L.map(function(x){return'<option value="'+qa(x.id)+'"'+(x.id===DSEL?' selected':'')+'>'+esc(x.name||"Untitled")+(x.pub?" ✓":"")+'</option>'}).join("")+'<option value="new"'+(DSEL==="new"?' selected':'')+'>＋ New chart</option></select>'+
       '<div class="dfield"><label for="dname">Chart name</label><input id="dname" maxlength="60" placeholder="e.g. Fat loss, Muscle gain" value="'+qa((ch&&ch.name)||"")+'"></div>'+
       MEALS.map(function(x){return'<div class="dfield"><label for="dm-'+x[0]+'">'+x[1]+'</label><textarea id="dm-'+x[0]+'" maxlength="1500" rows="3" placeholder="e.g. 2 eggs, 1 banana, black coffee">'+esc(m[x[0]]||"")+'</textarea><div class="nurow"><input id="dk-'+x[0]+'" type="number" inputmode="decimal" min="0" max="9999" placeholder="kcal" value="'+(nuOf(nu,x[0]).k||"")+'"><input id="dp-'+x[0]+'" type="number" inputmode="decimal" min="0" max="999" step="0.1" placeholder="protein (g)" value="'+(nuOf(nu,x[0]).p||"")+'"></div></div>'}).join("")+
@@ -1522,7 +1550,7 @@ button.rf:active{transform:rotate(180deg)}
     if(b.dataset.dc){DCV=b.dataset.dc;renderDiet();return}
     if(b.id==="dsave")dietAct("draft");if(b.id==="dpub")dietAct("pub");if(b.id==="dunpub")dietAct("unpub");if(b.id==="ddel")dietDel();
   });
-  $("dietbox").addEventListener("input",function(e){if(/^d[kp]-/.test(e.target.id||"")){var t=$("dtot");if(t)t.innerHTML=dtotHtml(readForm().nu)}});
+  $("dietbox").addEventListener("input",function(e){if(/^bc-/.test(e.target.id||"")){var v=calcRead(),r=$("bmres");calcSave(cur().id,v);if(r)r.innerHTML=calcOut(v);return}if(/^d[kp]-/.test(e.target.id||"")){var t=$("dtot");if(t)t.innerHTML=dtotHtml(readForm().nu)}});
   $("dietbox").addEventListener("change",function(e){
     if(e.target.id==="dsel"){DSEL=e.target.value;DMSG="";renderDiet();return}
     if(e.target.id==="dall"){var on=e.target.checked;document.querySelectorAll("#dcl input").forEach(function(i){i.disabled=on;if(on)i.checked=true})}
