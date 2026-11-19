@@ -251,6 +251,10 @@ button.subhead{display:flex;align-items:center;gap:10px;width:100%;min-height:44
 .subhead .chev{width:20px;height:20px;flex:none;color:var(--mu);transition:transform .2s}.subhead .chev.up{transform:rotate(180deg)}
 .subcust{display:grid;grid-template-columns:1fr 1fr auto;gap:8px}.subcust input,.subcust select{width:100%}.subcust button{width:auto;padding:0 18px}
 #memline{margin-top:10px;background:rgba(255,255,255,.22);border-radius:14px;padding:9px 14px;font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:10px}#memline span:first-child{display:flex;align-items:center;gap:6px;opacity:.9}#memline[hidden]{display:none}#memline svg{width:16px;height:16px}#memline b{font-weight:700}#memline span:last-child{white-space:nowrap}
+a.wabtn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;margin-top:10px;border-radius:14px;background:#25D366;color:#073b1d;font-weight:700;text-decoration:none;font-size:15px}a.wabtn svg{width:20px;height:20px}a.wabtn[hidden]{display:none}
+.wanone{font-size:12.5px;color:var(--mu);margin-top:8px}.wanone[hidden]{display:none}
+#gwa{width:100%;margin:14px 0 6px;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:17px;text-align:center}
+.gname2{font-size:18px;font-weight:700;margin:6px 0 2px}.gerr{color:#f87171;font-size:13px;min-height:18px;margin:0 0 10px}
 .bmh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--mu);padding:7px 0;border-bottom:1px solid var(--ln)}.bmh b{color:var(--tx)}
 .bmres{margin-top:14px}.bmres .dsum{margin-bottom:10px}.bmres .bmn{font-size:13px;color:var(--mu);line-height:1.5}.bmres .bmn b{color:var(--tx)}
 .dsum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
@@ -301,9 +305,11 @@ button.rf:active{transform:rotate(180deg)}
     <div id="memline" hidden></div>
   </header>
   <div class="card" id="clientbar"><label>Client</label><select id="cl"></select>
+    <a id="wabtn" class="wabtn" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a><div id="wanone" class="wanone" hidden>No WhatsApp number yet. Add it under Manage clients.</div>
     <details><summary>Manage clients</summary>
       <div class="row r2" style="margin-top:10px"><input id="cn" placeholder="Client name" maxlength="30"><button id="cadd">Add client</button></div>
       <div class="row r2"><button class="sec" id="cren">Rename selected</button><button class="sec" id="cdel">Delete selected</button></div>
+    <label style="margin-top:8px">Client WhatsApp number</label><input id="cwa" type="tel" inputmode="tel" autocomplete="off" placeholder="+91 98765 43210" maxlength="22">
     <div class="cm-only" style="margin-top:6px"><label>Client login (Google email)</label><input id="cem" type="email" inputmode="email" autocapitalize="off" autocomplete="off" placeholder="client@gmail.com"><label>Workout level (only you can change this)</label><select id="clv"><option value="0">Not set</option><option value="1">Beginner</option><option value="2">Intermediate</option><option value="3">Expert</option><option value="4">Home workout (DB)</option></select><label style="margin-top:10px">Workout focus (assigned by you)</label><select id="csp"><option value="">Recommended for level</option><option>Push / Pull / Legs</option><option>Upper / Lower</option><option>Single body part</option><option>5-Day Bro Split</option><option>Full body</option><option>Push only</option><option>Pull only</option><option>Legs only</option></select><button id="csave" style="margin-top:10px;width:100%">Save client access</button><button class="sec" id="crev" style="margin-top:8px;width:100%">Revoke client access</button><p class="sync" style="text-align:left;margin-top:8px">Revoking stops this client from signing in but keeps all their workouts. Deleting a client with a login email also keeps their workouts, and adding the same Google email again brings them back.</p></div>
     </details></div>
 
@@ -351,7 +357,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.41</div>
+  <div class="sync" id="ver">Stryve Track v1.43</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
@@ -405,10 +411,19 @@ button.rf:active{transform:rotate(180deg)}
       var bm={};s.body.concat(o.body||[]).forEach(function(x){bm[x.date]=x});s.body=Object.keys(bm).map(function(k){return bm[k]});
     });
   }
+  /* ---- WhatsApp ---- */
+  function waNorm(v){var d=String(v||"").replace(/\D/g,"");if(d.indexOf("00")===0)d=d.slice(2);return d.length>=8&&d.length<=15?d:""}
+  function waShow(n){return n?"+"+n:""}
+  function waLink(c,text){return"https://wa.me/"+c.whatsapp+"?text="+encodeURIComponent(text)}
+  function waUpdate(){
+    var c=cur(),a=$("wabtn"),n=$("wanone");if(!a||!c)return;
+    if($("cwa"))$("cwa").value=waShow(c.whatsapp);
+    if(c.whatsapp){a.href=waLink(c,"Hi "+(c.name||"").split(" ")[0]+", ");a.hidden=false;n.hidden=true}else{a.hidden=true;n.hidden=false}}
   function renderClients(){
     $("cl").innerHTML=root.clients.map(function(c){return'<option value="'+c.id+'"'+(c.id===root.active?" selected":"")+'>'+esc(c.name)+(c.revoked?" (access revoked)":"")+'</option>'}).join("");
     $("cdel").textContent="Delete selected";
     var cc=cur();if($("cem")){$("cem").value=cc.email||"";$("clv").value=String(cc.level||0);$("csp").value=cc.split||"";$("crev").textContent=cc.revoked?"Restore client access":"Revoke client access"}
+    waUpdate();
   }
   function renderOverview(){
     var t=new Date(),keys={};for(var i=0;i<30;i++)keys[dkey(new Date(t.getFullYear(),t.getMonth(),t.getDate()-i))]=1;
@@ -638,7 +653,7 @@ button.rf:active{transform:rotate(180deg)}
     list.sort(function(a,b){return(a.name||"").localeCompare(b.name||"")});
     list.forEach(function(c){
       var lv=c.level||0,em=c.email||"",en=c.entries||[],bd=c.body||[],nm=c.name||"Client",sp=c.split||"",rv=!!c.revoked;
-      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
+      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
       CLOUD.cm[c.id]=JSON.stringify([nm,lv,em,sp,rv?1:0,c.sub?JSON.stringify(c.sub):"",0]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1&&!rv)?em:"";
     });
     if(!r.clients.length){r.clients.push({id:"me",name:"Me"});r.store.me={entries:[],body:[]}}
@@ -671,6 +686,10 @@ button.rf:active{transform:rotate(180deg)}
       var b=e.target.closest("button");if(!b)return;
       if(b.id==="gguest"){startGuest();return}
       if(b.id==="gsign")FB.signIn().catch(function(x){gate(GL+'<p>Sign-in failed: '+esc(x.code||x.message)+'</p>'+SIGNBTN)});
+      if(b.id==="wasave"){
+        var n=waNorm(($("gwa")||{}).value);if(!n){$("gwerr").textContent="Enter your number with country code, e.g. +91 98765 43210.";return}
+        b.disabled=true;$("gwerr").textContent="";
+        FB.updateClientData(CLOUD.client.trainer,CLOUD.client.cid,{whatsapp:n}).then(function(){location.reload()}).catch(function(){b.disabled=false;$("gwerr").textContent="Could not save. Check your connection and try again."});return}
       if(b.id==="gout")FB.signOut().then(function(){location.reload()});
     });
     $("acct").addEventListener("click",function(e){
@@ -696,6 +715,7 @@ button.rf:active{transform:rotate(180deg)}
             var cd=null;try{cd=await FB.getClient(ac.trainer,ac.cid)}catch(x){}
             if(!cd){gate(GL+'<p>Could not load your workouts. Ask your trainer to check your access.</p><button class="sec" id="gout">Sign out</button>');return}
             var sx=subState({sub:cd.sub});if(sx.k==="exp"){gate(GL+'<div class="gt">Membership expired</div><p>Your membership ended on '+esc(fmtD(cd.sub.end))+'. Please contact your trainer to renew.</p><button class="sec" id="gout">Sign out</button>');return}
+            if(!cd.whatsapp){gate(GL+'<div class="gt">Welcome</div><div class="gname2">'+esc(cd.name||ac.name||"")+'</div><p>One quick step. Enter your WhatsApp number so your coach can reach you.</p><input id="gwa" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" maxlength="22" value="+91 "><div class="gerr" id="gwerr"></div><button id="wasave">Continue</button><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
             var dd={entries:cd.entries||[],body:cd.body||[]};CLOUD.cc=JSON.stringify([dd.entries,dd.body]);
             root={clients:[{id:ac.cid,name:cd.name||ac.name||"Me"}],active:ac.cid,store:{}};root.store[ac.cid]=dd;root.clients[0].diet=cd.diet||null;root.clients[0].diets=cd.diets||[];
             pick(ac.cid);renderClients();renderAll();chatStartClient(ac);
@@ -1499,15 +1519,15 @@ button.rf:active{transform:rotate(180deg)}
       var st=subState(c),sb=c.sub||{},open=c.id===SUBC;
       var r='<div class="subrow"><button class="subhead" data-sx="'+qa(c.id)+'" aria-expanded="'+open+'"><b>'+esc(c.name||"Client")+'</b><span class="sst '+st.k+'">'+esc(st.label)+'</span><svg class="chev'+(open?" up":"")+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>';
       if(open){
-        r+='<div class="sync" style="text-align:left;margin:10px 0">'+(sb.plan?esc(planName(c))+(sb.end?" · ends "+esc(fmtD(sb.end)):" · never expires"):"No plan set")+'</div>'+
+        r+=(c.whatsapp?'<a class="wabtn" style="margin:10px 0 0" target="_blank" rel="noopener" href="'+qa(waLink(c,"Hi "+(c.name||"").split(" ")[0]+", "+(st.k==="exp"?"your membership has ended. Would you like to renew?":sb.end?"your membership ends on "+fmtD(sb.end)+". Would you like to renew?":"")))+'">'+'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a>':"")+'<div class="sync" style="text-align:left;margin:10px 0">'+(sb.plan?esc(planName(c))+(sb.end?" · ends "+esc(fmtD(sb.end)):" · never expires"):"No plan set")+'</div>'+
           '<div class="subplans">'+PLANS.map(function(x){return'<button data-sp="'+qa(c.id)+'|'+x[0]+'"'+(sb.plan===x[0]&&st.k!=="exp"?' class="on"':"")+'>'+x[1]+'</button>'}).join("")+'</div>'+
           '<div class="bmn" style="margin:14px 0 6px"><b>Custom plan</b></div><div class="subcust"><input id="subn" type="number" inputmode="numeric" min="1" max="3650" placeholder="e.g. 45"><select id="subu"><option value="d">days</option><option value="w">weeks</option><option value="m">months</option></select><button data-sp="'+qa(c.id)+'|custom">Set</button></div>'+
-          (sb.plan?'<button class="dlink" data-sp="'+qa(c.id)+'|clear" style="margin-top:6px">Clear plan</button>':"")}
+          (sb.plan&&st.k!=="exp"?'<button class="dlink" data-sp="'+qa(c.id)+'|clear" style="margin-top:6px">Clear plan</button>':"")}
       return r+'</div>'}).join("");
     $("subbody").innerHTML=h}
   function subApply(cid,plan){
     var c=root.clients.filter(function(x){return x.id===cid})[0];if(!c)return;var msg,st=subState(c),live=(st.k==="act"||st.k==="soon"),base=live?c.sub.end:today(),start=live?c.sub.start:today();
-    if(plan==="clear"){c.sub=null;msg=c.name+": plan cleared."}
+    if(plan==="clear"){c.sub={plan:"custom",len:"Ended",start:(c.sub&&c.sub.start)||today(),end:addDays(today(),-1)};msg=c.name+": plan ended, marked as expired."}
     else if(plan==="life"){c.sub={plan:"life",start:today(),end:""};msg=c.name+": lifetime membership."}
     else if(plan==="custom"){
       var q=parseInt(($("subn")||{}).value,10),u=($("subu")||{}).value||"d";
@@ -1823,6 +1843,10 @@ button.rf:active{transform:rotate(180deg)}
   renderClients();
   $("cl").addEventListener("change",function(){pick($("cl").value);persist();renderAll();renderClients()});
   $("cadd").addEventListener("click",function(){var n=$("cn").value.trim();if(!n)return;var id="c"+Date.now().toString(36);root.clients.push({id:id,name:n});pick(id);$("cn").value="";persist();renderClients();renderAll()});
+  $("cwa").addEventListener("change",function(){
+    var c=cur(),v=this.value.trim(),n=v?waNorm(v):"";
+    if(v&&!n){alert("Enter the number with country code, e.g. +91 98765 43210.");waUpdate();return}
+    c.whatsapp=n;persist();if(CLOUD.email&&!CLOUD.client&&FB.updateClientData)FB.updateClientData(CLOUD.email,c.id,{whatsapp:n}).catch(function(){});waUpdate()});
   $("cren").addEventListener("click",function(){var n=$("cn").value.trim();if(!n)return;cur().name=n;$("cn").value="";persist();renderClients();renderAll()});
   var armed=false;
   $("cdel").addEventListener("click",function(){

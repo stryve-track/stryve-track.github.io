@@ -23,10 +23,11 @@ service cloud.firestore {
       allow write: if isAdmin();
       match /clients/{cid} {
         allow read, write: if isAdmin() || isTrainer(email);
-        // A client can read their own record and change only their workout logs.
+        // A client can read their own record and change only their workout logs and their own WhatsApp number.
         allow read: if isClient(email, cid);
         allow update: if isClient(email, cid)
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body', 'lastMsg']);
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body', 'lastMsg', 'whatsapp'])
+          && (!('whatsapp' in request.resource.data) || (request.resource.data.whatsapp is string && request.resource.data.whatsapp.size() <= 20));
 
         // Chat between a trainer and one client. Each message says who sent it.
         match /messages/{mid} {
