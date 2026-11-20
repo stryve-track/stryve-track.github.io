@@ -305,7 +305,7 @@ button.rf:active{transform:rotate(180deg)}
     <div id="memline" hidden></div>
   </header>
   <div class="card" id="clientbar"><label>Client</label><select id="cl"></select>
-    <a id="wabtn" class="wabtn" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a><div id="wanone" class="wanone" hidden>No WhatsApp number yet. Add it under Manage clients.</div>
+    <a id="wabtn" class="wabtn" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a><div id="wanone" class="wanone" hidden>No WhatsApp number yet. Add it under Manage clients.</div><div id="lastlogin" class="wanone" hidden></div>
     <details><summary>Manage clients</summary>
       <div class="row r2" style="margin-top:10px"><input id="cn" placeholder="Client name" maxlength="30"><button id="cadd">Add client</button></div>
       <div class="row r2"><button class="sec" id="cren">Rename selected</button><button class="sec" id="cdel">Delete selected</button></div>
@@ -357,7 +357,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.43</div>
+  <div class="sync" id="ver">Stryve Track v1.44</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
@@ -415,9 +415,15 @@ button.rf:active{transform:rotate(180deg)}
   function waNorm(v){var d=String(v||"").replace(/\D/g,"");if(d.indexOf("00")===0)d=d.slice(2);return d.length>=8&&d.length<=15?d:""}
   function waShow(n){return n?"+"+n:""}
   function waLink(c,text){return"https://wa.me/"+c.whatsapp+"?text="+encodeURIComponent(text)}
+  function loginText(c){
+    if(!c.email)return"";if(!c.lastLogin)return"Last login: never";
+    var d=new Date(c.lastLogin);if(isNaN(d))return"";
+    var t=d.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"}),n=new Date(),a=new Date(n.getFullYear(),n.getMonth(),n.getDate()),b=new Date(d.getFullYear(),d.getMonth(),d.getDate()),days=Math.round((a-b)/86400000);
+    return"Last login: "+(days<=0?"today":days===1?"yesterday":days+" days ago")+", "+t+(days>1?" ("+d.toLocaleDateString(undefined,{day:"numeric",month:"short"})+")":"")}
   function waUpdate(){
     var c=cur(),a=$("wabtn"),n=$("wanone");if(!a||!c)return;
     if($("cwa"))$("cwa").value=waShow(c.whatsapp);
+    var ll=$("lastlogin"),lt=CLOUD.email&&!CLOUD.client?loginText(c):"";if(ll){ll.textContent=lt;ll.hidden=!lt}
     if(c.whatsapp){a.href=waLink(c,"Hi "+(c.name||"").split(" ")[0]+", ");a.hidden=false;n.hidden=true}else{a.hidden=true;n.hidden=false}}
   function renderClients(){
     $("cl").innerHTML=root.clients.map(function(c){return'<option value="'+c.id+'"'+(c.id===root.active?" selected":"")+'>'+esc(c.name)+(c.revoked?" (access revoked)":"")+'</option>'}).join("");
@@ -653,7 +659,7 @@ button.rf:active{transform:rotate(180deg)}
     list.sort(function(a,b){return(a.name||"").localeCompare(b.name||"")});
     list.forEach(function(c){
       var lv=c.level||0,em=c.email||"",en=c.entries||[],bd=c.body||[],nm=c.name||"Client",sp=c.split||"",rv=!!c.revoked;
-      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
+      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",lastLogin:c.lastLogin||"",diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
       CLOUD.cm[c.id]=JSON.stringify([nm,lv,em,sp,rv?1:0,c.sub?JSON.stringify(c.sub):"",0]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1&&!rv)?em:"";
     });
     if(!r.clients.length){r.clients.push({id:"me",name:"Me"});r.store.me={entries:[],body:[]}}
@@ -716,6 +722,7 @@ button.rf:active{transform:rotate(180deg)}
             if(!cd){gate(GL+'<p>Could not load your workouts. Ask your trainer to check your access.</p><button class="sec" id="gout">Sign out</button>');return}
             var sx=subState({sub:cd.sub});if(sx.k==="exp"){gate(GL+'<div class="gt">Membership expired</div><p>Your membership ended on '+esc(fmtD(cd.sub.end))+'. Please contact your trainer to renew.</p><button class="sec" id="gout">Sign out</button>');return}
             if(!cd.whatsapp){gate(GL+'<div class="gt">Welcome</div><div class="gname2">'+esc(cd.name||ac.name||"")+'</div><p>One quick step. Enter your WhatsApp number so your coach can reach you.</p><input id="gwa" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" maxlength="22" value="+91 "><div class="gerr" id="gwerr"></div><button id="wasave">Continue</button><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
+            try{FB.updateClientData(ac.trainer,ac.cid,{lastLogin:new Date().toISOString()}).catch(function(){})}catch(e){}
             var dd={entries:cd.entries||[],body:cd.body||[]};CLOUD.cc=JSON.stringify([dd.entries,dd.body]);
             root={clients:[{id:ac.cid,name:cd.name||ac.name||"Me"}],active:ac.cid,store:{}};root.store[ac.cid]=dd;root.clients[0].diet=cd.diet||null;root.clients[0].diets=cd.diets||[];
             pick(ac.cid);renderClients();renderAll();chatStartClient(ac);
@@ -1519,7 +1526,7 @@ button.rf:active{transform:rotate(180deg)}
       var st=subState(c),sb=c.sub||{},open=c.id===SUBC;
       var r='<div class="subrow"><button class="subhead" data-sx="'+qa(c.id)+'" aria-expanded="'+open+'"><b>'+esc(c.name||"Client")+'</b><span class="sst '+st.k+'">'+esc(st.label)+'</span><svg class="chev'+(open?" up":"")+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>';
       if(open){
-        r+=(c.whatsapp?'<a class="wabtn" style="margin:10px 0 0" target="_blank" rel="noopener" href="'+qa(waLink(c,"Hi "+(c.name||"").split(" ")[0]+", "+(st.k==="exp"?"your membership has ended. Would you like to renew?":sb.end?"your membership ends on "+fmtD(sb.end)+". Would you like to renew?":"")))+'">'+'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a>':"")+'<div class="sync" style="text-align:left;margin:10px 0">'+(sb.plan?esc(planName(c))+(sb.end?" · ends "+esc(fmtD(sb.end)):" · never expires"):"No plan set")+'</div>'+
+        r+=(c.whatsapp?'<a class="wabtn" style="margin:10px 0 0" target="_blank" rel="noopener" href="'+qa(waLink(c,"Hi "+(c.name||"").split(" ")[0]+", "+(st.k==="exp"?"your membership has ended. Would you like to renew?":sb.end?"your membership ends on "+fmtD(sb.end)+". Would you like to renew?":"")))+'">'+'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a>':"")+(loginText(c)?'<div class="sync" style="text-align:left;margin:10px 0 0">'+esc(loginText(c))+'</div>':"")+'<div class="sync" style="text-align:left;margin:10px 0">'+(sb.plan?esc(planName(c))+(sb.end?" · ends "+esc(fmtD(sb.end)):" · never expires"):"No plan set")+'</div>'+
           '<div class="subplans">'+PLANS.map(function(x){return'<button data-sp="'+qa(c.id)+'|'+x[0]+'"'+(sb.plan===x[0]&&st.k!=="exp"?' class="on"':"")+'>'+x[1]+'</button>'}).join("")+'</div>'+
           '<div class="bmn" style="margin:14px 0 6px"><b>Custom plan</b></div><div class="subcust"><input id="subn" type="number" inputmode="numeric" min="1" max="3650" placeholder="e.g. 45"><select id="subu"><option value="d">days</option><option value="w">weeks</option><option value="m">months</option></select><button data-sp="'+qa(c.id)+'|custom">Set</button></div>'+
           (sb.plan&&st.k!=="exp"?'<button class="dlink" data-sp="'+qa(c.id)+'|clear" style="margin-top:6px">Clear plan</button>':"")}
