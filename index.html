@@ -257,7 +257,7 @@ a.wabtn{display:flex;align-items:center;justify-content:center;gap:8px;min-heigh
 .gname2{font-size:18px;font-weight:700;margin:6px 0 2px}.gerr{color:#f87171;font-size:13px;min-height:18px;margin:0 0 10px}
 .dchips{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:6px}.dchips button{min-height:42px;padding:0;font-size:12.5px;background:var(--bg);color:var(--tx);border:1px solid var(--ln);box-shadow:none}.dchips button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-color:transparent}
 .dpre{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}.dpre button{width:auto;min-height:34px;padding:4px 12px;font-size:12px;background:var(--bg);color:var(--tx);border:1px solid var(--ln);box-shadow:none}
-.pdcard{margin-top:14px;padding:14px;border-radius:20px;background:var(--bg);border:1px solid var(--ln)}
+.pdcard{margin:4px 0 14px;padding:14px;border-radius:20px;background:var(--bg);border:1px solid var(--ln)}
 .pdh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
 .pdt{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}.pdt svg{width:20px;height:20px;color:var(--ac)}
 .pdb{font-size:12px;font-weight:700;color:var(--ac);background:rgba(255,90,31,.14);border-radius:999px;padding:4px 10px;white-space:nowrap}
@@ -344,10 +344,11 @@ button.rf:active{transform:rotate(180deg)}
     <div class="card">
       <div class="seg" id="lv"><button data-l="1">Beginner</button><button data-l="2">Intermediate</button><button data-l="3">Expert</button><button data-l="4">Home DB</button></div>
       <label id="spll">Workout split</label><select id="spl" style="margin-bottom:12px"></select>
+      <div id="pdays" class="pdcard"><div class="pdh"><span class="pdt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Workout days</span><span class="pdb" id="pdsum"></span></div><div class="dchips" id="pcdays"></div><div class="dpre" id="ppre"><button data-wp="1111110">Mon–Sat</button><button data-wp="1111101">Sun–Fri</button><button data-wp="1111100">Mon–Fri</button><button data-wp="0000000">Default</button></div><div class="wanone" id="pdnote" hidden></div></div>
       <label>Exercises per day</label><div class="seg s3" id="cnt"><button data-n="6">6</button><button data-n="7">7</button><button data-n="8">8</button></div>
       <div class="wkbar"><button class="sec" id="wprev" aria-label="Previous week">‹</button><div id="wlab"></div><button class="sec" id="wnext" aria-label="Next week">›</button></div>
       <div class="days" id="days"></div>
-      <div id="pdays" class="pdcard"><div class="pdh"><span class="pdt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Workout days</span><span class="pdb" id="pdsum"></span></div><div class="dchips" id="pcdays"></div><div class="dpre" id="ppre"><button data-wp="1111110">Mon–Sat</button><button data-wp="1111101">Sun–Fri</button><button data-wp="1111100">Mon–Fri</button><button data-wp="0000000">Default</button></div><div class="wanone" id="pdnote" hidden></div></div>
+      
     </div>
     <div class="card" id="pday"></div>
   </section>
@@ -368,7 +369,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.47</div>
+  <div class="sync" id="ver">Stryve Track v1.48</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
