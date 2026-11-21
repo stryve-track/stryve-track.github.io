@@ -255,6 +255,15 @@ a.wabtn{display:flex;align-items:center;justify-content:center;gap:8px;min-heigh
 .wanone{font-size:12.5px;color:var(--mu);margin-top:8px}.wanone[hidden]{display:none}
 #gwa{width:100%;margin:14px 0 6px;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:17px;text-align:center}
 .gname2{font-size:18px;font-weight:700;margin:6px 0 2px}.gerr{color:#f87171;font-size:13px;min-height:18px;margin:0 0 10px}
+.dchips{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:6px}.dchips button{min-height:42px;padding:0;font-size:12.5px;background:var(--bg);color:var(--tx);border:1px solid var(--ln);box-shadow:none}.dchips button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-color:transparent}
+.dpre{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}.dpre button{width:auto;min-height:34px;padding:4px 12px;font-size:12px;background:var(--bg);color:var(--tx);border:1px solid var(--ln);box-shadow:none}
+.pdcard{margin-top:14px;padding:14px;border-radius:20px;background:var(--bg);border:1px solid var(--ln)}
+.pdh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.pdt{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}.pdt svg{width:20px;height:20px;color:var(--ac)}
+.pdb{font-size:12px;font-weight:700;color:var(--ac);background:rgba(255,90,31,.14);border-radius:999px;padding:4px 10px;white-space:nowrap}
+#pcdays{margin-top:0}#pcdays button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:60px;border-radius:14px;background:var(--card);color:var(--mu);font-weight:700;font-size:13px}
+#pcdays button span{font-size:10.5px;font-weight:600;opacity:.85}#pcdays button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));border-color:transparent;box-shadow:0 6px 14px rgba(255,90,31,.32);color:#fff}
+.pdcard .dpre{margin-top:12px;gap:6px;justify-content:center}.pdcard .dpre button{padding:4px 10px}.pdcard .dpre button{border-radius:999px}.pdcard .wanone{margin-top:10px;text-align:center}
 .bmh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--mu);padding:7px 0;border-bottom:1px solid var(--ln)}.bmh b{color:var(--tx)}
 .bmres{margin-top:14px}.bmres .dsum{margin-bottom:10px}.bmres .bmn{font-size:13px;color:var(--mu);line-height:1.5}.bmres .bmn b{color:var(--tx)}
 .dsum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
@@ -309,6 +318,7 @@ button.rf:active{transform:rotate(180deg)}
     <details><summary>Manage clients</summary>
       <div class="row r2" style="margin-top:10px"><input id="cn" placeholder="Client name" maxlength="30"><button id="cadd">Add client</button></div>
       <div class="row r2"><button class="sec" id="cren">Rename selected</button><button class="sec" id="cdel">Delete selected</button></div>
+    <label style="margin-top:8px">Workout days (tap to select)</label><div class="dchips" id="cdays"></div><div class="dpre"><button data-wp="1111110">Mon–Sat</button><button data-wp="1111101">Sun–Fri</button><button data-wp="1111100">Mon–Fri</button><button data-wp="0000000">Recommended</button></div>
     <label style="margin-top:8px">Client WhatsApp number</label><input id="cwa" type="tel" inputmode="tel" autocomplete="off" placeholder="+91 98765 43210" maxlength="22">
     <div class="cm-only" style="margin-top:6px"><label>Client login (Google email)</label><input id="cem" type="email" inputmode="email" autocapitalize="off" autocomplete="off" placeholder="client@gmail.com"><label>Workout level (only you can change this)</label><select id="clv"><option value="0">Not set</option><option value="1">Beginner</option><option value="2">Intermediate</option><option value="3">Expert</option><option value="4">Home workout (DB)</option></select><label style="margin-top:10px">Workout focus (assigned by you)</label><select id="csp"><option value="">Recommended for level</option><option>Push / Pull / Legs</option><option>Upper / Lower</option><option>Single body part</option><option>5-Day Bro Split</option><option>Full body</option><option>Push only</option><option>Pull only</option><option>Legs only</option></select><button id="csave" style="margin-top:10px;width:100%">Save client access</button><button class="sec" id="crev" style="margin-top:8px;width:100%">Revoke client access</button><p class="sync" style="text-align:left;margin-top:8px">Revoking stops this client from signing in but keeps all their workouts. Deleting a client with a login email also keeps their workouts, and adding the same Google email again brings them back.</p></div>
     </details></div>
@@ -337,6 +347,7 @@ button.rf:active{transform:rotate(180deg)}
       <label>Exercises per day</label><div class="seg s3" id="cnt"><button data-n="6">6</button><button data-n="7">7</button><button data-n="8">8</button></div>
       <div class="wkbar"><button class="sec" id="wprev" aria-label="Previous week">‹</button><div id="wlab"></div><button class="sec" id="wnext" aria-label="Next week">›</button></div>
       <div class="days" id="days"></div>
+      <div id="pdays" class="pdcard"><div class="pdh"><span class="pdt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Workout days</span><span class="pdb" id="pdsum"></span></div><div class="dchips" id="pcdays"></div><div class="dpre" id="ppre"><button data-wp="1111110">Mon–Sat</button><button data-wp="1111101">Sun–Fri</button><button data-wp="1111100">Mon–Fri</button><button data-wp="0000000">Default</button></div><div class="wanone" id="pdnote" hidden></div></div>
     </div>
     <div class="card" id="pday"></div>
   </section>
@@ -357,7 +368,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.44</div>
+  <div class="sync" id="ver">Stryve Track v1.47</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
@@ -411,6 +422,36 @@ button.rf:active{transform:rotate(180deg)}
       var bm={};s.body.concat(o.body||[]).forEach(function(x){bm[x.date]=x});s.body=Object.keys(bm).map(function(k){return bm[k]});
     });
   }
+  /* ---- Custom workout days (Mon..Sun, "1" = workout) ---- */
+  function curDays(){var cl=document.body.classList.contains("client");return cl?(PLAN.days||""):((cur()||{}).days||"")}
+  function applyDays(sch,days){
+    if(!/^[01]{7}$/.test(days||"")||days==="0000000")return sch;
+    var w=sch.filter(function(x){return x!=="Rest"});if(!w.length)return sch;
+    var k=0;return days.split("").map(function(d){return d==="1"?w[(k++)%w.length]:"Rest"})}
+  function daysRender(){
+    var c=cur(),box=$("cdays");if(!c||!box)return;var d=c.days||"",wd=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+    box.innerHTML=wd.map(function(n,i){return'<button data-wd="'+i+'"'+(d[i]==="1"?' class="on"':"")+' aria-pressed="'+(d[i]==="1")+'">'+n+'</button>'}).join("")}
+  function setDays(str){var c=cur();c.days=(str==="0000000"||!/^[01]{7}$/.test(str))?"":str;c.daysBy="trainer";c.daysAt=new Date().toISOString();c.dd=1;persist();daysRender();renderPlan()}
+  function changeDays(str){
+    str=(str==="0000000"||!/^[01]{7}$/.test(str))?"":str;
+    if(document.body.classList.contains("client")){
+      PLAN.days=str;try{if(CLOUD.client)FB.updateClientData(CLOUD.client.trainer,CLOUD.client.cid,{days:str,daysBy:"client",daysAt:new Date().toISOString()}).catch(function(){})}catch(e){}
+      renderPlan()}
+    else setDays(str||"0000000")}
+  function pdaysRender(){
+    var sm=$("pdsum");if(!sm)return;var d=curDays(),wd=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],on=wd.filter(function(n,i){return d[i]==="1"});
+    sm.textContent=on.length?on.length+(on.length===1?" day":" days")+" / week":"Recommended";
+    $("pcdays").innerHTML=wd.map(function(n,i){var w=d[i]==="1";return'<button data-wd="'+i+'"'+(w?' class="on"':"")+' aria-pressed="'+w+'">'+n+'<span>'+(w?"Train":"Rest")+'</span></button>'}).join("");
+    var c=cur(),nt=$("pdnote"),isCl=document.body.classList.contains("client");
+    if(!isCl&&c&&c.daysBy==="client"&&c.daysAt){nt.textContent="Changed by the client on "+new Date(c.daysAt).toLocaleDateString(undefined,{day:"numeric",month:"short"})+".";nt.hidden=false}else nt.hidden=true}
+  function refreshMeta(){
+    if(!CLOUD.email||CLOUD.client||document.body.classList.contains("client")||!window.FB||!FB.clients)return;
+    FB.clients(CLOUD.email).then(function(L){
+      var ch=false;L.forEach(function(d){var c=root.clients.filter(function(x){return x.id===d.id})[0];if(!c)return;
+        if(!c.dd){var nd=d.days||"";if((c.days||"")!==nd){c.days=nd;c.daysBy=d.daysBy||"";c.daysAt=d.daysAt||"";ch=true}}
+        if((d.whatsapp||"")!==(c.whatsapp||"")){c.whatsapp=d.whatsapp||"";ch=true}
+        if((d.lastLogin||"")!==(c.lastLogin||"")){c.lastLogin=d.lastLogin||"";ch=true}});
+      if(ch){renderClients();renderPlan()}}).catch(function(){})}
   /* ---- WhatsApp ---- */
   function waNorm(v){var d=String(v||"").replace(/\D/g,"");if(d.indexOf("00")===0)d=d.slice(2);return d.length>=8&&d.length<=15?d:""}
   function waShow(n){return n?"+"+n:""}
@@ -429,7 +470,7 @@ button.rf:active{transform:rotate(180deg)}
     $("cl").innerHTML=root.clients.map(function(c){return'<option value="'+c.id+'"'+(c.id===root.active?" selected":"")+'>'+esc(c.name)+(c.revoked?" (access revoked)":"")+'</option>'}).join("");
     $("cdel").textContent="Delete selected";
     var cc=cur();if($("cem")){$("cem").value=cc.email||"";$("clv").value=String(cc.level||0);$("csp").value=cc.split||"";$("crev").textContent=cc.revoked?"Restore client access":"Revoke client access"}
-    waUpdate();
+    waUpdate();daysRender();
   }
   function renderOverview(){
     var t=new Date(),keys={};for(var i=0;i<30;i++)keys[dkey(new Date(t.getFullYear(),t.getMonth(),t.getDate()-i))]=1;
@@ -530,7 +571,7 @@ button.rf:active{transform:rotate(180deg)}
   var PITEMS=[],SWK="wt-swaps";
   function loadSw(){try{return JSON.parse(localStorage.getItem(SWK))||{}}catch(e){return{}}}
   function saveSw(o){try{var ks=Object.keys(o);if(ks.length>300)ks.slice(0,ks.length-300).forEach(function(k){delete o[k]});localStorage.setItem(SWK,JSON.stringify(o))}catch(e){}}
-  function dayKey(ws){var sp=PLAN.lv===4?"home":(SPL[PLAN.sp]?PLAN.sp:"rec");return[dkey(ws),PLAN.day,PLAN.lv,sp,curN()].join("|")}
+  function dayKey(ws){var sp=PLAN.lv===4?"home":(SPL[PLAN.sp]?PLAN.sp:"rec");return[dkey(ws),PLAN.day,PLAN.lv,sp,curN(),curDays()].join("|")}
   function applySwaps(items,dk){
     var o=loadSw(),c=0;
     items.forEach(function(it,i){var nm=o[dk+"|"+i];if(nm&&nm!==it[0]&&poolX(it[4],PLAN.lv).indexOf(nm)>-1){items[i]=mkItem(nm,it[4],it[5],PLAN.lv);c++}});
@@ -556,7 +597,8 @@ button.rf:active{transform:rotate(180deg)}
   function weekStart(off){var t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate()-((t.getDay()+6)%7)+off*7)}
   function weekNo(d){return Math.round((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-Date.UTC(2024,0,1))/604800000)}
   function renderPlan(){
-    var sch=PLAN.lv===4?SCH[4]:(SPL[PLAN.sp]||SCH[PLAN.lv]),ws=weekStart(PLAN.off),v=((weekNo(ws)%4)+4)%4;
+    pdaysRender();
+    var sch=applyDays(PLAN.lv===4?SCH[4]:(SPL[PLAN.sp]||SCH[PLAN.lv]),curDays()),ws=weekStart(PLAN.off),v=((weekNo(ws)%4)+4)%4;
     var dt=function(i){return new Date(ws.getFullYear(),ws.getMonth(),ws.getDate()+i)},o={day:"numeric",month:"short"};
     var sp=$("spl");if(!sp.options.length)sp.innerHTML=["Recommended"].concat(Object.keys(SPL)).map(function(k){return'<option value="'+k+'">'+(k==="Recommended"?"Recommended for this level":k)+'</option>'}).join("");
     sp.value=SPL[PLAN.sp]?PLAN.sp:"Recommended";$("spl").style.display=$("spll").style.display=PLAN.lv===4?"none":"";
@@ -626,16 +668,16 @@ button.rf:active{transform:rotate(180deg)}
         var ids={};
         for(var i=0;i<root.clients.length;i++){
           var c=root.clients[i],st=root.store[c.id]||{entries:[],body:[]};ids[c.id]=1;
-          var lv=c.level||0,em=c.email||"",md=JSON.stringify([c.name,lv,em,c.split||"",c.revoked?1:0,c.sub?JSON.stringify(c.sub):"",subState(c).k==="exp"?1:0]),dd=JSON.stringify([st.entries,st.body]),part={};
+          var lv=c.level||0,em=c.email||"",md=JSON.stringify([c.name,lv,em,c.split||"",c.revoked?1:0,c.sub?JSON.stringify(c.sub):"",subState(c).k==="exp"?1:0,c.days||""]),dd=JSON.stringify([st.entries,st.body]),part={};
           var metaNew=CLOUD.cm[c.id]!==md;
-          if(metaNew){part.name=c.name;part.level=lv;part.email=em;part.split=c.split||"";part.revoked=!!c.revoked;part.sub=c.sub||null}
+          if(metaNew){part.name=c.name;part.level=lv;part.email=em;part.split=c.split||"";part.revoked=!!c.revoked;part.sub=c.sub||null;if(c.dd){part.days=c.days||"";part.daysBy="trainer";part.daysAt=c.daysAt||new Date().toISOString();c.dd=0}}
           if(CLOUD.cd[c.id]!==dd){part.entries=st.entries;part.body=st.body}
           if(!Object.keys(part).length)continue;
           await FB.saveClient(CLOUD.email,c.id,part);
           if(metaNew){
             var want=(em&&lv>=1&&!c.revoked&&subState(c).k!=="exp")?em:"",old=CLOUD.mail[c.id]||"";
             if(old&&old!==want)await FB.deleteAccess(old);
-            if(want)await FB.setAccess(want,{trainer:CLOUD.email,cid:c.id,name:c.name,level:lv,split:c.split||""});
+            if(want)await FB.setAccess(want,{trainer:CLOUD.email,cid:c.id,name:c.name,level:lv,split:c.split||"",days:c.days||""});
             CLOUD.mail[c.id]=want;CLOUD.cm[c.id]=md;
           }
           CLOUD.cd[c.id]=dd;
@@ -659,8 +701,8 @@ button.rf:active{transform:rotate(180deg)}
     list.sort(function(a,b){return(a.name||"").localeCompare(b.name||"")});
     list.forEach(function(c){
       var lv=c.level||0,em=c.email||"",en=c.entries||[],bd=c.body||[],nm=c.name||"Client",sp=c.split||"",rv=!!c.revoked;
-      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",lastLogin:c.lastLogin||"",diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
-      CLOUD.cm[c.id]=JSON.stringify([nm,lv,em,sp,rv?1:0,c.sub?JSON.stringify(c.sub):"",0]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1&&!rv)?em:"";
+      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",lastLogin:c.lastLogin||"",days:c.days||"",daysBy:c.daysBy||"",daysAt:c.daysAt||"",diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
+      CLOUD.cm[c.id]=JSON.stringify([nm,lv,em,sp,rv?1:0,c.sub?JSON.stringify(c.sub):"",0,c.days||""]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1&&!rv)?em:"";
     });
     if(!r.clients.length){r.clients.push({id:"me",name:"Me"});r.store.me={entries:[],body:[]}}
     var a="";try{a=localStorage.getItem("wt-act")||""}catch(e){}
@@ -723,6 +765,7 @@ button.rf:active{transform:rotate(180deg)}
             var sx=subState({sub:cd.sub});if(sx.k==="exp"){gate(GL+'<div class="gt">Membership expired</div><p>Your membership ended on '+esc(fmtD(cd.sub.end))+'. Please contact your trainer to renew.</p><button class="sec" id="gout">Sign out</button>');return}
             if(!cd.whatsapp){gate(GL+'<div class="gt">Welcome</div><div class="gname2">'+esc(cd.name||ac.name||"")+'</div><p>One quick step. Enter your WhatsApp number so your coach can reach you.</p><input id="gwa" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" maxlength="22" value="+91 "><div class="gerr" id="gwerr"></div><button id="wasave">Continue</button><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
             try{FB.updateClientData(ac.trainer,ac.cid,{lastLogin:new Date().toISOString()}).catch(function(){})}catch(e){}
+            PLAN.days=(cd.days!=null?cd.days:ac.days)||"";
             var dd={entries:cd.entries||[],body:cd.body||[]};CLOUD.cc=JSON.stringify([dd.entries,dd.body]);
             root={clients:[{id:ac.cid,name:cd.name||ac.name||"Me"}],active:ac.cid,store:{}};root.store[ac.cid]=dd;root.clients[0].diet=cd.diet||null;root.clients[0].diets=cd.diets||[];
             pick(ac.cid);renderClients();renderAll();chatStartClient(ac);
@@ -1787,6 +1830,7 @@ button.rf:active{transform:rotate(180deg)}
   $("chatin").addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.shiftKey&&!/Mobi|Android|iPhone|iPad/.test(navigator.userAgent)){e.preventDefault();chatSend()}});
   $("chatin").addEventListener("input",function(){this.style.height="44px";this.style.height=Math.min(120,this.scrollHeight)+"px"});
   function tab(t){
+    if(t==="plan"||t==="log")refreshMeta();
     if(CH.open)chatClose();chatBadge();
     if((t==="plan"||t==="diet")&&document.body.classList.contains("guest")){
       $("lock").querySelector(".lockt").textContent=t==="diet"?"Get your diet plan to access this page":"Get the workout plan to access this page";
@@ -1848,8 +1892,13 @@ button.rf:active{transform:rotate(180deg)}
     rd.readAsText(f);e.target.value="";
   });
   renderClients();
-  $("cl").addEventListener("change",function(){pick($("cl").value);persist();renderAll();renderClients()});
+  $("cl").addEventListener("change",function(){pick($("cl").value);persist();renderAll();renderClients();renderPlan()});
   $("cadd").addEventListener("click",function(){var n=$("cn").value.trim();if(!n)return;var id="c"+Date.now().toString(36);root.clients.push({id:id,name:n});pick(id);$("cn").value="";persist();renderClients();renderAll()});
+  $("cdays").addEventListener("click",function(e){var b=e.target.closest("[data-wd]");if(!b)return;var c=cur(),a=(c.days&&/^[01]{7}$/.test(c.days)?c.days:"0000000").split(""),i=+b.dataset.wd;a[i]=a[i]==="1"?"0":"1";setDays(a.join(""))});
+  document.querySelector(".dpre").addEventListener("click",function(e){var b=e.target.closest("[data-wp]");if(b)setDays(b.dataset.wp)});
+  $("pcdays").addEventListener("click",function(e){var b=e.target.closest("[data-wd]");if(!b)return;var cd=curDays(),a=(/^[01]{7}$/.test(cd)?cd:"0000000").split(""),i=+b.dataset.wd;a[i]=a[i]==="1"?"0":"1";changeDays(a.join(""))});
+  $("ppre").addEventListener("click",function(e){var b=e.target.closest("[data-wp]");if(b)changeDays(b.dataset.wp)});
+  document.addEventListener("visibilitychange",function(){if(!document.hidden)refreshMeta()});setInterval(refreshMeta,120000);
   $("cwa").addEventListener("change",function(){
     var c=cur(),v=this.value.trim(),n=v?waNorm(v):"";
     if(v&&!n){alert("Enter the number with country code, e.g. +91 98765 43210.");waUpdate();return}

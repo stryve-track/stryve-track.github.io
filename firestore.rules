@@ -23,12 +23,15 @@ service cloud.firestore {
       allow write: if isAdmin();
       match /clients/{cid} {
         allow read, write: if isAdmin() || isTrainer(email);
-        // A client can read their own record and change only their workout logs their own WhatsApp number and their last-login time.
+        // A client can read their own record and change only their workout logs their own WhatsApp number, last-login time and workout days.
         allow read: if isClient(email, cid);
         allow update: if isClient(email, cid)
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body', 'lastMsg', 'whatsapp', 'lastLogin'])
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body', 'lastMsg', 'whatsapp', 'lastLogin', 'days', 'daysBy', 'daysAt'])
           && (!('whatsapp' in request.resource.data) || (request.resource.data.whatsapp is string && request.resource.data.whatsapp.size() <= 20))
-          && (!('lastLogin' in request.resource.data) || (request.resource.data.lastLogin is string && request.resource.data.lastLogin.size() <= 40));
+          && (!('lastLogin' in request.resource.data) || (request.resource.data.lastLogin is string && request.resource.data.lastLogin.size() <= 40))
+          && (!('days' in request.resource.data) || (request.resource.data.days is string && request.resource.data.days.size() <= 7))
+          && (!('daysBy' in request.resource.data) || request.resource.data.daysBy == 'client')
+          && (!('daysAt' in request.resource.data) || (request.resource.data.daysAt is string && request.resource.data.daysAt.size() <= 40));
 
         // Chat between a trainer and one client. Each message says who sent it.
         match /messages/{mid} {
