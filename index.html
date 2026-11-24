@@ -266,6 +266,35 @@ a.wabtn{display:flex;align-items:center;justify-content:center;gap:8px;min-heigh
 #pcdays{margin-top:0}#pcdays button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:60px;border-radius:14px;background:var(--card);color:var(--mu);font-weight:700;font-size:13px}
 #pcdays button span{font-size:10.5px;font-weight:600;opacity:.85}#pcdays button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));border-color:transparent;box-shadow:0 6px 14px rgba(255,90,31,.32);color:#fff}
 .pdcard .dpre{margin-top:12px;gap:6px;justify-content:center}.pdcard .dpre button{padding:4px 10px}.pdcard .dpre button{border-radius:999px}.pdcard .wanone{margin-top:10px;text-align:center}
+#prpop{position:fixed;inset:0;z-index:95;background:rgba(5,5,8,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:22px;overflow:hidden}#prpop[hidden]{display:none}
+#prpop .cfw{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+#prpop .cf{position:absolute;top:-20px;border-radius:2px;opacity:0;animation:prFall linear forwards}
+.prcard{position:relative;width:100%;max-width:340px;text-align:center;padding:26px 20px 20px;border-radius:28px;background:linear-gradient(160deg,#1c1a18,#0f1012 70%);border:1px solid rgba(255,196,64,.35);box-shadow:0 0 0 1px rgba(255,196,64,.08),0 24px 60px rgba(0,0,0,.6),0 0 60px rgba(255,150,30,.18);color:#fff;animation:prCard .55s cubic-bezier(.2,1.2,.3,1) both}
+.prtw{position:relative;width:150px;height:140px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center}
+.prrays{position:absolute;width:210px;height:210px;left:50%;top:50%;margin:-105px 0 0 -105px;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,200,60,0) 0 10deg,rgba(255,200,60,.28) 20deg,rgba(255,200,60,0) 32deg,rgba(255,200,60,0) 50deg,rgba(255,200,60,.28) 60deg,rgba(255,200,60,0) 72deg,rgba(255,200,60,0) 90deg,rgba(255,200,60,.28) 100deg,rgba(255,200,60,0) 112deg,rgba(255,200,60,0) 130deg,rgba(255,200,60,.28) 140deg,rgba(255,200,60,0) 152deg,rgba(255,200,60,0) 170deg,rgba(255,200,60,.28) 180deg,rgba(255,200,60,0) 192deg,rgba(255,200,60,0) 210deg,rgba(255,200,60,.28) 220deg,rgba(255,200,60,0) 232deg,rgba(255,200,60,0) 250deg,rgba(255,200,60,.28) 260deg,rgba(255,200,60,0) 272deg,rgba(255,200,60,0) 290deg,rgba(255,200,60,.28) 300deg,rgba(255,200,60,0) 312deg,rgba(255,200,60,0) 330deg,rgba(255,200,60,.28) 340deg,rgba(255,200,60,0) 352deg);-webkit-mask:radial-gradient(circle,#000 25%,transparent 70%);mask:radial-gradient(circle,#000 25%,transparent 70%);animation:prRays 9s linear infinite}
+.prtro{position:relative;width:120px;height:120px;animation:prTroph .8s .15s cubic-bezier(.2,1.3,.4,1) both,prGlow 2s 1s ease-in-out infinite}
+.prtro .shine{animation:prShine 2.4s 1s ease-in-out infinite}
+.prh{font-size:36px;font-weight:900;letter-spacing:.08em;margin:6px 0 2px;background:linear-gradient(90deg,#ffb347,#fff3b0,#ffb347,#ff7a1a);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:prText .7s .35s ease-out both,prShimmer 2.2s 1s linear infinite}
+.prsub{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#d8c9a6;margin-bottom:12px;animation:prUp .5s .5s ease-out both}
+.prex{font-size:20px;font-weight:800;margin-bottom:6px;animation:prUp .5s .6s ease-out both}
+.prbig{font-size:30px;font-weight:900;color:#ffd34d;animation:prUp .5s .7s ease-out both}.prbig small{font-size:16px;font-weight:700;color:#fff;opacity:.9}
+.prdet{font-size:14px;color:#c9ccd3;line-height:1.5;margin:6px 0 16px;animation:prUp .5s .8s ease-out both}
+.prcard button{animation:prUp .5s .9s ease-out both}
+@keyframes prCard{0%{transform:scale(.7) translateY(34px);opacity:0}100%{transform:none;opacity:1}}
+@keyframes prTroph{0%{transform:scale(0) rotate(-28deg)}55%{transform:scale(1.2) rotate(9deg)}75%{transform:scale(.95) rotate(-3deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes prGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(255,200,60,.45))}50%{filter:drop-shadow(0 0 24px rgba(255,200,60,.95))}}
+@keyframes prRays{to{transform:rotate(360deg)}}
+@keyframes prShine{0%{transform:translateX(-90px) skewX(-20deg)}60%,100%{transform:translateX(150px) skewX(-20deg)}}
+@keyframes prText{0%{letter-spacing:.5em;opacity:0}100%{letter-spacing:.08em;opacity:1}}
+@keyframes prShimmer{to{background-position:-220% 0}}
+@keyframes prUp{0%{transform:translateY(14px);opacity:0}100%{transform:none;opacity:1}}
+@keyframes prFall{0%{transform:translate3d(0,0,0) rotate(0);opacity:1}100%{transform:translate3d(var(--dx),115vh,0) rotate(var(--rot));opacity:.9}}
+@media (prefers-reduced-motion:reduce){#prpop *{animation-duration:.01s!important;animation-delay:0s!important;animation-iteration-count:1!important}#prpop .cfw{display:none}}
+#toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 12px);transform:translate(-50%,-140%);z-index:120;width:calc(100% - 28px);max-width:380px;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;background:#14161a;color:#f3f4f6;border:1px solid #2a2d34;box-shadow:0 14px 34px rgba(0,0,0,.4);font-size:14.5px;line-height:1.4;transition:transform .35s cubic-bezier(.2,1.1,.3,1),opacity .25s;opacity:0;pointer-events:none}
+#toast.show{transform:translate(-50%,0);opacity:1}
+#toast .ti{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#22a05a;color:#fff;font-weight:800}
+#toast.warn .ti{background:#f59e0b;color:#1a1200}
+#toast b{display:block;font-size:15px;margin-bottom:1px}
 .bmh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--mu);padding:7px 0;border-bottom:1px solid var(--ln)}.bmh b{color:var(--tx)}
 .bmres{margin-top:14px}.bmres .dsum{margin-bottom:10px}.bmres .bmn{font-size:13px;color:var(--mu);line-height:1.5}.bmres .bmn b{color:var(--tx)}
 .dsum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
@@ -371,10 +400,12 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.50</div>
+  <div class="sync" id="ver">Stryve Track v1.56</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
+<div id="toast" role="status" aria-live="polite"><span class="ti" id="toasti">✓</span><div id="toastt"></div></div>
+<div id="prpop" hidden role="dialog" aria-modal="true" aria-labelledby="prh"><div class="cfw" id="prcf"></div><div class="prcard"><div class="prtw"><div class="prrays"></div><div class="prtro"><svg viewBox="0 0 120 120" width="120" height="120" aria-hidden="true"><defs><linearGradient id="trg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset=".5" stop-color="#FFB81C"/><stop offset="1" stop-color="#E88A00"/></linearGradient><clipPath id="trc"><path d="M34 14h52v30c0 18-12 31-26 31S34 62 34 44z"/></clipPath></defs><path d="M34 24H20c0 18 7 29 20 32M86 24h14c0 18-7 29-20 32" fill="none" stroke="url(#trg)" stroke-width="7" stroke-linecap="round"/><path d="M34 14h52v30c0 18-12 31-26 31S34 62 34 44z" fill="url(#trg)"/><g clip-path="url(#trc)"><rect class="shine" x="30" y="6" width="22" height="80" fill="#fff" opacity=".55"/></g><path d="M60 26l4.4 9 9.9 1.4-7.2 7 1.7 9.8L60 48.6 51.2 53.2l1.7-9.8-7.2-7 9.9-1.4z" fill="#FFF7D6"/><rect x="54" y="74" width="12" height="14" fill="url(#trg)"/><path d="M44 88h32l3 8H41z" fill="url(#trg)"/><rect x="36" y="96" width="48" height="9" rx="3" fill="#B86E00"/><rect x="40" y="98" width="40" height="2" rx="1" fill="#FFE27A" opacity=".6"/></svg></div></div><div class="prh" id="prh">NEW PR!</div><div class="prsub">Personal record</div><div class="prex" id="prex"></div><div class="prbig" id="prbig"></div><div class="prdet" id="prdet"></div><button id="prok">Let’s go!</button></div></div>
 <div id="expwarn" hidden><div class="ewcard"><div class="ewi">!</div><h3 id="ewt"></h3><p id="ewp"></p><button id="ewok">OK</button></div></div>
 <div id="subsheet" hidden><div class="sheetcard"><div class="shead"><b>Memberships</b><button class="x" id="subx" aria-label="Close">✕</button></div><div id="submsg" class="sync" style="text-align:left;margin:0 0 8px"></div><div id="subbody"></div></div></div>
 <div id="sheet" hidden><div class="sheetcard">
@@ -662,10 +693,11 @@ button.rf:active{transform:rotate(180deg)}
     if(!CLOUD.email)return;
     clearTimeout(CLOUD.t);
     CLOUD.t=setTimeout(async function(){
+      var step="";
       try{
         if(CLOUD.client){
           var cs=root.store[CLOUD.client.cid]||{entries:[],body:[]},cj=JSON.stringify([cs.entries,cs.body]);
-          if(CLOUD.cc!==cj){await FB.updateClientData(CLOUD.client.trainer,CLOUD.client.cid,{entries:cs.entries,body:cs.body});CLOUD.cc=cj}
+          if(CLOUD.cc!==cj){step="your workouts";await FB.updateClientData(CLOUD.client.trainer,CLOUD.client.cid,{entries:cs.entries,body:cs.body});CLOUD.cc=cj}
           $("sync").textContent="Saved to your account";return;
         }
         var ids={};
@@ -676,10 +708,11 @@ button.rf:active{transform:rotate(180deg)}
           if(metaNew){part.name=c.name;part.level=lv;part.email=em;part.split=c.split||"";part.revoked=!!c.revoked;part.sub=c.sub||null;if(c.dd){part.days=c.days||"";part.daysBy="trainer";part.daysAt=c.daysAt||new Date().toISOString();c.dd=0}}
           if(CLOUD.cd[c.id]!==dd){part.entries=st.entries;part.body=st.body}
           if(!Object.keys(part).length)continue;
-          await FB.saveClient(CLOUD.email,c.id,part);
+          step="the record for "+(c.name||"a client");await FB.saveClient(CLOUD.email,c.id,part);
           if(metaNew){
             var want=(em&&lv>=1&&!c.revoked&&subState(c).k!=="exp")?em:"",old=CLOUD.mail[c.id]||"";
-            if(old&&old!==want)await FB.deleteAccess(old);
+            step="login access for "+(c.name||"a client");
+            if(old&&old!==want){try{await FB.deleteAccess(old)}catch(x){}}
             if(want)await FB.setAccess(want,{trainer:CLOUD.email,cid:c.id,name:c.name,level:lv,split:c.split||"",days:c.days||""});
             CLOUD.mail[c.id]=want;CLOUD.cm[c.id]=md;
           }
@@ -687,13 +720,17 @@ button.rf:active{transform:rotate(180deg)}
         }
         for(var id in CLOUD.cm)if(!ids[id]){
           var rem="";try{rem=JSON.parse(CLOUD.cm[id])[2]||""}catch(x){}
+          step="removing a client";
           if(rem)await FB.archiveClient(CLOUD.email,id);else await FB.deleteClient(CLOUD.email,id);
-          if(CLOUD.mail[id]){await FB.deleteAccess(CLOUD.mail[id]);delete CLOUD.mail[id]}
+          if(CLOUD.mail[id]){try{await FB.deleteAccess(CLOUD.mail[id])}catch(x){}delete CLOUD.mail[id]}
           delete CLOUD.cm[id];delete CLOUD.cd[id];
         }
-        while(CLOUD.pdel&&CLOUD.pdel.length){await FB.deleteClient(CLOUD.email,CLOUD.pdel[0]);CLOUD.pdel.shift()}
+        while(CLOUD.pdel&&CLOUD.pdel.length){step="restoring saved workouts";await FB.deleteClient(CLOUD.email,CLOUD.pdel[0]);CLOUD.pdel.shift()}
         $("sync").textContent="Saved to your account";
-      }catch(e){$("sync").textContent="Could not save online. Check your connection."}
+      }catch(e){
+        try{console.error("Stryve sync failed at",step,e)}catch(x){}
+        var cd=(e&&e.code)||"",why=/permission/.test(cd)?"Firebase blocked it (permission denied). Check that your Firestore rules are published and that this email is not already linked to another trainer.":/unavailable|network|deadline/.test(cd)||(typeof navigator!=="undefined"&&navigator.onLine===false)?"Check your connection.":(cd||(e&&e.message)||"unknown error");
+        $("sync").textContent="Could not save"+(step?" "+step:"")+". "+why}
     },800);
   }
   async function loadCloud(){
@@ -793,6 +830,37 @@ button.rf:active{transform:rotate(180deg)}
     },600);
   }
 
+  /* ---- Toast: short confirmation at the top of the screen ---- */
+  var TOAST_T=0;
+  function toast(title,text,warn){
+    var el=$("toast");$("toasti").textContent=warn?"!":"✓";el.className=warn?"warn":"";
+    $("toastt").innerHTML="<b>"+esc(title)+"</b>"+(text?esc(text):"");
+    void el.offsetWidth;el.classList.add("show");clearTimeout(TOAST_T);TOAST_T=setTimeout(function(){el.classList.remove("show")},4200);
+    try{if(navigator.vibrate)navigator.vibrate(30)}catch(e){}}
+  /* ---- Personal records: trophy popup ---- */
+  function nf(x){return String(Math.round(x*10)/10)}
+  function detectPR(ex,sets){
+    var prior=data.entries.filter(function(e){return e.ex===ex});if(!prior.length||!sets.length)return null;
+    var pw=0,pMaxR=0,pr0=0,nw=0,nr=0,nMaxR=0;
+    prior.forEach(function(e){norm(e).forEach(function(s){if(s.w>pw)pw=s.w;if(s.r>pMaxR)pMaxR=s.r})});
+    prior.forEach(function(e){norm(e).forEach(function(s){if(s.w===pw&&s.r>pr0)pr0=s.r})});
+    sets.forEach(function(s){if(s.w>nw)nw=s.w;if(s.r>nMaxR)nMaxR=s.r});
+    sets.forEach(function(s){if(s.w===nw&&s.r>nr)nr=s.r});
+    if(nw>pw)return{kind:"weight",ex:ex,w:nw,r:nr,prev:pw};
+    if(nw===pw&&nw>0&&nr>pr0)return{kind:"reps",ex:ex,w:nw,r:nr,prevR:pr0};
+    if(nw===0&&pw===0&&nMaxR>pMaxR)return{kind:"bw",ex:ex,r:nMaxR,prevR:pMaxR};
+    return null}
+  function showPR(p){
+    var unit=TIMED[p.ex]?" sec":" reps",big,det;
+    if(p.kind==="weight"){big=nf(p.w)+' <small>kg × '+p.r+'</small>';det=p.prev>0?"+"+nf(p.w-p.prev)+" kg on your previous best of "+nf(p.prev)+" kg. Heaviest you have ever lifted on this exercise.":"Heaviest you have ever lifted on this exercise."}
+    else if(p.kind==="reps"){big=nf(p.w)+' <small>kg × '+p.r+'</small>';det="More reps than ever at "+nf(p.w)+" kg. Your previous best was "+p.prevR+" reps."}
+    else{big=p.r+'<small>'+unit+'</small>';det="Your previous best was "+p.prevR+unit+". Keep pushing."}
+    $("prex").textContent=p.ex;$("prbig").innerHTML=big;$("prdet").textContent=det;
+    var cf=$("prcf");cf.innerHTML="";var cols=["#ff5a1f","#ffb347","#ffd34d","#ffffff","#ff7a45","#fff3b0"];
+    for(var i=0;i<46;i++){var d=document.createElement("i");d.className="cf";var w=5+Math.random()*6;
+      d.style.cssText="left:"+(Math.random()*100)+"%;width:"+w+"px;height:"+(w*1.7)+"px;background:"+cols[i%cols.length]+";--dx:"+((Math.random()-.5)*160)+"px;--rot:"+(360+Math.random()*540)+"deg;animation-duration:"+(2.6+Math.random()*2.2)+"s;animation-delay:"+(Math.random()*1.1)+"s";cf.appendChild(d)}
+    var pp=$("prpop");pp.hidden=true;void pp.offsetWidth;pp.hidden=false;
+    try{if(navigator.vibrate)navigator.vibrate([90,50,90,50,160])}catch(e){}}
   function exercises(){
     var set={};COMMON.forEach(function(e){set[e]=1});
     data.entries.forEach(function(e){set[e.ex]=1});
@@ -1855,8 +1923,10 @@ button.rf:active{transform:rotate(180deg)}
   $("add").addEventListener("click",function(){
     var ex=$("ex").value.trim(),sets=getRows();
     if(!ex||!sets.length){alert("Enter an exercise and reps for at least one set.");return}
+    var pr=detectPR(ex,sets);
     data.entries.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),date:$("d").value,ex:ex,sets:sets});
     buildRows(3,"","");persist();renderAll();closeSheet();
+    if(pr)setTimeout(function(){showPR(pr)},350);
   });
   $("addbw").addEventListener("click",function(){
     var kg=parseFloat($("bw").value);if(isNaN(kg))return;
@@ -1905,7 +1975,7 @@ button.rf:active{transform:rotate(180deg)}
   $("cwa").addEventListener("change",function(){
     var c=cur(),v=this.value.trim(),n=v?waNorm(v):"";
     if(v&&!n){alert("Enter the number with country code, e.g. +91 98765 43210.");waUpdate();return}
-    c.whatsapp=n;persist();if(CLOUD.email&&!CLOUD.client&&FB.updateClientData)FB.updateClientData(CLOUD.email,c.id,{whatsapp:n}).catch(function(){});waUpdate()});
+    c.whatsapp=n;persist();if(CLOUD.email&&!CLOUD.client&&FB.saveClient)FB.saveClient(CLOUD.email,c.id,{whatsapp:n}).catch(function(){});waUpdate()});
   $("cren").addEventListener("click",function(){var n=$("cn").value.trim();if(!n)return;cur().name=n;$("cn").value="";persist();renderClients();renderAll()});
   var armed=false;
   $("cdel").addEventListener("click",function(){
@@ -1948,7 +2018,14 @@ button.rf:active{transform:rotate(180deg)}
       delete CLOUD.arch[em];msg="Restored "+n+" saved workouts for this Google account.";
     }
     persist();renderAll();$("sync").textContent=msg;
+    var nm=c.name||"Client",ex=subState(c).k==="exp";
+    if(!em)toast("Saved","No login email set, so "+nm+" has no app access.",true);
+    else if(c.revoked)toast("Saved","But access is revoked for "+nm+". Tap Restore client access.",true);
+    else if(ex)toast("Saved","But "+nm+"'s plan has expired, so access stays off until you renew it.",true);
+    else toast("Client access saved",nm+" can now sign in with "+em+".");
   });
+  $("prok").addEventListener("click",function(){$("prpop").hidden=true});
+  $("prpop").addEventListener("click",function(e){if(e.target.id==="prpop")$("prpop").hidden=true});
   $("ewok").addEventListener("click",function(){$("expwarn").hidden=true});$("subbtn").addEventListener("click",subOpen);$("subx").addEventListener("click",subClose);
   $("subsheet").addEventListener("click",function(e){if(e.target.id==="subsheet"){subClose();return}var fl=e.target.closest("[data-sf]");if(fl){SUBF=fl.dataset.sf;SUBC="";subRender();return}var hd=e.target.closest("[data-sx]");if(hd){SUBC=SUBC===hd.dataset.sx?"":hd.dataset.sx;subRender();return}var b=e.target.closest("[data-sp]");if(b){var a=b.dataset.sp.split("|");subApply(a[0],a[1])}});
   $("crev").addEventListener("click",function(){
