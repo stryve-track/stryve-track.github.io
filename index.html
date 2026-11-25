@@ -316,6 +316,10 @@ a.wabtn{display:flex;align-items:center;justify-content:center;gap:8px;min-heigh
 #pedpanel{margin-bottom:6px;animation:pedIn .25s ease-out}#pedpanel[hidden]{display:none}
 @keyframes pedIn{0%{opacity:0;transform:translateY(-6px)}100%{opacity:1;transform:none}}
 .bmh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--mu);padding:7px 0;border-bottom:1px solid var(--ln)}.bmh b{color:var(--tx)}
+.bmg{margin:6px auto 4px;max-width:340px}.bmg svg{display:block;width:100%;height:auto;overflow:visible}
+.bmg .gs{transition:opacity .6s,filter .6s}
+.bmg #bmneedle{transform-origin:150px 150px;transition:transform 1.9s cubic-bezier(.18,1.15,.32,1)}
+@media (prefers-reduced-motion:reduce){.bmg #bmneedle,.bmg .gs{transition:none}}
 .bmres{margin-top:14px}.bmres .dsum{margin-bottom:10px}.bmres .bmn{font-size:13px;color:var(--mu);line-height:1.5}.bmres .bmn b{color:var(--tx)}
 .dsum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
 .dsum div{padding:14px;border-radius:18px;text-align:center;color:#fff;background:linear-gradient(135deg,#ff4d17,#ff8a3d 65%,#ffb347);box-shadow:0 8px 22px rgba(255,90,31,.3)}
@@ -424,7 +428,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.62</div>
+  <div class="sync" id="ver">Stryve Track v1.63</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
@@ -1760,11 +1764,33 @@ button.rf:active{transform:rotate(180deg)}
     st.body=st.body.filter(function(b){return b.date!==d});
     st.body.push(Object.assign({},old,{date:d,kg:n.w,bmi:+n.bmi.toFixed(1),h:n.h,a:n.a,g:v.g,act:v.act,kcal:Math.round(n.tdee)}));
     persist();renderAll();renderDiet()}
+  /* ---- BMI gauge: needle sweeps from Underweight and stops at the client's BMI ---- */
+  var GCOL=["#38a3e8","#4cb86a","#f2d03b","#f59a3a","#ef4a4a"],GNAME=["Underweight","Normal","Overweight","Obese","Extremely obese"],GSHORT=["UNDER","NORMAL","OVER","OBESE","EXTREME"];
+  function gAngle(b){b=Math.max(10,Math.min(40,b));var th=[10,18.5,25,30,35,40];for(var i=0;i<5;i++)if(b<=th[i+1])return-90+i*36+(b-th[i])/(th[i+1]-th[i])*36;return 90}
+  function gPt(r,a){var t=a*Math.PI/180;return[(150+r*Math.sin(t)).toFixed(2),(150-r*Math.cos(t)).toFixed(2)]}
+  function gaugeHtml(){
+    var R=132,r=92,g=1.4,seg="",lab="";
+    for(var i=0;i<5;i++){var a0=-90+i*36+g,a1=-90+(i+1)*36-g,o0=gPt(R,a0),o1=gPt(R,a1),i1=gPt(r,a1),i0=gPt(r,a0);
+      seg+='<path class="gs" data-i="'+i+'" fill="'+GCOL[i]+'" d="M'+o0+' A'+R+' '+R+' 0 0 1 '+o1+' L'+i1+' A'+r+' '+r+' 0 0 0 '+i0+' Z"/>';
+      var m=-72+i*36,tp=gPt(112,m);lab+='<text x="'+tp[0]+'" y="'+tp[1]+'" transform="rotate('+m+' '+tp[0]+' '+tp[1]+')" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="800" fill="#101114" letter-spacing=".4">'+GSHORT[i]+'</text>'}
+    return'<svg viewBox="0 0 300 206" role="img" aria-label="BMI gauge" id="bmsvg">'+seg+lab+
+      '<g id="bmneedle" style="transform:rotate(-90deg)"><path d="M150 46L156 150L144 150Z" fill="var(--tx)"/></g>'+
+      '<circle cx="150" cy="150" r="13" fill="var(--tx)"/><circle cx="150" cy="150" r="5.5" fill="var(--ac)"/>'+
+      '<text id="bmgv" x="150" y="182" text-anchor="middle" font-size="24" font-weight="800" fill="var(--tx)"></text>'+
+      '<text id="bmgc" x="150" y="200" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--mu)"></text></svg>'}
+  function gaugeUpdate(v){
+    var nd=$("bmneedle");if(!nd)return;var n=calcNums(v),segs=document.querySelectorAll("#bmsvg .gs");
+    if(!n){nd.style.transform="rotate(-90deg)";segs.forEach(function(e){e.style.opacity=".9";e.style.filter="none"});$("bmgv").textContent="";$("bmgc").textContent="Enter your details";$("bmgc").setAttribute("fill","var(--mu)");return}
+    var i=n.bmi<18.5?0:n.bmi<25?1:n.bmi<30?2:n.bmi<35?3:4;
+    nd.style.transform="rotate("+gAngle(n.bmi).toFixed(1)+"deg)";
+    segs.forEach(function(e){var on=+e.dataset.i===i;e.style.opacity=on?"1":".32";e.style.filter=on?"drop-shadow(0 0 6px "+GCOL[i]+")":"none"});
+    $("bmgv").textContent="BMI "+n.bmi.toFixed(1);$("bmgc").textContent=GNAME[i];$("bmgc").setAttribute("fill",GCOL[i])}
   function calcCard(c){
     if(!c)return"";var v=Object.assign({},calcAll()[c.id]||{}),lb=((root.store[c.id]||{}).body||[]).filter(function(x){return x.bmi}).sort(function(x,y){return x.date<y.date?1:-1})[0];
     if(lb){v.h=v.h||lb.h;v.a=v.a||lb.a;v.g=v.g||lb.g;v.act=v.act||lb.act}
     if(!v.w)v.w=calcLastKg(c.id);
     var act=v.act||"1.375",g=v.g||"m";
+    if(CALCOPEN){var gv0={w:v.w,h:v.h,a:v.a,g:g,act:act};setTimeout(function(){gaugeUpdate(gv0)},220)}
     if(!CALCOPEN)return'<button id="bmopen" style="width:100%;margin-bottom:12px">Check BMI</button>';
     return'<div class="card"><h2>BMI &amp; maintenance calories</h2><div class="sync" style="text-align:left;margin:0 0 12px">For '+esc(c.name||"client")+'</div><div class="bmig">'+
       '<div class="dfield"><label for="bc-w">Weight (kg)</label><input id="bc-w" type="number" inputmode="decimal" min="0" max="400" step="0.1" placeholder="e.g. 72" value="'+qa(v.w||"")+'"></div>'+
@@ -1772,7 +1798,7 @@ button.rf:active{transform:rotate(180deg)}
       '<div class="dfield"><label for="bc-a">Age (years)</label><input id="bc-a" type="number" inputmode="numeric" min="0" max="120" placeholder="e.g. 28" value="'+qa(v.a||"")+'"></div>'+
       '<div class="dfield"><label for="bc-g">Gender</label><select id="bc-g"><option value="m"'+(g==="m"?" selected":"")+'>Male</option><option value="f"'+(g==="f"?" selected":"")+'>Female</option></select></div>'+
       '<div class="dfield full"><label for="bc-act">Daily activity level</label><select id="bc-act">'+ACT.map(function(x){return'<option value="'+x[0]+'"'+(x[0]===act?" selected":"")+'>'+x[1]+'</option>'}).join("")+'</select></div></div>'+
-      '<div class="bmres" id="bmres">'+calcOut({w:v.w,h:v.h,a:v.a,g:g,act:act})+'</div><button id="bmsave" style="width:100%;margin-top:12px">Save to BMI history</button>'+calcHist(c)+'<button class="dlink" id="bmopen">Hide</button></div>'}
+      '<div class="bmg" id="bmg">'+gaugeHtml()+'</div><div class="bmres" id="bmres">'+calcOut({w:v.w,h:v.h,a:v.a,g:g,act:act})+'</div><button id="bmsave" style="width:100%;margin-top:12px">Save to BMI history</button>'+calcHist(c)+'<button class="dlink" id="bmopen">Hide</button></div>'}
   function calcRead(){var g=function(i){return($(i)||{}).value||""};return{w:g("bc-w"),h:g("bc-h"),a:g("bc-a"),g:g("bc-g")||"m",act:g("bc-act")||"1.375"}}
   function renderDiet(){
     var box=$("dietbox"),c=cur();
@@ -1855,7 +1881,7 @@ button.rf:active{transform:rotate(180deg)}
     if(b.dataset.dc){DCV=b.dataset.dc;renderDiet();return}
     if(b.id==="dedit"){DEDIT=true;renderDiet();return}if(b.id==="dclose"){DEDIT=false;DMSG="";renderDiet();return}if(b.id==="bmsave"){calcSaveHist();return}if(b.id==="bmopen"){CALCOPEN=!CALCOPEN;renderDiet();return}if(b.id==="dsave")dietAct("draft");if(b.id==="dpub")dietAct("pub");if(b.id==="dunpub")dietAct("unpub");if(b.id==="ddel")dietDel();
   });
-  $("dietbox").addEventListener("input",function(e){if(/^bc-/.test(e.target.id||"")){var v=calcRead(),r=$("bmres");calcSave(cur().id,v);if(r)r.innerHTML=calcOut(v);return}if(/^d[kp]-/.test(e.target.id||"")){var t=$("dtot");if(t)t.innerHTML=dtotHtml(readForm().nu)}});
+  $("dietbox").addEventListener("input",function(e){if(/^bc-/.test(e.target.id||"")){var v=calcRead(),r=$("bmres");calcSave(cur().id,v);if(r)r.innerHTML=calcOut(v);gaugeUpdate(v);return}if(/^d[kp]-/.test(e.target.id||"")){var t=$("dtot");if(t)t.innerHTML=dtotHtml(readForm().nu)}});
   $("dietbox").addEventListener("change",function(e){
     if(e.target.id==="dsel"){DSEL=e.target.value;DEDIT=DSEL==="new";DMSG="";renderDiet();return}
     if(e.target.id==="dall"){var on=e.target.checked;document.querySelectorAll("#dcl input").forEach(function(i){i.disabled=on;if(on)i.checked=true})}
