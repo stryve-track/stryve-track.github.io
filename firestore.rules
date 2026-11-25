@@ -23,15 +23,18 @@ service cloud.firestore {
       allow write: if isAdmin();
       match /clients/{cid} {
         allow read, write: if isAdmin() || isTrainer(email);
-        // A client can read their own record and change only their workout logs their own WhatsApp number, last-login time and workout days.
+        // A client can read their own record and change only their workout logs their own WhatsApp number, last-login time, workout days and custom plan.
         allow read: if isClient(email, cid);
         allow update: if isClient(email, cid)
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body', 'lastMsg', 'whatsapp', 'lastLogin', 'days', 'daysBy', 'daysAt'])
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entries', 'body', 'lastMsg', 'whatsapp', 'lastLogin', 'days', 'daysBy', 'daysAt', 'custom', 'customBy', 'customAt'])
           && (!('whatsapp' in request.resource.data) || (request.resource.data.whatsapp is string && request.resource.data.whatsapp.size() <= 20))
           && (!('lastLogin' in request.resource.data) || (request.resource.data.lastLogin is string && request.resource.data.lastLogin.size() <= 40))
           && (!('days' in request.resource.data) || (request.resource.data.days is string && request.resource.data.days.size() <= 7))
           && (!('daysBy' in request.resource.data) || request.resource.data.daysBy == 'client')
-          && (!('daysAt' in request.resource.data) || (request.resource.data.daysAt is string && request.resource.data.daysAt.size() <= 40));
+          && (!('daysAt' in request.resource.data) || (request.resource.data.daysAt is string && request.resource.data.daysAt.size() <= 40))
+          && (!('custom' in request.resource.data) || (request.resource.data.custom is string && request.resource.data.custom.size() <= 200))
+          && (!('customBy' in request.resource.data) || request.resource.data.customBy == 'client')
+          && (!('customAt' in request.resource.data) || (request.resource.data.customAt is string && request.resource.data.customAt.size() <= 40));
 
         // Chat between a trainer and one client. Each message says who sent it.
         match /messages/{mid} {
