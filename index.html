@@ -315,6 +315,27 @@ a.wabtn{display:flex;align-items:center;justify-content:center;gap:8px;min-heigh
 .pedbtn.on{border-color:var(--ac)}
 #pedpanel{margin-bottom:6px;animation:pedIn .25s ease-out}#pedpanel[hidden]{display:none}
 @keyframes pedIn{0%{opacity:0;transform:translateY(-6px)}100%{opacity:1;transform:none}}
+.wkctl{margin:2px 0 14px}
+.wkstart{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:52px;font-size:16px}
+.wkstart svg{width:20px;height:20px}
+.wkrun{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;border-radius:18px;background:var(--bg);border:1.5px solid var(--ac)}
+.wkrun .wkl{flex:1;min-width:0}.wkt{font-variant-numeric:tabular-nums;font-size:28px;font-weight:800;letter-spacing:.02em;line-height:1.1}
+.wklab{font-size:12px;color:var(--mu);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px}
+.wkdot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:wkp 1.2s ease-in-out infinite;flex:none}.wkdot.pz{background:#f59e0b;animation:none}
+@keyframes wkp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.wkb{width:auto;min-height:44px;padding:0 14px;border-radius:12px;font-size:14px;flex:none}
+.wkb.sec{background:var(--card);color:var(--tx);border:1px solid var(--ln);box-shadow:none}
+.wkdone{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-size:13px;color:var(--mu)}.wkdone b{color:var(--tx)}
+#wkpill{position:fixed;left:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 100px);z-index:60;display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;background:#14161a;color:#fff;border:1px solid #2a2d34;box-shadow:0 10px 26px rgba(0,0,0,.4);font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;cursor:pointer;width:auto;min-height:44px}
+#wkpill[hidden]{display:none}#wkpill svg{width:16px;height:16px;color:var(--ac)}
+@media (prefers-reduced-motion:reduce){.wkdot{animation:none}}
+.wkrest{display:flex;align-items:center;gap:6px;margin-top:10px;flex-wrap:wrap;font-size:12.5px;color:var(--mu)}
+.wkrest span{margin-right:2px;font-weight:700}.wkrest button{width:auto;min-height:34px;padding:0 12px;font-size:12.5px;border-radius:999px;background:var(--card);color:var(--tx);border:1px solid var(--ln);box-shadow:none}
+#restbar{position:fixed;left:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 156px);z-index:61;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 16px;border-radius:999px;background:#14161a;color:#fff;border:1px solid #2a2d34;box-shadow:0 10px 26px rgba(0,0,0,.4);overflow:hidden}
+#restbar[hidden]{display:none}#restbar .rl{font-size:11px;letter-spacing:.12em;color:#9ca3af;font-weight:700}
+#rstt{font-weight:800;font-size:18px;font-variant-numeric:tabular-nums;min-width:50px}
+#restbar button{width:auto;min-height:36px;padding:0 12px;border-radius:999px;font-size:13px;background:#2a2d34;color:#fff;box-shadow:none}
+#rsbar{position:absolute;left:0;bottom:0;height:3px;background:var(--ac);width:100%;transition:width .25s linear}
 .bmh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--mu);padding:7px 0;border-bottom:1px solid var(--ln)}.bmh b{color:var(--tx)}
 .bmg{margin:6px auto 4px;max-width:340px}.bmg svg{display:block;width:100%;height:auto;overflow:visible}
 .bmg .gs{transition:opacity .6s,filter .6s}
@@ -369,7 +390,7 @@ button.rf:active{transform:rotate(180deg)}
     <div id="memline" hidden></div>
   </header>
   <div class="card" id="clientbar"><label>Client</label><select id="cl"></select>
-    <a id="wabtn" class="wabtn" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a><div id="wanone" class="wanone" hidden>No WhatsApp number yet. Add it under Manage clients.</div><div id="lastlogin" class="wanone" hidden></div>
+    <a id="wabtn" class="wabtn" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a><div id="wanone" class="wanone" hidden>No WhatsApp number yet. Add it under Manage clients.</div><div id="lastlogin" class="wanone" hidden></div><div id="lastwk" class="wanone" hidden></div>
     <details><summary>Manage clients</summary>
       <div class="row r2" style="margin-top:10px"><input id="cn" placeholder="Client name" maxlength="30"><button id="cadd">Add client</button></div>
       <div class="row r2"><button class="sec" id="cren">Rename selected</button><button class="sec" id="cdel">Delete selected</button></div>
@@ -428,10 +449,12 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.63</div>
+  <div class="sync" id="ver">Stryve Track v1.65</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
+<div id="restbar" hidden role="timer" aria-label="Rest timer"><span class="rl">REST</span><span id="rstt">01:30</span><button id="rsadd">+15s</button><button id="rsskip">Skip</button><div id="rsbar"></div></div>
+<button id="wkpill" hidden aria-label="Workout timer. Tap to open the workout plan."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg><span id="wkpt">00:00</span></button>
 <div id="toast" role="status" aria-live="polite"><span class="ti" id="toasti">✓</span><div id="toastt"></div></div>
 <div id="prpop" hidden role="dialog" aria-modal="true" aria-labelledby="prh"><div class="cfw" id="prcf"></div><div class="prcard"><div class="prtw"><div class="prrays"></div><div class="prtro"><svg viewBox="0 0 120 120" width="120" height="120" aria-hidden="true"><defs><linearGradient id="trg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset=".5" stop-color="#FFB81C"/><stop offset="1" stop-color="#E88A00"/></linearGradient><clipPath id="trc"><path d="M34 14h52v30c0 18-12 31-26 31S34 62 34 44z"/></clipPath></defs><path d="M34 24H20c0 18 7 29 20 32M86 24h14c0 18-7 29-20 32" fill="none" stroke="url(#trg)" stroke-width="7" stroke-linecap="round"/><path d="M34 14h52v30c0 18-12 31-26 31S34 62 34 44z" fill="url(#trg)"/><g clip-path="url(#trc)"><rect class="shine" x="30" y="6" width="22" height="80" fill="#fff" opacity=".55"/></g><path d="M60 26l4.4 9 9.9 1.4-7.2 7 1.7 9.8L60 48.6 51.2 53.2l1.7-9.8-7.2-7 9.9-1.4z" fill="#FFF7D6"/><rect x="54" y="74" width="12" height="14" fill="url(#trg)"/><path d="M44 88h32l3 8H41z" fill="url(#trg)"/><rect x="36" y="96" width="48" height="9" rx="3" fill="#B86E00"/><rect x="40" y="98" width="40" height="2" rx="1" fill="#FFE27A" opacity=".6"/></svg></div></div><div class="prh" id="prh">NEW PR!</div><div class="prsub">Personal record</div><div class="prex" id="prex"></div><div class="prbig" id="prbig"></div><div class="prdet" id="prdet"></div><button id="prok">Let’s go!</button></div></div>
 <div id="expwarn" hidden><div class="ewcard"><div class="ewi">!</div><h3 id="ewt"></h3><p id="ewp"></p><button id="ewok">OK</button></div></div>
@@ -543,6 +566,7 @@ button.rf:active{transform:rotate(180deg)}
       var ch=false;L.forEach(function(d){var c=root.clients.filter(function(x){return x.id===d.id})[0];if(!c)return;
         if(!c.dd){var nd=d.days||"";if((c.days||"")!==nd){c.days=nd;c.daysBy=d.daysBy||"";c.daysAt=d.daysAt||"";ch=true}}
         if(!c.cdt){var nc=d.custom||"";if((c.custom||"")!==nc){c.custom=nc;c.customBy=d.customBy||"";c.customAt=d.customAt||"";ch=true}}
+        if((d.sessions||[]).length!==(c.sessions||[]).length){c.sessions=d.sessions||[];ch=true}
         if((d.whatsapp||"")!==(c.whatsapp||"")){c.whatsapp=d.whatsapp||"";ch=true}
         if((d.lastLogin||"")!==(c.lastLogin||"")){c.lastLogin=d.lastLogin||"";ch=true}});
       if(ch){renderClients();renderPlan()}}).catch(function(){})}
@@ -559,6 +583,7 @@ button.rf:active{transform:rotate(180deg)}
     var c=cur(),a=$("wabtn"),n=$("wanone");if(!a||!c)return;
     if($("cwa"))$("cwa").value=waShow(c.whatsapp);
     var ll=$("lastlogin"),lt=CLOUD.email&&!CLOUD.client?loginText(c):"";if(ll){ll.textContent=lt;ll.hidden=!lt}
+    var lw=$("lastwk"),wt=CLOUD.email&&!CLOUD.client?sessText(c):"";if(lw){lw.textContent=wt;lw.hidden=!wt}
     if(c.whatsapp){a.href=waLink(c,"Hi "+(c.name||"").split(" ")[0]+", ");a.hidden=false;n.hidden=true}else{a.hidden=true;n.hidden=false}}
   function renderClients(){
     $("cl").innerHTML=root.clients.map(function(c){return'<option value="'+c.id+'"'+(c.id===root.active?" selected":"")+'>'+esc(c.name)+(c.revoked?" (access revoked)":"")+'</option>'}).join("");
@@ -710,7 +735,7 @@ button.rf:active{transform:rotate(180deg)}
     if(name==="Rest"){box.innerHTML='<h2>Day '+PLAN.day+' \u00b7 Rest</h2><div class="sync" style="margin:-4px 0 6px;text-align:left">'+when+'</div><div class="empty">Rest day. A light walk, stretching or mobility work helps you recover.</div>';return}
     var k=sch.slice(0,PLAN.day-1).filter(function(x){return x===name}).length;
     var tpl=TPL[name],items=PITEMS=applySwaps(mk(PLAN.lv,tpl,(v+k*(sch.filter(function(x){return x===name}).length>2?1:2))%4,curN()),dayKey(ws)),gs=tpl.map(function(s){return s[0]}).filter(function(g,i,a){return a.indexOf(g)===i}).join(" \u00b7 ");
-    box.innerHTML='<h2>Day '+PLAN.day+' \u00b7 '+esc(name)+'</h2><div class="sync" style="margin:-4px 0 6px;text-align:left">'+when+' \u00b7 '+gs+' \u00b7 '+items.length+' exercises'+(items.sw?' \u00b7 <a href="#" id="rstday" style="color:var(--ac);font-weight:600">Reset swaps</a>':'')+'</div>'+items.map(function(it,ix){
+    box.innerHTML='<h2>Day '+PLAN.day+' \u00b7 '+esc(name)+'</h2><div class="sync" style="margin:-4px 0 6px;text-align:left">'+when+' \u00b7 '+gs+' \u00b7 '+items.length+' exercises'+(items.sw?' \u00b7 <a href="#" id="rstday" style="color:var(--ac);font-weight:600">Reset swaps</a>':'')+'</div>'+wkCtlHtml("Day "+PLAN.day+" \u00b7 "+name)+items.map(function(it,ix){
       return'<div class="item" data-pex="'+esc(it[0])+'" data-s="'+it[1]+'" data-r="'+it[2]+'" style="cursor:pointer"><div class="ex">'+figSvg(it[0])+'<div><b>'+esc(it[0])+'</b><span>'+it[1]+' sets \u00d7 '+it[2]+(it[3]?" sec":" reps")+'</span></div></div><div class="pact"><button class="rf" data-rf="'+ix+'" aria-label="Swap this exercise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.3L3 9"/><path d="M3 4v5h5"/><path d="M4 13a8 8 0 0 0 14.5 4.3L21 15"/><path d="M21 20v-5h-5"/></svg></button><div class="logcta" style="color:var(--ac);font-weight:700">Log \u203a</div></div></div>';
     }).join("");
   }
@@ -806,7 +831,7 @@ button.rf:active{transform:rotate(180deg)}
     list.sort(function(a,b){return(a.name||"").localeCompare(b.name||"")});
     list.forEach(function(c){
       var lv=c.level||0,em=c.email||"",en=c.entries||[],bd=c.body||[],nm=c.name||"Client",sp=c.split||"",rv=!!c.revoked;
-      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",lastLogin:c.lastLogin||"",days:c.days||"",daysBy:c.daysBy||"",daysAt:c.daysAt||"",custom:c.custom||"",customBy:c.customBy||"",customAt:c.customAt||"",diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
+      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",lastLogin:c.lastLogin||"",days:c.days||"",daysBy:c.daysBy||"",daysAt:c.daysAt||"",custom:c.custom||"",customBy:c.customBy||"",customAt:c.customAt||"",sessions:c.sessions||[],diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
       CLOUD.cm[c.id]=JSON.stringify([nm,lv,em,sp,rv?1:0,c.sub?JSON.stringify(c.sub):"",0,c.days||"",c.custom||""]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1&&!rv)?em:"";
     });
     if(!r.clients.length){r.clients.push({id:"me",name:"Me"});r.store.me={entries:[],body:[]}}
@@ -870,7 +895,7 @@ button.rf:active{transform:rotate(180deg)}
             var sx=subState({sub:cd.sub});if(sx.k==="exp"){gate(GL+'<div class="gt">Membership expired</div><p>Your membership ended on '+esc(fmtD(cd.sub.end))+'. Please contact your trainer to renew.</p><button class="sec" id="gout">Sign out</button>');return}
             if(!cd.whatsapp){gate(GL+'<div class="gt">Welcome</div><div class="gname2">'+esc(cd.name||ac.name||"")+'</div><p>One quick step. Enter your WhatsApp number so your coach can reach you.</p><input id="gwa" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" maxlength="22" value="+91 "><div class="gerr" id="gwerr"></div><button id="wasave">Continue</button><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
             try{FB.updateClientData(ac.trainer,ac.cid,{lastLogin:new Date().toISOString()}).catch(function(){})}catch(e){}
-            PLAN.days=(cd.days!=null?cd.days:ac.days)||"";PLAN.custom=cd.custom||"";
+            PLAN.days=(cd.days!=null?cd.days:ac.days)||"";PLAN.custom=cd.custom||"";PLAN.sessions=cd.sessions||[];
             var dd={entries:cd.entries||[],body:cd.body||[]};CLOUD.cc=JSON.stringify([dd.entries,dd.body]);
             root={clients:[{id:ac.cid,name:cd.name||ac.name||"Me"}],active:ac.cid,store:{}};root.store[ac.cid]=dd;root.clients[0].diet=cd.diet||null;root.clients[0].diets=cd.diets||[];
             pick(ac.cid);renderClients();renderAll();chatStartClient(ac);
@@ -895,6 +920,61 @@ button.rf:active{transform:rotate(180deg)}
     },600);
   }
 
+  /* ---- Workout timer (Start workout / Pause / Finish). Survives tab switches and reloads. ---- */
+  var WK={on:false,run:false,start:0,acc:0,label:"",last:null},WKTAB="log",WKLOCK=null;
+  function wkLoad(){try{var v=JSON.parse(localStorage.getItem("wt-wk"));if(v&&typeof v==="object")WK=Object.assign(WK,v)}catch(e){}}
+  function wkSave(){try{localStorage.setItem("wt-wk",JSON.stringify(WK))}catch(e){}}
+  function wkMs(){return WK.acc+(WK.run?Date.now()-WK.start:0)}
+  function wkFmt(ms){var t=Math.floor(ms/1000),h=Math.floor(t/3600),m=Math.floor(t%3600/60),s=t%60,p=function(n){return String(n).padStart(2,"0")};return(h?h+":":"")+p(m)+":"+p(s)}
+  function wkCtlHtml(label){
+    var PLAY='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
+    if(!WK.on){
+      var dn=WK.last&&WK.last.date===today()?'<div class="wkdone"><span>Last workout today · <b>'+wkFmt(WK.last.secs*1000)+'</b></span></div>':"";
+      return'<div class="wkctl">'+dn+'<button class="wkstart" data-wk="start" data-label="'+qa(label)+'">'+PLAY+(dn?"Start another workout":"Start workout")+'</button></div>'}
+    return'<div class="wkctl"><div class="wkrun"><div class="wkl"><div class="wkt" id="wktime">'+wkFmt(wkMs())+'</div><div class="wklab"><span class="wkdot'+(WK.run?"":" pz")+'"></span>'+(WK.run?"":"Paused · ")+esc(WK.label||"")+'</div></div><button class="wkb sec" data-wk="'+(WK.run?"pause":"resume")+'">'+(WK.run?"Pause":"Resume")+'</button><button class="wkb" data-wk="finish">Finish</button></div><div class="wkrest"><span>Rest timer</span><button data-rs="30">30s</button><button data-rs="60">60s</button><button data-rs="90">90s</button><button data-rs="120">2 min</button></div></div>'}
+  /* ---- Rest timer between sets ---- */
+  var REST={end:0,dur:0},RAUDIO=null;
+  function restDur(){try{return+localStorage.getItem("wt-rest")||90}catch(e){return 90}}
+  function restBeep(){try{var c=RAUDIO;if(!c)return;[0,.28,.56].forEach(function(t){var o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,c.currentTime+t);g.gain.exponentialRampToValueAtTime(.35,c.currentTime+t+.02);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+t+.22);o.connect(g);g.connect(c.destination);o.start(c.currentTime+t);o.stop(c.currentTime+t+.25)})}catch(e){}}
+  function restStart(secs){
+    try{localStorage.setItem("wt-rest",String(secs))}catch(e){}
+    try{var AC=window.AudioContext||window.webkitAudioContext;if(AC){RAUDIO=RAUDIO||new AC();if(RAUDIO.state==="suspended")RAUDIO.resume()}}catch(e){}
+    REST={end:Date.now()+secs*1000,dur:secs};wkTick()}
+  function restTick(){
+    var bar=$("restbar");if(!bar)return;
+    if(!REST.end){bar.hidden=true;return}
+    var left=Math.ceil((REST.end-Date.now())/1000);
+    if(left<=0){REST.end=0;bar.hidden=true;restBeep();try{if(navigator.vibrate)navigator.vibrate([200,100,200,100,300])}catch(e){}toast("Rest over","Time for your next set!");return}
+    bar.hidden=false;$("rstt").textContent=wkFmt(left*1000);$("rsbar").style.width=Math.max(0,Math.min(100,left/REST.dur*100))+"%"}
+  /* ---- Saving workout durations so the trainer can see them ---- */
+  function saveSession(rec){
+    if(document.body.classList.contains("client")){
+      PLAN.sessions=(PLAN.sessions||[]).concat([rec]).slice(-60);
+      try{if(CLOUD.client)FB.updateClientData(CLOUD.client.trainer,CLOUD.client.cid,{sessions:PLAN.sessions}).catch(function(){})}catch(e){}
+    }else{
+      var c=cur();if(!c)return;c.sessions=(c.sessions||[]).concat([rec]).slice(-60);persist();
+      try{if(CLOUD.email&&FB.saveClient)FB.saveClient(CLOUD.email,c.id,{sessions:c.sessions}).catch(function(){})}catch(e){}}}
+  function sessText(c){
+    if(!c||!c.email)return"";var L=(c.sessions||[]).slice().sort(function(a,b){return a.date<b.date?-1:1});
+    if(!L.length)return"No timed workouts yet";
+    var last=L[L.length-1],n=new Date(),a=new Date(n.getFullYear(),n.getMonth(),n.getDate()),d=new Date(last.date+"T00:00:00"),days=Math.round((a-d)/86400000),
+      when=days<=0?"today":days===1?"yesterday":days+" days ago",mins=function(x){return Math.max(1,Math.round(x/60))},
+      wk=L.filter(function(x){return(a-new Date(x.date+"T00:00:00"))/86400000<7}),avg=wk.length?mins(wk.reduce(function(t,x){return t+x.secs},0)/wk.length):0;
+    return"Last workout: "+when+", "+mins(last.secs)+" min"+(last.label?" ("+last.label+")":"")+(wk.length?" · Last 7 days: "+wk.length+(wk.length===1?" workout":" workouts")+", avg "+avg+" min":"")}
+  function wkTick(){
+    var on=WK.on,t=wkFmt(wkMs()),el=$("wktime");if(el)el.textContent=t;
+    restTick();
+    var pl=$("wkpill");if(pl){pl.hidden=!(on&&WKTAB!=="plan");$("wkpt").textContent=t+(WK.run?"":" · paused")}}
+  function wkLock(on){try{if(on&&navigator.wakeLock&&!WKLOCK){navigator.wakeLock.request("screen").then(function(l){WKLOCK=l;l.addEventListener("release",function(){WKLOCK=null})}).catch(function(){})}else if(!on&&WKLOCK){WKLOCK.release();WKLOCK=null}}catch(e){}}
+  function wkAct(a,btn){
+    if(a==="start"){WK={on:true,run:true,start:Date.now(),acc:0,label:(btn&&btn.dataset.label)||"Workout",last:WK.last};toast("Workout started","Timer is running. Go get it!")}
+    else if(a==="pause"){WK.acc=wkMs();WK.run=false}
+    else if(a==="resume"){WK.start=Date.now();WK.run=true}
+    else if(a==="finish"){var ms=wkMs(),secs=Math.round(ms/1000);WK.last={date:today(),secs:secs,label:WK.label};REST.end=0;if(secs>=60)saveSession({date:today(),secs:secs,label:WK.label});WK.on=false;WK.run=false;WK.acc=0;
+      try{var H=JSON.parse(localStorage.getItem("wt-wk-hist")||"[]");H.push({date:today(),secs:secs,label:WK.label});localStorage.setItem("wt-wk-hist",JSON.stringify(H.slice(-200)))}catch(e){}
+      toast("Workout finished","Total time "+wkFmt(ms)+(secs>=60?". Saved for your coach.":". Under 1 minute, so it was not saved."))}
+    try{if(navigator.vibrate)navigator.vibrate(a==="finish"?[60,40,60]:30)}catch(e){}
+    wkSave();wkLock(WK.on&&WK.run);renderPlan();wkTick()}
   /* ---- Toast: short confirmation at the top of the screen ---- */
   var TOAST_T=0;
   function toast(title,text,warn){
@@ -1989,6 +2069,7 @@ button.rf:active{transform:rotate(180deg)}
   $("chatin").addEventListener("input",function(){this.style.height="44px";this.style.height=Math.min(120,this.scrollHeight)+"px"});
   function tab(t){
     if(t==="plan"||t==="log")refreshMeta();
+    WKTAB=t;
     if(CH.open)chatClose();chatBadge();
     if((t==="plan"||t==="diet")&&document.body.classList.contains("guest")){
       $("lock").querySelector(".lockt").textContent=t==="diet"?"Get your diet plan to access this page":"Get the workout plan to access this page";
@@ -2014,6 +2095,7 @@ button.rf:active{transform:rotate(180deg)}
     data.entries.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),date:$("d").value,ex:ex,sets:sets});
     buildRows(3,"","");persist();renderAll();closeSheet();
     if(pr)setTimeout(function(){showPR(pr)},350);
+    if(WK.on&&WK.run)restStart(restDur());
   });
   $("addbw").addEventListener("click",function(){
     var kg=parseFloat($("bw").value);if(isNaN(kg))return;
@@ -2136,13 +2218,19 @@ button.rf:active{transform:rotate(180deg)}
   $("days").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;PLAN.day=+b.dataset.d;renderPlan()});
   $("cnt").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;PLAN.n=+b.dataset.n;try{localStorage.setItem("wt-n",PLAN.n)}catch(x){}renderPlan()});
   $("pday").addEventListener("click",function(e){
+    var rs=e.target.closest("[data-rs]");if(rs){restStart(+rs.dataset.rs);return}
+    var wb=e.target.closest("[data-wk]");if(wb){wkAct(wb.dataset.wk,wb);return}
     if(e.target.closest("#rstday")){e.preventDefault();clearSwaps(PITEMS.dk);renderPlan();return}
     var rf=e.target.closest("[data-rf]");if(rf){e.stopPropagation();swapSlot(+rf.dataset.rf);return}
     var r=e.target.closest("[data-pex]");if(!r)return;
     openLogger(r.dataset.pex,+r.dataset.s,r.dataset.r);
   });
   $("d").value=today();
-  renderAll();
+  $("rsadd").addEventListener("click",function(){if(REST.end){REST.end+=15000;REST.dur+=15;restTick()}});
+  $("rsskip").addEventListener("click",function(){REST.end=0;restTick()});
+  wkLoad();$("wkpill").addEventListener("click",function(){tab("plan");window.scrollTo({top:0,behavior:"smooth"})});
+  setInterval(wkTick,250);document.addEventListener("visibilitychange",function(){if(!document.hidden){wkTick();wkLock(WK.on&&WK.run)}});
+  renderAll();wkTick();
 
   // Sync to the signed-in viewer's private storage when available
   (async function(){
