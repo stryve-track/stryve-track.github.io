@@ -336,6 +336,11 @@ a.wabtn{display:flex;align-items:center;justify-content:center;gap:8px;min-heigh
 #rstt{font-weight:800;font-size:18px;font-variant-numeric:tabular-nums;min-width:50px}
 #restbar button{width:auto;min-height:36px;padding:0 12px;border-radius:999px;font-size:13px;background:#2a2d34;color:#fff;box-shadow:none}
 #rsbar{position:absolute;left:0;bottom:0;height:3px;background:var(--ac);width:100%;transition:width .25s linear}
+.sst.trial{background:rgba(59,130,246,.16);color:#3b82f6}
+.sgbox{background:var(--card);border:1px solid var(--ln);border-radius:16px;padding:12px;margin-bottom:10px}
+.sgbox .subtop{margin-bottom:6px}.sgbox input{width:100%;margin:6px 0 8px}.sgbox .wkb{min-height:38px}
+body.trial #lv button:not([data-l="1"]){opacity:.45}
+.lkwa{margin:12px 0 0}
 .bmh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--mu);padding:7px 0;border-bottom:1px solid var(--ln)}.bmh b{color:var(--tx)}
 .bmg{margin:6px auto 4px;max-width:340px}.bmg svg{display:block;width:100%;height:auto;overflow:visible}
 .bmg .gs{transition:opacity .6s,filter .6s}
@@ -449,7 +454,7 @@ button.rf:active{transform:rotate(180deg)}
   </section>
   <div class="sync" id="sync"></div>
   <div class="sync" id="acct"></div>
-  <div class="sync" id="ver">Stryve Track v1.65</div>
+  <div class="sync" id="ver">Stryve Track v1.67</div>
   <div class="foot"><a href="https://instagram.com/nihal.stryve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nihal.stryve</a></div>
 </main>
 
@@ -478,7 +483,7 @@ button.rf:active{transform:rotate(180deg)}
 </div></div>
 <button id="chatfab" hidden aria-label="Chat with your trainer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span id="chatbadge" hidden></span></button>
 <div id="chat" hidden><div class="chatcard"><div id="chathd"></div><div id="chatbody"></div><div id="chatform" hidden><textarea id="chatin" rows="1" maxlength="1000" placeholder="Type a message…"></textarea><button id="chatsend" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button></div></div></div>
-<div id="lock" hidden><div class="lockcard"><div class="lockico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div class="lockt">Get the workout plan to access this page</div><p>Workout plans are for Stryve clients. Ask your trainer to set you up, then sign in with your Google account to unlock this page.</p><button id="lksign">Sign in</button><a class="lkmail" href="mailto:nihalstryve@gmail.com?subject=Workout%20plan%20access">Contact support</a><button class="sec" id="lkclose">Not now</button></div></div>
+<div id="lock" hidden><div class="lockcard"><div class="lockico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div class="lockt">Get the workout plan to access this page</div><p>Workout plans are for Stryve clients. Ask your trainer to set you up, then sign in with your Google account to unlock this page.</p><a id="lkwa" class="wabtn lkwa" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message your coach on WhatsApp</a><button id="lkchat" style="margin-top:10px">Chat with your coach</button><button class="sec" id="lkclose">Not now</button></div></div>
 
 <nav>
   <button class="on" data-t="log"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span>Log</button>
@@ -526,7 +531,7 @@ button.rf:active{transform:rotate(180deg)}
   /* ---- One custom weekly plan per client (trainer builds it) ---- */
   var CUSTOM_TYPES=["Rest","Push","Pull","Legs","Upper Body","Lower Body","Full Body","Chest","Back","Shoulders","Arms","Chest & Triceps","Back & Biceps","Shoulders & Arms","Shoulders & Traps","Arms & Core","Glutes & Hamstrings","Quads & Calves","Core & Cardio"];
   function curCustomRaw(){return document.body.classList.contains("client")?(PLAN.custom||""):((cur()||{}).custom||"")}
-  function curCustom(){var a=(curCustomRaw()||"").split("|");if(a.length!==7)return null;for(var i=0;i<7;i++)if(CUSTOM_TYPES.indexOf(a[i])<0)return null;return a.some(function(x){return x!=="Rest"})?a:null}
+  function curCustom(){if(document.body.classList.contains("trial"))return null;var a=(curCustomRaw()||"").split("|");if(a.length!==7)return null;for(var i=0;i<7;i++)if(CUSTOM_TYPES.indexOf(a[i])<0)return null;return a.some(function(x){return x!=="Rest"})?a:null}
   function typeColor(t){
     if(t==="Rest")return"#9ca3af";if(t==="Push"||/Chest|Triceps/.test(t))return"#ff5a1f";if(t==="Pull"||/Back|Biceps/.test(t))return"#3b82f6";
     if(t==="Legs"||/Glutes|Quads|Lower/.test(t))return"#22c55e";if(/Upper/.test(t))return"#a855f7";if(/Shoulder/.test(t))return"#ec4899";
@@ -537,6 +542,7 @@ button.rf:active{transform:rotate(180deg)}
     var wd0=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
     $("pcsum").innerHTML='<div class="pch"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18" cy="16" r="3"/></svg>Custom plan<span class="pcb'+(on?" on":"")+'">'+(on?"On":"Off")+'</span><svg class="pcchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div>'+
       (on?'<div class="pcstrip">'+cu.map(function(t,i){return'<div class="pct'+(t==="Rest"?" rest":"")+'" style="--c:'+typeColor(t)+'"><b>'+wd0[i]+'</b><span>'+esc(typeShort(t))+'</span></div>'}).join("")+'</div>':'<div class="pccap">'+(cl?"Build your own week, for example Push, Rest, Upper, Pull, Legs.":"Build a one-off weekly plan for this client.")+' Tap to set it up.</div>');
+    if(document.body.classList.contains("trial")){$("pcust").style.display="";$("pcust").open=false;$("pcsum").innerHTML='<div class="pch"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Custom plan<span class="pcb">Locked</span></div><div class="pccap">Unlocks with a subscription.</div>';el.innerHTML="";return}
     $("pcust").style.display="";var wd=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],src=cu||base||["Rest","Rest","Rest","Rest","Rest","Rest","Rest"];
     var cc=cur(),by=(!cl&&cc&&cc.customBy==="client"&&cc.customAt)?'<div class="wanone" style="margin:0 0 10px;color:var(--ac)">Changed by the client on '+esc(new Date(cc.customAt).toLocaleDateString(undefined,{day:"numeric",month:"short"}))+'.</div>':"";
     el.innerHTML='<div class="pcedit"><div class="wanone" style="margin:0 0 10px">'+(cl?"Set what you train each day. Only one custom plan. While it is on, it replaces the split and workout days.":"Set what this client trains each day. Only one custom plan per client. While it is on, it replaces the split and workout days. The client can also change it.")+'</div>'+by+
@@ -563,12 +569,14 @@ button.rf:active{transform:rotate(180deg)}
   function refreshMeta(){
     if(!CLOUD.email||CLOUD.client||document.body.classList.contains("client")||!window.FB||!FB.clients)return;
     FB.clients(CLOUD.email).then(function(L){
-      var ch=false;L.forEach(function(d){var c=root.clients.filter(function(x){return x.id===d.id})[0];if(!c)return;
+      var ch=false,fresh=false;L.forEach(function(d){var c=root.clients.filter(function(x){return x.id===d.id})[0];if(!c){if(!d.archived)fresh=true;return}
+        if(tsMs(d.trialAt)!==(c.trialAt||0)){c.trialAt=tsMs(d.trialAt);ch=true}
         if(!c.dd){var nd=d.days||"";if((c.days||"")!==nd){c.days=nd;c.daysBy=d.daysBy||"";c.daysAt=d.daysAt||"";ch=true}}
         if(!c.cdt){var nc=d.custom||"";if((c.custom||"")!==nc){c.custom=nc;c.customBy=d.customBy||"";c.customAt=d.customAt||"";ch=true}}
         if((d.sessions||[]).length!==(c.sessions||[]).length){c.sessions=d.sessions||[];ch=true}
         if((d.whatsapp||"")!==(c.whatsapp||"")){c.whatsapp=d.whatsapp||"";ch=true}
         if((d.lastLogin||"")!==(c.lastLogin||"")){c.lastLogin=d.lastLogin||"";ch=true}});
+      if(fresh&&!CLOUD.reloading){CLOUD.reloading=1;loadCloud().then(function(){CLOUD.reloading=0}).catch(function(){CLOUD.reloading=0});return}
       if(ch){renderClients();renderPlan()}}).catch(function(){})}
   /* ---- WhatsApp ---- */
   function waNorm(v){var d=String(v||"").replace(/\D/g,"");if(d.indexOf("00")===0)d=d.slice(2);return d.length>=8&&d.length<=15?d:""}
@@ -774,10 +782,9 @@ button.rf:active{transform:rotate(180deg)}
 
   if(!CM)try{var l=norm2(JSON.parse(localStorage.getItem(KEY)));if(l){root=l;pick(l.active)}}catch(e){}
 
-  var GUEST=false;
   var CLOUD={me:"",email:"",admin:false,cache:{},mail:{},cm:{},cd:{},cc:"",client:null,t:0};
   var LOGOSRC=(document.querySelector("img.logo")||{}).src||"";
-  var GL=(LOGOSRC?'<img class="glogo" alt="Stryve Fitness" src="'+LOGOSRC+'">':'')+'<div class="gname">STRYVE TRACK</div>',SIGNBTN='<button id="gsign"><svg class="gg" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.1 1.4-4.9 2.3-8.2 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Sign in with Google</button><div class="gor"><span>or</span></div><button class="sec" id="gguest">Continue as guest</button><p class="gnote">Guest data stays on this device only.</p>';
+  var GL=(LOGOSRC?'<img class="glogo" alt="Stryve Fitness" src="'+LOGOSRC+'">':'')+'<div class="gname">STRYVE TRACK</div>',SIGNBTN='<button id="gsign"><svg class="gg" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.1 1.4-4.9 2.3-8.2 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Sign in with Google</button><p class="gnote">New here? Sign in with Google to start your free 3-day trial.</p>';
   function gate(h){var g=$("gate");g.hidden=!h;g.querySelector(".gbody").innerHTML=h||""}
   function cloudSave(){
     if(!CLOUD.email)return;
@@ -831,38 +838,31 @@ button.rf:active{transform:rotate(180deg)}
     list.sort(function(a,b){return(a.name||"").localeCompare(b.name||"")});
     list.forEach(function(c){
       var lv=c.level||0,em=c.email||"",en=c.entries||[],bd=c.body||[],nm=c.name||"Client",sp=c.split||"",rv=!!c.revoked;
-      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",lastLogin:c.lastLogin||"",days:c.days||"",daysBy:c.daysBy||"",daysAt:c.daysAt||"",custom:c.custom||"",customBy:c.customBy||"",customAt:c.customAt||"",sessions:c.sessions||[],diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
+      r.clients.push({id:c.id,name:nm,level:lv,email:em,split:sp,revoked:rv,sub:c.sub||null,whatsapp:c.whatsapp||"",lastLogin:c.lastLogin||"",days:c.days||"",daysBy:c.daysBy||"",daysAt:c.daysAt||"",custom:c.custom||"",customBy:c.customBy||"",customAt:c.customAt||"",sessions:c.sessions||[],trialAt:tsMs(c.trialAt),diet:c.diet||null,diets:c.diets||[],lastMsg:c.lastMsg||null});r.store[c.id]={entries:en,body:bd};
       CLOUD.cm[c.id]=JSON.stringify([nm,lv,em,sp,rv?1:0,c.sub?JSON.stringify(c.sub):"",0,c.days||"",c.custom||""]);CLOUD.cd[c.id]=JSON.stringify([en,bd]);CLOUD.mail[c.id]=(em&&lv>=1&&!rv)?em:"";
     });
     if(!r.clients.length){r.clients.push({id:"me",name:"Me"});r.store.me={entries:[],body:[]}}
     var a="";try{a=localStorage.getItem("wt-act")||""}catch(e){}
     r.active=r.store[a]?a:r.clients[0].id;
     CLOUD.diets=[];CLOUD.dietErr=false;try{CLOUD.diets=await FB.diets(CLOUD.email)}catch(e){CLOUD.dietErr=true}
+    try{CLOUD.cfg=await FB.signupConfig();if(!CLOUD.cfg&&CLOUD.me===CLOUD.email){var c0={trainer:CLOUD.email,enabled:true,whatsapp:""};await FB.setSignupConfig(c0);CLOUD.cfg=c0}}catch(e){CLOUD.cfg=CLOUD.cfg||null}
     root=r;pick(r.active);renderClients();renderAll();chatStartTrainer();
     if(r.clients.some(function(c){return c.email&&subState(c).k==="exp"}))persist();
     if(!list.length)cloudSave();
   }
   function renderAcct(){
     var h="";
-    if(GUEST){h='Guest mode \u00b7 saved on this device only \u00b7 <a href="#" id="gsignin">Sign in</a>'}else if(CLOUD.me){
+    if(CLOUD.me){
       h=esc(CLOUD.me)+' \u00b7 <a href="#" id="gout2">Sign out</a>'+(CLOUD.admin?' \u00b7 <a href="admin.html">Admin</a>':"");
       if(CLOUD.email!==CLOUD.me&&!CLOUD.client)h='Viewing clients of '+esc(CLOUD.email)+' \u00b7 <a href="#" id="back">Back to mine</a><br>'+h;
     }
     $("acct").innerHTML=h;
-  }
-  function startGuest(){
-    GUEST=true;KEY="wt-guest-v1";document.body.classList.add("guest");
-    try{var l=norm2(JSON.parse(localStorage.getItem(KEY)));if(l){root=l;pick(l.active)}}catch(e){}
-    gate("");renderClients();renderAll();renderAcct();
-    var dI=document.querySelector('nav button[data-t="diet"] span');if(dI)dI.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
-    var pi=document.querySelector('nav button[data-t="plan"] span');if(pi)pi.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
   }
   function startAuth(){
     if(!CM)return;
     document.body.classList.add("cm");
     $("gate").addEventListener("click",function(e){
       var b=e.target.closest("button");if(!b)return;
-      if(b.id==="gguest"){startGuest();return}
       if(b.id==="gsign")FB.signIn().catch(function(x){gate(GL+'<p>Sign-in failed: '+esc(x.code||x.message)+'</p>'+SIGNBTN)});
       if(b.id==="wasave"){
         var n=waNorm(($("gwa")||{}).value);if(!n){$("gwerr").textContent="Enter your number with country code, e.g. +91 98765 43210.";return}
@@ -872,7 +872,6 @@ button.rf:active{transform:rotate(180deg)}
     });
     $("acct").addEventListener("click",function(e){
       var a=e.target.closest("a");if(!a)return;
-      if(a.id==="gsignin"){e.preventDefault();location.reload()}
       if(a.id==="gout2"){e.preventDefault();FB.signOut().then(function(){location.reload()})}
       if(a.id==="back"){e.preventDefault();location.hash="";location.reload()}
     });
@@ -887,21 +886,28 @@ button.rf:active{transform:rotate(180deg)}
         var r;try{r=await FB.role(email)}catch(x){gate(GL+'<p>Could not check access. Check your connection.</p>');return}
         if(!r.trainer&&!r.admin){
           var ac=null;try{ac=await FB.access(email)}catch(x){}
+          var sc=null;try{sc=await FB.signupConfig()}catch(x){}
+          CLOUD.cfg=sc;
+          if(!ac&&sc&&sc.enabled&&sc.trainer){
+            gate("<p>Setting up your free trial\u2026</p>");
+            try{await FB.selfRegister(sc.trainer,email,u.displayName||email.split("@")[0]);ac=await FB.access(email)}
+            catch(x){gate(GL+'<div class="gt">Could not start your trial</div><p>'+(/permission/.test((x&&x.code)||"")?"This Google account already used its trial, or its access was removed. Ask your coach to add you.":"Please check your connection and try again.")+'</p><button class="sec" id="gout">Sign out</button>');return}
+          }
           if(ac&&ac.level>=1&&ac.level<=4){
             CLOUD.me=email;CLOUD.email=ac.trainer;CLOUD.client={trainer:ac.trainer,cid:ac.cid};
             document.body.classList.add("client");PLAN.lv=ac.level;PLAN.sp=ac.split||"Recommended";PLAN.off=0;
             var cd=null;try{cd=await FB.getClient(ac.trainer,ac.cid)}catch(x){}
             if(!cd){gate(GL+'<p>Could not load your workouts. Ask your trainer to check your access.</p><button class="sec" id="gout">Sign out</button>');return}
-            var sx=subState({sub:cd.sub});if(sx.k==="exp"){gate(GL+'<div class="gt">Membership expired</div><p>Your membership ended on '+esc(fmtD(cd.sub.end))+'. Please contact your trainer to renew.</p><button class="sec" id="gout">Sign out</button>');return}
+            var cs0={sub:cd.sub||null,trialAt:tsMs(cd.trialAt)};CLOUD.cs=cs0;var sx=subState(cs0);if(sx.k==="exp"){gate(GL+'<div class="gt">Membership expired</div><p>Your membership ended on '+esc(fmtD(cd.sub.end))+'. Please contact your trainer to renew.</p><button class="sec" id="gout">Sign out</button>');return}
             if(!cd.whatsapp){gate(GL+'<div class="gt">Welcome</div><div class="gname2">'+esc(cd.name||ac.name||"")+'</div><p>One quick step. Enter your WhatsApp number so your coach can reach you.</p><input id="gwa" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" maxlength="22" value="+91 "><div class="gerr" id="gwerr"></div><button id="wasave">Continue</button><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
             try{FB.updateClientData(ac.trainer,ac.cid,{lastLogin:new Date().toISOString()}).catch(function(){})}catch(e){}
             PLAN.days=(cd.days!=null?cd.days:ac.days)||"";PLAN.custom=cd.custom||"";PLAN.sessions=cd.sessions||[];
             var dd={entries:cd.entries||[],body:cd.body||[]};CLOUD.cc=JSON.stringify([dd.entries,dd.body]);
             root={clients:[{id:ac.cid,name:cd.name||ac.name||"Me"}],active:ac.cid,store:{}};root.store[ac.cid]=dd;root.clients[0].diet=cd.diet||null;root.clients[0].diets=cd.diets||[];
             pick(ac.cid);renderClients();renderAll();chatStartClient(ac);
-            gate("");renderAcct();memLine(cd.sub);expWarn(cd.sub);tab("plan");document.querySelector(".hs").textContent="Stryve Track \u00b7 "+(root.clients[0].name||"");return;
+            gate("");renderAcct();applyGates();memLine(cs0);expWarn(cs0);tab("plan");document.querySelector(".hs").textContent="Stryve Track \u00b7 "+(root.clients[0].name||"");return;
           }
-          gate(GL+'<div class="gt">No access yet</div><p>'+esc(email)+' has not been approved. Ask your trainer or the admin to add this Google email, or use the app as a guest.</p><button id="gguest">Continue as guest</button><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
+          gate(GL+'<div class="gt">No access yet</div><p>'+esc(email)+' has not been approved and sign-ups are closed right now. Ask your trainer to add this Google email.</p><button class="sec" id="gout" style="margin-top:10px">Sign out</button>');return}
         CLOUD.me=email;CLOUD.admin=r.admin;
         var as=(location.hash.match(/as=([^&]+)/)||[])[1];
         CLOUD.email=(r.admin&&as)?decodeURIComponent(as).toLowerCase():email;
@@ -912,7 +918,7 @@ button.rf:active{transform:rotate(180deg)}
     window.FB?init():window.addEventListener("fbready",init);
   }
   function persist(){cloudSave();
-    if(CM&&!GUEST){try{localStorage.setItem("wt-act",root.active)}catch(e){}}else try{localStorage.setItem(KEY,JSON.stringify(root))}catch(e){}
+    if(CM){try{localStorage.setItem("wt-act",root.active)}catch(e){}}else try{localStorage.setItem(KEY,JSON.stringify(root))}catch(e){}
     if(!ref)return;
     clearTimeout(timer);
     timer=setTimeout(function(){
@@ -1764,8 +1770,13 @@ button.rf:active{transform:rotate(180deg)}
   var PLANS=[["1m","1 month",1],["3m","3 months",3],["6m","6 months",6],["life","Lifetime",0]];
   function fmtD(iso){return new Date(iso+"T00:00:00").toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"})}
   function addMonths(iso,n){var p=iso.split("-").map(Number),dim=new Date(p[0],p[1]-1+n+1,0).getDate(),d=new Date(p[0],p[1]-1+n,Math.min(p[2],dim));return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+  var TRIAL_MS=72*3600000;
+  function tsMs(v){if(!v)return 0;if(typeof v==="number")return v;if(v.toMillis)return v.toMillis();if(v.seconds)return v.seconds*1000;var n=Date.parse(v);return isNaN(n)?0:n}
+  function fmtLeft(ms){var m=Math.max(0,Math.ceil(ms/60000)),h=Math.floor(m/60),d=Math.floor(h/24);return d>=1?d+(d===1?" day ":" days ")+(h%24)+" hr":h>=1?h+" hr "+(m%60)+" min":m+" min"}
   function subState(c){
-    var sb=c&&c.sub;if(!sb||!sb.plan)return{k:"none",label:"No plan"};
+    var sb=c&&c.sub;
+    if((!sb||!sb.plan)&&c&&c.trialAt){var te=c.trialAt+TRIAL_MS,tl=te-Date.now();return tl>0?{k:"trial",label:"Trial · "+fmtLeft(tl)+" left",left:tl,endMs:te}:{k:"texp",label:"Trial ended"}}
+    if(!sb||!sb.plan)return{k:"none",label:"No plan"};
     if(sb.plan==="life")return{k:"life",label:"Lifetime"};
     var t=today();if(sb.end<t)return{k:"exp",label:"Expired "+fmtD(sb.end)};
     var days=Math.round((new Date(sb.end+"T00:00:00")-new Date(t+"T00:00:00"))/86400000);
@@ -1775,17 +1786,18 @@ button.rf:active{transform:rotate(180deg)}
   function addDays(iso,n){var p=iso.split("-").map(Number),d=new Date(p[0],p[1]-1,p[2]+n);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
   function subRender(){
     var L=root.clients;if(!L.length){$("subbody").innerHTML='<div class="empty">No clients yet.</div>';return}
-    var n={act:0,soon:0,exp:0,none:0};
-    L.forEach(function(x){var k=subState(x).k;if(k==="act"||k==="life")n.act++;else if(k==="soon"){n.act++;n.soon++}else if(k==="exp")n.exp++;else n.none++});
-    var F=[["all","All",L.length],["act","Active",n.act],["soon","Ending soon",n.soon],["exp","Expired",n.exp],["none","No plan",n.none]];
-    var h='<div class="fchips">'+F.map(function(x){return'<button data-sf="'+x[0]+'"'+(SUBF===x[0]?' class="on"':"")+'>'+x[1]+' · '+x[2]+'</button>'}).join("")+'</div>';
-    var shown=L.filter(function(c){var k=subState(c).k;return SUBF==="all"||(SUBF==="act"&&(k==="act"||k==="soon"||k==="life"))||(SUBF==="soon"&&k==="soon")||(SUBF==="exp"&&k==="exp")||(SUBF==="none"&&k==="none")});
+    var n={act:0,soon:0,exp:0,none:0,trial:0};
+    L.forEach(function(x){var k=subState(x).k;if(k==="act"||k==="life")n.act++;else if(k==="soon"){n.act++;n.soon++}else if(k==="exp"||k==="texp")n.exp++;else if(k==="trial")n.trial++;else n.none++});
+    var F=[["all","All",L.length],["act","Active",n.act],["trial","Trial",n.trial],["soon","Ending soon",n.soon],["exp","Expired",n.exp],["none","No plan",n.none]];
+    var cf=CLOUD.cfg,sg=(!CLOUD.client&&CLOUD.me&&CLOUD.me===CLOUD.email)?'<div class="sgbox"><div class="subtop"><b>Free trial sign-ups</b><button class="wkb sec" id="sgtog">'+(cf&&cf.enabled?"On":"Off")+'</button></div><div class="wanone" style="margin:0 0 4px">'+(cf&&cf.enabled?"Anyone who signs in with Gmail gets a 3-day trial: beginner plans only, no diet.":"Sign-ups are closed. New Gmail users will see No access.")+'</div><label class="wanone" for="sgwa" style="display:block;margin-top:8px">Your WhatsApp (shown on locked screens)</label><input id="sgwa" type="tel" inputmode="tel" placeholder="+91 98765 43210" maxlength="22" value="'+qa(waShow(cf&&cf.whatsapp))+'"><button class="wkb" id="sgsave">Save number</button></div>':"";
+    var h=sg+'<div class="fchips">'+F.map(function(x){return'<button data-sf="'+x[0]+'"'+(SUBF===x[0]?' class="on"':"")+'>'+x[1]+' · '+x[2]+'</button>'}).join("")+'</div>';
+    var shown=L.filter(function(c){var k=subState(c).k;return SUBF==="all"||(SUBF==="act"&&(k==="act"||k==="soon"||k==="life"))||(SUBF==="soon"&&k==="soon")||(SUBF==="exp"&&(k==="exp"||k==="texp"))||(SUBF==="trial"&&k==="trial")||(SUBF==="none"&&k==="none")});
     if(!shown.length)h+='<div class="empty">No clients in this view.</div>';
     h+=shown.map(function(c){
       var st=subState(c),sb=c.sub||{},open=c.id===SUBC;
       var r='<div class="subrow"><button class="subhead" data-sx="'+qa(c.id)+'" aria-expanded="'+open+'"><b>'+esc(c.name||"Client")+'</b><span class="sst '+st.k+'">'+esc(st.label)+'</span><svg class="chev'+(open?" up":"")+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>';
       if(open){
-        r+=(c.whatsapp?'<a class="wabtn" style="margin:10px 0 0" target="_blank" rel="noopener" href="'+qa(waLink(c,"Hi "+(c.name||"").split(" ")[0]+", "+(st.k==="exp"?"your membership has ended. Would you like to renew?":sb.end?"your membership ends on "+fmtD(sb.end)+". Would you like to renew?":"")))+'">'+'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a>':"")+(loginText(c)?'<div class="sync" style="text-align:left;margin:10px 0 0">'+esc(loginText(c))+'</div>':"")+'<div class="sync" style="text-align:left;margin:10px 0">'+(sb.plan?esc(planName(c))+(sb.end?" · ends "+esc(fmtD(sb.end)):" · never expires"):"No plan set")+'</div>'+
+        r+=(c.whatsapp?'<a class="wabtn" style="margin:10px 0 0" target="_blank" rel="noopener" href="'+qa(waLink(c,"Hi "+(c.name||"").split(" ")[0]+", "+(st.k==="texp"||st.k==="trial"?"your free trial "+(st.k==="texp"?"has ended":"is ending soon")+". Would you like to subscribe to unlock your diet and all plans?":st.k==="exp"?"your membership has ended. Would you like to renew?":sb.end?"your membership ends on "+fmtD(sb.end)+". Would you like to renew?":"")))+'">'+'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg>Message on WhatsApp</a>':"")+(loginText(c)?'<div class="sync" style="text-align:left;margin:10px 0 0">'+esc(loginText(c))+'</div>':"")+'<div class="sync" style="text-align:left;margin:10px 0">'+(sb.plan?esc(planName(c))+(sb.end?" · ends "+esc(fmtD(sb.end)):" · never expires"):st.k==="trial"?"Free trial · "+esc(fmtLeft(st.left))+" left. Choose a plan below to subscribe them.":st.k==="texp"?"Trial ended. Choose a plan below to subscribe them and unlock plans and diet.":"No plan set")+'</div>'+
           '<div class="subplans">'+PLANS.map(function(x){return'<button data-sp="'+qa(c.id)+'|'+x[0]+'"'+(sb.plan===x[0]&&st.k!=="exp"?' class="on"':"")+'>'+x[1]+'</button>'}).join("")+'</div>'+
           '<div class="bmn" style="margin:14px 0 6px"><b>Custom plan</b></div><div class="subcust"><input id="subn" type="number" inputmode="numeric" min="1" max="3650" placeholder="e.g. 45"><select id="subu"><option value="d">days</option><option value="w">weeks</option><option value="m">months</option></select><button data-sp="'+qa(c.id)+'|custom">Set</button></div>'+
           (sb.plan&&st.k!=="exp"?'<button class="dlink" data-sp="'+qa(c.id)+'|clear" style="margin-top:6px">Clear plan</button>':"")}
@@ -1805,16 +1817,22 @@ button.rf:active{transform:rotate(180deg)}
       c.sub={plan:plan,start:start,end:addMonths(base,x[2])};msg=c.name+": "+x[1]+(live?" added":" started")+", ends "+fmtD(c.sub.end)+"."}
     persist();SUBC="";subRender();$("submsg").textContent=msg+(c.email?"":" (No login email set, so access is not affected.)")}
   /* Client popup: shown on every open during the last 7 days of a plan */
-  function memLine(sub){
-    var el=$("memline"),st=subState({sub:sub});
-    if(!el||st.k==="none"){if(el)el.hidden=true;return}
-    el.innerHTML='<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3L8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>Membership</span><span>'+(st.k==="life"?"<b>Lifetime</b>":"<b>"+esc(st.label)+"</b> · ends "+esc(new Date(sub.end+"T00:00:00").toLocaleDateString(undefined,{day:"numeric",month:"short"})))+'</span>';
+  function memLine(c){
+    var el=$("memline");if(!el)return;var st=subState(c);
+    if(st.k==="none"){el.hidden=true;return}
+    var right=st.k==="trial"?"<b>Free trial</b> · "+esc(fmtLeft(st.left))+" left":st.k==="texp"?"<b>Trial ended</b> · Subscribe to unlock":st.k==="life"?"<b>Lifetime</b>":"<b>"+esc(st.label)+"</b> · ends "+esc(new Date(c.sub.end+"T00:00:00").toLocaleDateString(undefined,{day:"numeric",month:"short"}));
+    el.innerHTML='<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3L8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>Membership</span><span>'+right+'</span>';
     el.hidden=false}
-  function expWarn(sub){
-    var st=subState({sub:sub});if(st.k!=="soon")return;
+  function expWarn(c){
+    var st=subState(c);
+    if(st.k==="trial"){$("ewt").textContent="Your free trial is on";$("ewp").innerHTML="You have <b>"+esc(fmtLeft(st.left))+"</b> left. The trial includes beginner workout plans. Diet and the other levels unlock with a subscription, so message your coach before it ends.";$("expwarn").hidden=false;return}
+    if(st.k!=="soon")return;
     $("ewt").textContent=st.days===0?"Your plan expires today":"Your plan is expiring in "+st.days+(st.days===1?" day":" days");
-    $("ewp").innerHTML="Your membership ends on <b>"+esc(fmtD(sub.end))+"</b>. Contact your trainer to renew so you don\u2019t lose access.";
+    $("ewp").innerHTML="Your membership ends on <b>"+esc(fmtD(c.sub.end))+"</b>. Contact your trainer to renew so you don\u2019t lose access.";
     $("expwarn").hidden=false}
+  function sgSet(patch){
+    var cf=Object.assign({trainer:CLOUD.email,enabled:true,whatsapp:""},CLOUD.cfg||{},patch);
+    FB.setSignupConfig(cf).then(function(){CLOUD.cfg=cf;subRender();toast("Saved",cf.enabled?"Free trial sign-ups are on.":"Free trial sign-ups are off.")}).catch(function(e){toast("Could not save",(e&&e.code)||"Check your connection.",true)})}
   function subOpen(){$("submsg").textContent="Tap a client to change their plan. Expired clients lose app access.";SUBC="";subRender();$("subsheet").hidden=false;document.body.classList.add("noscroll")}
   function subClose(){$("subsheet").hidden=true;document.body.classList.remove("noscroll")}
   /* ---- BMI + maintenance calories (trainer tool, remembered per client on this device) ---- */
@@ -1968,7 +1986,7 @@ button.rf:active{transform:rotate(180deg)}
   });
   /* ---- chat bubble: clients ask their trainer, trainer replies ---- */
   var CH={cid:"",msgs:[],unsub:null,unsubC:null,open:false,err:""};
-  function chatOn(){return !document.body.classList.contains("guest")&&!!(CM||window.__CHATDEMO)}
+  function chatOn(){return !!(CM||window.__CHATDEMO)}
   function chatIsClient(){return document.body.classList.contains("client")}
   function chatMyCid(){return chatIsClient()?((CM&&CLOUD.client)?CLOUD.client.cid:cur().id):CH.cid}
   function chatSeen(){try{return JSON.parse(localStorage.getItem("wt-chat-seen"))||{}}catch(e){return{}}}
@@ -2067,14 +2085,25 @@ button.rf:active{transform:rotate(180deg)}
   });
   $("chatin").addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.shiftKey&&!/Mobi|Android|iPhone|iPad/.test(navigator.userAgent)){e.preventDefault();chatSend()}});
   $("chatin").addEventListener("input",function(){this.style.height="44px";this.style.height=Math.min(120,this.scrollHeight)+"px"});
+  /* ---- Free trial tiers (clients only): trial = beginner plans, no diet. Trial ended = plans and diet locked. ---- */
+  function tierOf(){if(!document.body.classList.contains("client")||!CLOUD.cs)return"full";var k=subState(CLOUD.cs).k;return k==="trial"?"trial":k==="texp"?"locked":"full"}
+  function applyGates(){var t=tierOf();document.body.classList.toggle("trial",t==="trial");document.body.classList.toggle("tlocked",t==="locked");if(t==="trial")PLAN.lv=1}
+  function lockModal(kind,tier){
+    var title=kind==="diet"&&tier==="trial"?"Diet plans need a subscription":"Your free trial has ended";
+    var txt=kind==="diet"&&tier==="trial"?"Your free trial includes beginner workout plans. Subscribe to unlock your diet plan and all workout levels.":"Subscribe to unlock your workout plans and diet plan. Message your coach to get started.";
+    $("lock").querySelector(".lockt").textContent=title;$("lock").querySelector("p").textContent=txt;
+    var wa=$("lkwa"),num=CLOUD.cfg&&CLOUD.cfg.whatsapp;
+    if(wa){if(num){wa.href="https://wa.me/"+num+"?text="+encodeURIComponent("Hi, I would like to subscribe to Stryve Track.");wa.hidden=false}else wa.hidden=true}
+    $("lock").hidden=false}
+  function refreshClient(){
+    if(!document.body.classList.contains("client")||!CLOUD.client||!window.FB)return;
+    FB.getClient(CLOUD.client.trainer,CLOUD.client.cid).then(function(cd){if(!cd)return;CLOUD.cs={sub:cd.sub||null,trialAt:tsMs(cd.trialAt)};applyGates();memLine(CLOUD.cs);renderPlan()}).catch(function(){})}
   function tab(t){
     if(t==="plan"||t==="log")refreshMeta();
     WKTAB=t;
     if(CH.open)chatClose();chatBadge();
-    if((t==="plan"||t==="diet")&&document.body.classList.contains("guest")){
-      $("lock").querySelector(".lockt").textContent=t==="diet"?"Get your diet plan to access this page":"Get the workout plan to access this page";
-      $("lock").querySelector("p").textContent=(t==="diet"?"Diet plans":"Workout plans")+" are for Stryve clients. Ask your trainer to set you up, then sign in with your Google account to unlock this page.";
-      $("lock").hidden=false;return}
+    applyGates();var tr=tierOf();
+    if((t==="diet"&&tr!=="full")||(t==="plan"&&tr==="locked")){lockModal(t,tr);return}
     ["log","plan","diet","prog","hist"].forEach(function(n){$("v-"+n).hidden=n!==t});
     document.querySelectorAll("nav button").forEach(function(b){b.classList.toggle("on",b.dataset.t===t)});
     $("title").textContent={log:"Log workout",plan:"Workout plans",diet:"Diet plan",prog:"Progress",hist:"History"}[t];if(t==="plan")renderPlan();if(t==="diet")renderDiet();chatBadge();
@@ -2139,11 +2168,12 @@ button.rf:active{transform:rotate(180deg)}
   $("cdays").addEventListener("click",function(e){var b=e.target.closest("[data-wd]");if(!b)return;var c=cur(),a=(c.days&&/^[01]{7}$/.test(c.days)?c.days:"0000000").split(""),i=+b.dataset.wd;a[i]=a[i]==="1"?"0":"1";setDays(a.join(""))});
   document.querySelector(".dpre").addEventListener("click",function(e){var b=e.target.closest("[data-wp]");if(b)setDays(b.dataset.wp)});
   $("pedit").addEventListener("click",function(){var pn=$("pedpanel"),open=pn.hidden;pn.hidden=!open;this.classList.toggle("on",open);this.setAttribute("aria-expanded",open?"true":"false")});
+  $("pcust").addEventListener("toggle",function(){if(document.body.classList.contains("trial")&&this.open){this.open=false;toast("Locked in the free trial","Custom plans unlock with a subscription.",true)}});
   $("pcbody").addEventListener("change",function(e){var sel=e.target;if(sel.tagName==="SELECT"&&/^cu\d$/.test(sel.id))sel.parentNode.style.setProperty("--c",typeColor(sel.value))});
   $("pcbody").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;if(b.id==="cusave")custSave();else if(b.id==="cuclear")custClear()});
   $("pcdays").addEventListener("click",function(e){var b=e.target.closest("[data-wd]");if(!b)return;var cd=curDays(),a=(/^[01]{7}$/.test(cd)?cd:"0000000").split(""),i=+b.dataset.wd;a[i]=a[i]==="1"?"0":"1";changeDays(a.join(""))});
   $("ppre").addEventListener("click",function(e){var b=e.target.closest("[data-wp]");if(b)changeDays(b.dataset.wp)});
-  document.addEventListener("visibilitychange",function(){if(!document.hidden)refreshMeta()});setInterval(refreshMeta,120000);
+  document.addEventListener("visibilitychange",function(){if(!document.hidden){refreshMeta();refreshClient()}});setInterval(function(){refreshMeta();refreshClient()},120000);
   $("cwa").addEventListener("change",function(){
     var c=cur(),v=this.value.trim(),n=v?waNorm(v):"";
     if(v&&!n){alert("Enter the number with country code, e.g. +91 98765 43210.");waUpdate();return}
@@ -2199,7 +2229,9 @@ button.rf:active{transform:rotate(180deg)}
   $("prok").addEventListener("click",function(){$("prpop").hidden=true});
   $("prpop").addEventListener("click",function(e){if(e.target.id==="prpop")$("prpop").hidden=true});
   $("ewok").addEventListener("click",function(){$("expwarn").hidden=true});$("subbtn").addEventListener("click",subOpen);$("subx").addEventListener("click",subClose);
-  $("subsheet").addEventListener("click",function(e){if(e.target.id==="subsheet"){subClose();return}var fl=e.target.closest("[data-sf]");if(fl){SUBF=fl.dataset.sf;SUBC="";subRender();return}var hd=e.target.closest("[data-sx]");if(hd){SUBC=SUBC===hd.dataset.sx?"":hd.dataset.sx;subRender();return}var b=e.target.closest("[data-sp]");if(b){var a=b.dataset.sp.split("|");subApply(a[0],a[1])}});
+  $("subsheet").addEventListener("click",function(e){if(e.target.id==="subsheet"){subClose();return}if(e.target.id==="sgtog"){sgSet({enabled:!(CLOUD.cfg&&CLOUD.cfg.enabled)});return}
+    if(e.target.id==="sgsave"){var nn=waNorm(($("sgwa")||{}).value);if(($("sgwa")||{}).value&&!nn){alert("Enter the number with country code, e.g. +91 98765 43210.");return}sgSet({whatsapp:nn});return}
+    var fl=e.target.closest("[data-sf]");if(fl){SUBF=fl.dataset.sf;SUBC="";subRender();return}var hd=e.target.closest("[data-sx]");if(hd){SUBC=SUBC===hd.dataset.sx?"":hd.dataset.sx;subRender();return}var b=e.target.closest("[data-sp]");if(b){var a=b.dataset.sp.split("|");subApply(a[0],a[1])}});
   $("crev").addEventListener("click",function(){
     var c=cur();if(!c.email){alert("Add and save this client's login email first.");return}
     c.revoked=!c.revoked;persist();renderClients();
@@ -2207,11 +2239,11 @@ button.rf:active{transform:rotate(180deg)}
   });
   $("lock").addEventListener("click",function(e){
     var b=e.target.closest("button");
-    if(b&&b.id==="lksign"){location.reload();return}
+    if(b&&b.id==="lkchat"){$("lock").hidden=true;var cb=$("chatfab");if(cb)cb.click();return}
     if((b&&b.id==="lkclose")||e.target.id==="lock")$("lock").hidden=true;
   });
   startAuth();
-  $("lv").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;PLAN.lv=+b.dataset.l;try{localStorage.setItem("wt-level",PLAN.lv)}catch(x){}renderPlan()});
+  $("lv").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;if(document.body.classList.contains("trial")&&+b.dataset.l!==1){toast("Locked in the free trial","Subscribe to unlock Intermediate, Expert and Home plans.",true);return}PLAN.lv=+b.dataset.l;try{localStorage.setItem("wt-level",PLAN.lv)}catch(x){}renderPlan()});
   $("spl").addEventListener("change",function(){PLAN.sp=$("spl").value;try{localStorage.setItem("wt-split",PLAN.sp)}catch(x){}renderPlan()});
   $("wprev").addEventListener("click",function(){PLAN.off--;renderPlan()});
   $("wnext").addEventListener("click",function(){PLAN.off++;renderPlan()});

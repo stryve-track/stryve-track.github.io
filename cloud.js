@@ -1,6 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,getDoc,setDoc,deleteDoc,updateDoc,collection,getDocs,getCountFromServer,writeBatch,onSnapshot,query,orderBy,addDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFirestore,doc,getDoc,setDoc,deleteDoc,updateDoc,collection,getDocs,getCountFromServer,writeBatch,onSnapshot,query,orderBy,addDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const cfg=window.FIREBASE_CONFIG;
 const ok=!!(cfg&&cfg.apiKey&&cfg.projectId);
 let auth,db;
@@ -45,6 +45,12 @@ window.FB={
     if(em&&data.level>=1&&!data.revoked)b.set(doc(db,"clientAccess",em),{trainer:to,cid:nid,name:data.name||"Client",level:data.level,split:data.split||""});
     b.delete(src);
     await b.commit();return nid;
+  },
+  async signupConfig(){const s=await getDoc(doc(db,"signup","config"));return s.exists()?s.data():null},
+  setSignupConfig(data){return setDoc(doc(db,"signup","config"),data,{merge:true})},
+  async selfRegister(trainer,email,name){
+    await setDoc(doc(db,"trainers",trainer,"clients",email),{name:name||"New client",level:1,email,split:"",revoked:false,entries:[],body:[],trialAt:serverTimestamp()});
+    await setDoc(doc(db,"clientAccess",email),{trainer,cid:email,name:name||"New client",level:1,split:"",days:""});
   },
   async access(email){const s=await getDoc(doc(db,"clientAccess",email));return s.exists()?s.data():null},
   setAccess(email,data){return setDoc(doc(db,"clientAccess",email),data)},
